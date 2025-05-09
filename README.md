@@ -4,6 +4,8 @@ A decompilation of Spongebob Moves In! This project aims to recreate as close as
 
 This project was based off the Android client, specifically version 4.37.00 since the iOS version was compiled il2cpp meaning it would require far much more work to pull off. I would've liked to use the iOS build but realistically, I think it's best to just keep it to the Android version since the project is far from finished yet.
 
+The inspiration for this decomp comes from Aubrey Holmes' video [I Revived the Lost SpongeBob Game Nickelodeon Doesn't Want You to Play](https://www.youtube.com/watch?v=G8cIHsdifxU)
+
 # Opening in Unity
 This project uses Unity version 4.6.9f1, which is currently delisted from Unity's download page, even though the actual download link is still available here: https://discussions.unity.com/t/early-unity-versions-downloads/927331
 
