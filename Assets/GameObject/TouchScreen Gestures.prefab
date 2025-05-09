@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1385524487127970
+GameObject:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_Component:
+  - 4: {fileID: 4317250080341013}
+  - 114: {fileID: 114684516959808083}
+  m_Layer: 0
+  m_Name: TouchScreen Gestures
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4317250080341013
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1385524487127970}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.19890666, y: 1.175439, z: -0.31684732}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &114684516959808083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1385524487127970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebbedfb1ae22dcabd30187b2bd6a76dc, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  defaultPrefabs: {fileID: 114052647474046611, guid: caab1e88571a409469c7db98bbaaed01, type: 2}
+  defaultCompFlags:
+    perFinger:
+      enabled: 1
+      touch: 1
+      motion: 0
+      longPress: 0
+      drag: 1
+      swipe: 0
+      tap: 1
+      doubleTap: 0
+    globalGestures:
+      enabled: 1
+      longPress: 1
+      drag: 1
+      swipe: 0
+      tap: 1
+      doubleTap: 0
+      pinch: 1
+      rotation: 0
+      twoFingerLongPress: 0
+      twoFingerDrag: 0
+      twoFingerSwipe: 0
+      twoFingerTap: 0
+  maxFingers: 2
+--- !u!1001 &100100000
+Prefab:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1385524487127970}
+  m_IsPrefabParent: 1
+  m_IsExploded: 0
