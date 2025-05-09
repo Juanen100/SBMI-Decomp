@@ -1,4 +1,4 @@
-# SpongeBob Moves In! Decompilation <img align="right" width="128" height="128" src="https://github.com/Juanen100/SBMI-Decomp/blob/main/ExportedProject/Assets/Resources/textures/appicons/Icon-152.png?raw=true" alt="SBMI Icon" />
+# SpongeBob Moves In! Decompilation <img align="right" width="128" height="128" src="https://github.com/Juanen100/SBMI-Decomp/blob/main/Assets/Resources/textures/appicons/Icon-152.png?raw=true" alt="SBMI Icon" />
 
 A decompilation of Spongebob Moves In! This project aims to recreate as close as possible the client for SBMI to provide a base for people to modify this game however they want to. Keep in mind that, whilst I'd like it to be as close as possible to the original client, I've added some code to make it work better with the Unity Editor because sometimes the game would softlock just by getting out of the main focus of the Game tab which is not ideal.
 
