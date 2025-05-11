@@ -15,7 +15,7 @@ Shader "Custom/RBGAlphaOverlay" {
         
         Lighting Off
         Cull Off
-        ZWrite Off
+        ZWrite On
         Blend SrcAlpha OneMinusSrcAlpha
         
         Pass 

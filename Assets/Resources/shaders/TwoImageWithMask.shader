@@ -9,7 +9,8 @@ Properties {
     {
         Tags { "RenderType" = "Opaque" }
         LOD 200
-
+        ZWrite On
+        
         CGPROGRAM
         #pragma surface surf Lambert
 
@@ -33,7 +34,6 @@ Properties {
 
             float influence = 1.0 - saturate(maskVal);
 
-            // Blend tint onto the base color
             fixed3 tinted = lerp(baseCol.rgb, baseCol.rgb * _Color.rgb, influence);
 
             o.Albedo = tinted;
