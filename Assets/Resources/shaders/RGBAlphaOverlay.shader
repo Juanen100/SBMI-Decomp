@@ -1,69 +1,71 @@
-Shader "Custom/RBGAlphaOverlay" {
-    Properties {
+Shader "Custom/RGBAlphaOverlay"
+{
+    Properties
+    {
         _MainTex ("Main Texture (RGB)", 2D) = "white" {}
-        _CutoutTex ("Cutout Texture (A)", 2D) = "white" {}
-        _Color ("Tint Color", Color) = (1,1,1,1)
-        _Cutoff ("Alpha Cutoff", Range(0,1)) = 0.5
+        _AlphaMap ("Alpha Map (A)", 2D) = "white" {}
+        _Color    ("Tint Color", Color) = (1,1,1,1)
     }
-    
-    SubShader {
-        Tags {
-            "Queue"="Transparent"
-            "RenderType"="TransparentCutout"
-            "IgnoreProjector"="True"
-        }
-        
-        Lighting Off
-        Cull Off
-        ZWrite On
-        Blend SrcAlpha OneMinusSrcAlpha
-        
-        Pass 
+
+    SubShader
+    {
+        Tags { "Queue"="Transparent" "RenderType"="Transparent" }
+
+        Pass
         {
+            ZWrite Off
+            Blend SrcAlpha OneMinusSrcAlpha
+            AlphaTest Greater 0.01
+            ColorMask RGB
+
             CGPROGRAM
-            #pragma vertex vert
+            #pragma vertex   vert
             #pragma fragment frag
-            #pragma fragmentoption ARB_precision_hint_fastest
-            
+            #pragma target   2.0
+
             #include "UnityCG.cginc"
-            
-            struct appdata {
-                float4 vertex : POSITION;
+
+            sampler2D _MainTex;
+            sampler2D _AlphaMap;
+            float4    _MainTex_ST;
+            fixed4    _Color;
+
+            struct appdata
+            {
+                float4 vertex   : POSITION;
+                fixed4 color    : COLOR;
                 float2 texcoord : TEXCOORD0;
             };
-            
-            struct v2f {
-                float4 pos : POSITION;
-                float2 uv : TEXCOORD0;
+
+            struct v2f
+            {
+                float4 pos      : SV_POSITION;
+                fixed4 color    : COLOR;
+                float2 uv       : TEXCOORD0;
             };
-            
-            uniform sampler2D _MainTex;
-            uniform sampler2D _CutoutTex;
-            uniform float4 _MainTex_ST;
-            uniform float4 _Color;
-            uniform float _Cutoff;
-            
-            v2f vert (appdata v) {
+
+            v2f vert(appdata v)
+            {
                 v2f o;
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
-                o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
+                o.pos   = mul(UNITY_MATRIX_MVP, v.vertex);
+                o.color = v.color;
+                o.uv    = TRANSFORM_TEX(v.texcoord, _MainTex);
                 return o;
             }
-            
-            half4 frag (v2f i) : COLOR {
-                half4 col = tex2D(_MainTex, i.uv);
-                half cutout = tex2D(_CutoutTex, i.uv).r;
-                
-                col.a = step(_Cutoff, cutout) * _Color.a;
-                
-                col.rgb *= _Color.rgb;
-                
-                clip(col.a - 0.001);
-                
-                return col;
+
+            fixed4 frag(v2f i) : SV_Target
+            {
+                fixed4 col;
+                // RGB from main texture modulated by vertex color
+                col.rgb = (tex2D(_MainTex, i.uv) * i.color).rgb;
+                // Alpha from the green channel of the alpha map (matches original .y sample)
+                col.a   = tex2D(_AlphaMap, i.uv).g;
+                // Apply tint
+                return col * _Color;
             }
             ENDCG
         }
     }
-    FallBack "Transparent/Cutout/VertexLit" 
+
+    Fallback "Unlit/Transparent"
 }
