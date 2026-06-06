@@ -127,7 +127,7 @@ public class CVSReader
                 return false;
             }
 
-            string streamingPath = Path.Combine(Application.streamingAssetsPath, "export", fileName);
+            string streamingPath = Path.Combine(Application.streamingAssetsPath, "export/" + fileName);
             Debug.Log("Trying StreamingAssets fallback: " + streamingPath);
 
             if (File.Exists(streamingPath))
