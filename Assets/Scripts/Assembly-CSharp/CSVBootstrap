@@ -1,0 +1,128 @@
+using System.IO;
+using System.Collections;
+using UnityEngine;
+
+public class CSVBootstrap : MonoBehaviour
+{
+    [SerializeField]
+    private string[] csvFiles =
+    {
+        "Wishtables",
+        "Tasks",
+        "Recipes",
+        "Resources",
+        "Sound",
+        "Units",
+        "Shops",
+        "Leveling",
+        "ItemIdentities",
+        "ItemCategories",
+        "Landmarks",
+        "LandmarkPlacement",
+        "Terrain",
+        "TerrainSlots",
+        "TerrainTypes",
+        "TerrainForeground",
+        "Trees",
+        "Vendors",
+        "VendingStock",
+        "StoreOrder",
+        "RentOnlyBuildings",
+        "ProductionSlots",
+        "Notifications",
+        "Movies",
+        "MicroEvents",
+        "InitialUnlocks",
+        "Treasure",
+        "TreasureSpawn"
+    };
+
+    void Start()
+    {
+        StartCoroutine(CopyCSVs());
+    }
+
+    IEnumerator CopyCSVs()
+    {
+        string destFolder = Path.Combine(
+            Application.persistentDataPath,
+            "export"
+        );
+
+        if (!Directory.Exists(destFolder))
+        {
+            Directory.CreateDirectory(destFolder);
+        }
+
+        foreach (string csv in csvFiles)
+        {
+            string destPath = Path.Combine(
+                destFolder,
+                csv + ".csv"
+            );
+
+            if (File.Exists(destPath))
+            {
+                continue;
+            }
+
+            string srcPath =
+                Application.streamingAssetsPath +
+                "/export/" +
+                csv +
+                ".csv";
+
+            WWW www = new WWW(srcPath);
+
+            yield return www;
+
+            if (!string.IsNullOrEmpty(www.error))
+            {
+                Debug.LogError(
+                    "Error loading " +
+                    csv +
+                    ".csv : " +
+                    www.error
+                );
+                continue;
+            }
+
+#if !UNITY_WEBPLAYER
+            try
+            {
+                File.WriteAllBytes(destPath, www.bytes);
+
+                if (File.Exists(destPath))
+                {
+                    Debug.Log("Copied: " + csv + ".csv");
+                }
+                else
+                {
+                    Debug.LogError(
+                        "Failed to write " +
+                        csv +
+                        ".csv"
+                    );
+                }
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError(
+                    "Exception writing " +
+                    csv +
+                    ".csv\n" +
+                    ex.Message
+                );
+            }
+#else
+            Debug.LogWarning(
+                "WebPlayer does not support file export. Skipping " +
+                csv +
+                ".csv"
+            );
+#endif
+        }
+
+        Debug.Log("All CSVs ready.");
+    }
+}
