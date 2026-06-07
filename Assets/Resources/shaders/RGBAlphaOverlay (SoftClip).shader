@@ -1,27 +1,90 @@
-Shader "Custom/RGBAlphaOverlay (SoftClip)" {
-Properties {
- _MainTex ("Main Texture  (RGB)", 2D) = "" {}
- _AlphaMap ("Alpha  (A)", 2D) = "" {}
- _Color ("Tint Color", Color) = (1,1,1,1)
-}
-	//DummyShaderTextExporter
-	
-	SubShader{
-		Tags { "RenderType" = "Opaque" }
-		LOD 200
-		CGPROGRAM
-#pragma surface surf Standard fullforwardshadows
-#pragma target 3.0
-		sampler2D _MainTex;
-		struct Input
-		{
-			float2 uv_MainTex;
-		};
-		void surf(Input IN, inout SurfaceOutputStandard o)
-		{
-			fixed4 c = tex2D(_MainTex, IN.uv_MainTex);
-			o.Albedo = c.rgb;
-		}
-		ENDCG
-	}
+Shader "Custom/RGBAlphaOverlay (SoftClip)"
+{
+    Properties
+    {
+        _MainTex       ("Main Texture (RGB)", 2D) = "white" {}
+        _AlphaMap      ("Alpha (A)", 2D) = "white" {}
+        _Color         ("Tint Color", Color) = (1,1,1,1)
+        _ClipSharpness ("Clip Sharpness", Vector) = (1,1,0,0)
+    }
+
+    SubShader
+    {
+        Tags { "Queue"="Transparent" "RenderType"="Transparent" }
+
+        Pass
+        {
+            ZWrite Off
+            Blend SrcAlpha OneMinusSrcAlpha
+            AlphaTest Greater 0.01
+            ColorMask RGB
+
+            CGPROGRAM
+            #pragma vertex   vert
+            #pragma fragment frag
+            #pragma target   2.0
+
+            #include "UnityCG.cginc"
+
+            sampler2D _MainTex;
+            sampler2D _AlphaMap;
+            float4    _MainTex_ST;
+            fixed4    _Color;
+            float2    _ClipSharpness;
+
+            struct appdata
+            {
+                float4 vertex   : POSITION;
+                fixed4 color    : COLOR;
+                float2 texcoord : TEXCOORD0;
+            };
+
+            struct v2f
+            {
+                float4 pos   : SV_POSITION;
+                fixed4 color : COLOR;
+                float2 uv    : TEXCOORD0;
+                float2 uv1   : TEXCOORD1;
+            };
+
+            v2f vert(appdata v)
+            {
+                v2f o;
+                o.pos   = mul(UNITY_MATRIX_MVP, v.vertex);
+                o.color = v.color;
+                o.uv    = v.texcoord.xy;
+                o.uv1   = (v.vertex.xy * _MainTex_ST.xy) + _MainTex_ST.zw;
+                return o;
+            }
+
+            fixed4 frag(v2f i) : SV_Target
+            {
+                fixed4 col;
+                col.rgb = (tex2D(_MainTex, i.uv) * i.color).rgb;
+                col.a   = tex2D(_AlphaMap, i.uv).g;
+
+                float2 fade = (float2(1.0, 1.0) - abs(i.uv1)) * _ClipSharpness;
+                col.a *= saturate(min(fade.x, fade.y));
+
+                return col * _Color;
+            }
+            ENDCG
+        }
+    }
+
+    SubShader
+    {
+        Tags { "Queue"="Transparent" }
+
+        Pass
+        {
+            ZWrite Off
+            Blend SrcAlpha OneMinusSrcAlpha
+            AlphaTest Greater 0.01
+            ColorMask RGB
+            ColorMaterial AmbientAndDiffuse
+            SetTexture [_MainTex]  { combine texture, texture alpha }
+            SetTexture [_AlphaMap] { combine previous, texture alpha }
+        }
+    }
 }

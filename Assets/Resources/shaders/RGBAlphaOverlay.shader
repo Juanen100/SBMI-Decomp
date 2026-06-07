@@ -56,11 +56,8 @@ Shader "Custom/RGBAlphaOverlay"
             fixed4 frag(v2f i) : SV_Target
             {
                 fixed4 col;
-                // RGB from main texture modulated by vertex color
                 col.rgb = (tex2D(_MainTex, i.uv) * i.color).rgb;
-                // Alpha from the green channel of the alpha map (matches original .y sample)
                 col.a   = tex2D(_AlphaMap, i.uv).g;
-                // Apply tint
                 return col * _Color;
             }
             ENDCG

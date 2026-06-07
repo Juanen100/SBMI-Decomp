@@ -153,7 +153,7 @@ public class SessionDriver : MonoBehaviour
 	private void LoginAndroid()
 	{
 		Debug.Log("---------------------loginAndroid");
-		/*if (TFUtils.isAmazon())
+		if (TFUtils.isAmazon())
 		{
 			ServiceEvent();
 		}
@@ -163,12 +163,12 @@ public class SessionDriver : MonoBehaviour
 		}
 		if (TFUtils.isAmazon())
 		{
-			GameCenterBinding.authenticateLocalPlayer();
+			//GameCenterBinding.authenticateLocalPlayer();
 		}
 		else
 		{
 			authenticationFailedEvent("NOT VALUE");
-		}*/
+		}
 	}
 
 	private void ServiceReadyHandler()
