@@ -40,9 +40,7 @@ public class VersionSwitcher : EditorWindow
         { "Latest",        "Latest Update" },
     };
 
-    private static string basePath = System.Environment.GetFolderPath(
-        System.Environment.SpecialFolder.UserProfile) +
-        @"\AppData\LocalLow\Tinyfun Studios\Spongebob";
+    private static string basePath = Application.persistentDataPath;
 
     private string currentVersion = "None";
     private string currentID = "-";
@@ -116,7 +114,7 @@ public class VersionSwitcher : EditorWindow
         DrawSeparator();
         GUILayout.Space(4);
         GUI.color = new Color(0.6f, 0.6f, 0.6f);
-        GUILayout.Label("Made by Markut.", EditorStyles.centeredGreyMiniLabel);
+        GUILayout.Label("Made by Markut.", EditorStyles.miniLabel);
         GUI.color = Color.white;
         GUILayout.Space(4);
     }

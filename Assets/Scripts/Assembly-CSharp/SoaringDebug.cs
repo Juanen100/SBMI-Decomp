@@ -61,10 +61,10 @@ public static class SoaringDebug
 
 	static SoaringDebug()
 	{
-		LogToConsole = true;
-		LogToFile = true;
+		LogToConsole = false;
+		LogToFile = false;
 		LogTimeStamp = string.Empty;
-		LogToHandler = LogToHandlerType.verbose;
+		LogToHandler = LogToHandlerType.none;
 		LogTypesName = new string[5];
 		LogTypesName[1] = "Assert";
 		LogTypesName[0] = "Error";
