@@ -10032,7 +10032,7 @@ public class Session
 					TFUtils.LogDump(session, "friend_save_error", ex);
 				}
 			}
-			if (!flag && SBSettings.OfflineModeFriendParks)
+			/*if (!flag && SBSettings.OfflineModeFriendParks)
 			{
 				try
 				{
@@ -10053,12 +10053,72 @@ public class Session
 					Debug.LogError("Data Failed To Load: Using Local Game: " + ex2.Message + "\n" + ex2.StackTrace);
 					TFUtils.LogDump(session, "friend_save_error", ex2);
 				}
-			}
+			}*/
+if (!flag)
+{
+    try
+    {
+        MBinaryReader fileStream = ResourceUtils.GetFileStream("game", "PatchyTown", "json", 5);
+
+        
+        if (fileStream == null || !fileStream.IsOpen())
+        {
+            string streamingPath = Path.Combine(Application.streamingAssetsPath, "PatchyTown", "game.json");
+            Debug.LogWarning("Markut were unable to load PatchyTown.\ngame.json not found in AppData, trying StreamingAssets: " + streamingPath);
+
+            if (File.Exists(streamingPath))
+            {
+                Debug.Log("Markut were able to load PatchyTown.\ngame.json found in StreamingAssets: " + streamingPath);
+                byte[] bytes = File.ReadAllBytes(streamingPath);
+                fRIEND_SAVE_GAME = new SoaringDictionary(bytes);
+                Dictionary<string, object> data2 = SBMISoaring.ConvertDictionaryToGeneric(fRIEND_SAVE_GAME);
+                int performedMigration2 = 0;
+                session.game = Game.LoadFromDataDict(data2, session.Analytics, session.ThePlayer, contentLoader, out performedMigration2, session.PlayHavenController);
+                session.game.CanSave = false;
+                OnGameCreated(session);
+                flag = true;
+            }
+            else
+            {
+                Debug.LogError("Wait... Markut were unable to load PatchyTown.\ngame.json not found in StreamingAssets either: " + streamingPath);
+            }
+        }
+        else
+        {
+            fRIEND_SAVE_GAME = new SoaringDictionary(fileStream.ReadAllBytes());
+            Dictionary<string, object> data2 = SBMISoaring.ConvertDictionaryToGeneric(fRIEND_SAVE_GAME);
+            int performedMigration2 = 0;
+            session.game = Game.LoadFromDataDict(data2, session.Analytics, session.ThePlayer, contentLoader, out performedMigration2, session.PlayHavenController);
+            session.game.CanSave = false;
+            OnGameCreated(session);
+            flag = true;
+        }
+    }
+    catch (Exception ex2)
+    {
+        Debug.LogError("Makut were unable to load Data: trying Local Game: " + ex2.Message + "\n" + ex2.StackTrace);
+        TFUtils.LogDump(session, "friend_save_error", ex2);
+    }
+}
 			if (!flag)
 			{
 				DisplayFailedToLoadDialog(session);
 			}
 		}
+
+		/*public void DisplayFailedToLoadDialog(Session session)
+		{
+			if (!blockUpdates)
+			{
+				Action okHandler = delegate
+				{
+					session.canChangeState = true;
+					session.ChangeState("GameStarting");
+				};
+				SBUIBuilder.CreateErrorDialog(session, "Error", "Opps, We were unable to load Patchy Town\nAt this time.\nCome Back Later.", Language.Get("!!PREFAB_OK"), okHandler, 0.85f, 0.45f);
+				blockUpdates = true;
+			}
+		}*/
 
 		public void DisplayFailedToLoadDialog(Session session)
 		{
@@ -10069,7 +10129,7 @@ public class Session
 					session.canChangeState = true;
 					session.ChangeState("GameStarting");
 				};
-				SBUIBuilder.CreateErrorDialog(session, "Error", "Opps, We were unable to load Patchy Town\nAt this time.\nCome Back Later.", Language.Get("!!PREFAB_OK"), okHandler, 0.85f, 0.45f);
+				SBUIBuilder.CreateErrorDialog(session, "Error", "Opps, Markut were unable to load Patchy Town\nAt this time.\nCome Back Later.", Language.Get("!!PREFAB_OK"), okHandler, 0.85f, 0.45f);
 				blockUpdates = true;
 			}
 		}
