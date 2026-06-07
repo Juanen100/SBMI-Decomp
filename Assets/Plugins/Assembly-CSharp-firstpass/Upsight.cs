@@ -1,151 +1,242 @@
+using System;
 using System.Collections.Generic;
-using MiniJSON;
 using UnityEngine;
 
 public class Upsight
 {
-	private static AndroidJavaObject _plugin;
+	private static bool Initialized;
+
+	private static AndroidJavaObject _pluginBase;
+
+	private static AndroidJavaObject _pluginPushExtension;
+
+	private static AndroidJavaObject _pluginMarketingExtension;
 
 	static Upsight()
 	{
-		if (Application.platform != RuntimePlatform.Android)
-		{
-			return;
-		}
-		UpsightManager.noop();
-		using (AndroidJavaClass androidJavaClass = new AndroidJavaClass("com.upsight.unity.UpsightPlugin"))
-		{
-			_plugin = androidJavaClass.CallStatic<AndroidJavaObject>("instance", new object[0]);
-		}
 	}
 
-	public static void setLogLevel(UpsightLogLevel logLevel)
+	public static void init()
 	{
-		if (Application.platform == RuntimePlatform.Android)
-		{
-			_plugin.Call("setLogLevel", logLevel.ToString());
-		}
 	}
 
-	public static string getPluginVersion()
+	internal static void terminate()
 	{
-		if (Application.platform != RuntimePlatform.Android)
-		{
-			return "UnityEditor";
-		}
-		return _plugin.Call<string>("getPluginVersion", new object[0]);
 	}
 
-	public static void init(string appToken, string appSecret, string gcmProjectNumber = null)
+	public static UpsightUserResult setUserID(string id, bool preserve)
 	{
-		if (Application.platform == RuntimePlatform.Android)
-		{
-			_plugin.Call("init", appToken, appSecret, gcmProjectNumber);
-		}
+		return default(UpsightUserResult);
 	}
 
-	public static void requestAppOpen()
+	public static UpsightUserResult clearUserID()
 	{
-		if (Application.platform == RuntimePlatform.Android)
-		{
-			_plugin.Call("requestAppOpen");
-		}
+		return default(UpsightUserResult);
 	}
 
-	public static void sendContentRequest(string placementID, bool showsOverlayImmediately, bool shouldAnimate = true, Dictionary<string, object> dimensions = null)
+	public static UpsightUserResult deleteUser(string id)
 	{
-		if (Application.platform == RuntimePlatform.Android)
-		{
-			AndroidJavaObject androidJavaObject = dictionaryToJavaHashMap(dimensions);
-			_plugin.Call("sendContentRequest", placementID, showsOverlayImmediately, shouldAnimate, androidJavaObject);
-		}
+		return default(UpsightUserResult);
 	}
 
-	public static AndroidJavaObject dictionaryToJavaHashMap(Dictionary<string, object> dictionary)
+	public static string getCurrentUserID()
 	{
-		AndroidJavaObject result = null;
-		if (dictionary != null)
-		{
-			AndroidJavaClass androidJavaClass = new AndroidJavaClass("net.minidev.json.parser.JSONParser");
-			int num = androidJavaClass.GetStatic<int>("MODE_JSON_SIMPLE");
-			string text = Json.Serialize(dictionary);
-			AndroidJavaObject androidJavaObject = new AndroidJavaObject("net.minidev.json.parser.JSONParser", num);
-			result = androidJavaObject.Call<AndroidJavaObject>("parse", new object[1] { text });
-		}
-		return result;
+		return null;
 	}
 
-	public static void preloadContentRequest(string placementID, Dictionary<string, object> dimensions = null)
+	public static int getCurrentUserSessionNumber()
 	{
-		if (Application.platform == RuntimePlatform.Android)
-		{
-			AndroidJavaObject androidJavaObject = dictionaryToJavaHashMap(dimensions);
-			_plugin.Call("preloadContentRequest", placementID, androidJavaObject);
-		}
+		return 0;
 	}
 
-	public static void getContentBadgeNumber(string placementID)
+	public static DateTime getCurrentUserSessionStartTime()
 	{
-		if (Application.platform == RuntimePlatform.Android)
-		{
-			_plugin.Call("sendMetadataRequest", placementID);
-		}
+		return default(DateTime);
 	}
 
-	public static bool getOptOutStatus()
+	public static void resetUserAttributes()
 	{
-		if (Application.platform != RuntimePlatform.Android)
-		{
-			return false;
-		}
-		return _plugin.Call<bool>("getOptOutStatus", new object[0]);
 	}
 
-	public static void setOptOutStatus(bool optOutStatus)
+	public static void setUserAttributeString(string key, string value)
 	{
-		if (Application.platform == RuntimePlatform.Android)
-		{
-			_plugin.Call("setOptOutStatus", optOutStatus);
-		}
 	}
 
-	public static void trackInAppPurchase(string sku, int quantity, UpsightAndroidPurchaseResolution resolutionType, double price, string orderId, string store)
+	public static void setUserAttributeFloat(string key, float value)
 	{
-		if (Application.platform == RuntimePlatform.Android)
-		{
-			_plugin.Call("trackInAppPurchase", sku, quantity, (int)resolutionType, price, orderId, store);
-		}
 	}
 
-	public static void reportCustomEvent(Dictionary<string, object> properties)
+	public static void setUserAttributeInt(string key, int value)
 	{
-		if (Application.platform == RuntimePlatform.Android)
-		{
-			_plugin.Call("reportCustomEvent", Json.Serialize(properties));
-		}
+	}
+
+	public static void setUserAttributeBool(string key, bool value)
+	{
+	}
+
+	public static void setUserAttributeDate(string key, DateTime value)
+	{
+	}
+
+	public static string getUserAttributeString(string key)
+	{
+		return null;
+	}
+
+	public static float getUserAttributeFloat(string key)
+	{
+		return 0f;
+	}
+
+	public static int getUserAttributeInt(string key)
+	{
+		return 0;
+	}
+
+	public static bool getUserAttributeBool(string key)
+	{
+		return false;
+	}
+
+	public static DateTime getUserAttributeDate(string key)
+	{
+		return default(DateTime);
+	}
+
+	public static void recordSessionlessCustomEvent(string eventName, Dictionary<string, object> properties = null)
+	{
+	}
+
+	public static void recordCustomEvent(string eventName, Dictionary<string, object> properties = null)
+	{
+	}
+
+	public static void recordMilestoneEvent(string scope, Dictionary<string, object> properties = null)
+	{
+	}
+
+	public static bool isContentReadyForBillboardWithScope(string scope)
+	{
+		return false;
+	}
+
+	public static void prepareBillboard(string scope)
+	{
+	}
+
+	public static void destroyBillboard(string scope)
+	{
+	}
+
+	public static void recordMonetizationEvent(double totalPrice, string currency, UpsightPurchaseResolution resolution, string product = null, double price = -1.0, int quantity = -1, Dictionary<string, object> properties = null)
+	{
+	}
+
+	public static void recordGooglePlayPurchase(int quantity, string currency, double price, double totalPrice, string product, int responseCode, string inAppPurchaseData, string inAppDataSignature, Dictionary<string, object> properties = null)
+	{
+	}
+
+	public static void recordAppleStorePurchase(int quantity, string currency, double price, string transactionIdentifier, string product, UpsightPurchaseResolution resolution, Dictionary<string, object> properties = null)
+	{
+	}
+
+	public static void recordAttributionEvent(string campaign, string creative, string source, Dictionary<string, object> properties = null)
+	{
 	}
 
 	public static void registerForPushNotifications()
 	{
-		if (Application.platform == RuntimePlatform.Android)
-		{
-			_plugin.Call("registerForPushNotifications");
-		}
 	}
 
-	public static void deregisterForPushNotifications()
-	{
-		if (Application.platform == RuntimePlatform.Android)
-		{
-			_plugin.Call("deregisterForPushNotifications");
-		}
-	}
-
-	public static void setShouldOpenContentRequestsFromPushNotifications(bool shouldOpen)
+	public static void unregisterForPushNotifications()
 	{
 	}
 
-	public static void setShouldOpenUrlsFromPushNotifications(bool shouldOpen)
+	public static void setShouldSynchronizeManagedVariables(bool shouldSynchronize)
 	{
+	}
+
+	public static string getManagedString(string key)
+	{
+		return null;
+	}
+
+	public static float getManagedFloat(string key)
+	{
+		return 0f;
+	}
+
+	public static int getManagedInt(string key)
+	{
+		return 0;
+	}
+
+	public static bool getManagedBool(string key)
+	{
+		return false;
+	}
+
+	public static string getAppToken()
+	{
+		return null;
+	}
+
+	public static string getPublicKey()
+	{
+		return null;
+	}
+
+	public static string getSid()
+	{
+		return null;
+	}
+
+	public static void setLoggerLevel(UpsightLoggerLevel loggerLevel)
+	{
+	}
+
+	public static string getPluginVersion()
+	{
+		return null;
+	}
+
+	public static bool getOptOutStatus()
+	{
+		return false;
+	}
+
+	public static void setOptOutStatus(bool optOutStatus)
+	{
+	}
+
+	public static void setLocation(double lat, double lon)
+	{
+	}
+
+	public static void purgeLocation()
+	{
+	}
+
+	public static int getLatestSessionNumber()
+	{
+		return 0;
+	}
+
+	public static long getLatestSessionStartTimestamp()
+	{
+		return 0L;
+	}
+
+	public static void onPause()
+	{
+	}
+
+	public static void onResume()
+	{
+	}
+
+	private static bool initSuccessful()
+	{
+		return false;
 	}
 }

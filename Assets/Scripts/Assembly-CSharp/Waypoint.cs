@@ -8,12 +8,11 @@ public class Waypoint
 	{
 		get
 		{
-			return sim.PointOfInterest;
+			return default(Vector2);
 		}
 	}
 
 	public Waypoint(Simulated sim)
 	{
-		this.sim = sim;
 	}
 }

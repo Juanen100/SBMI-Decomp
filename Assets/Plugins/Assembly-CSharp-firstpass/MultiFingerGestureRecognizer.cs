@@ -10,11 +10,10 @@ public abstract class MultiFingerGestureRecognizer : GestureRecognizer
 	{
 		get
 		{
-			return startPos;
+			return null;
 		}
 		set
 		{
-			startPos = value;
 		}
 	}
 
@@ -22,11 +21,10 @@ public abstract class MultiFingerGestureRecognizer : GestureRecognizer
 	{
 		get
 		{
-			return pos;
+			return null;
 		}
 		set
 		{
-			pos = value;
 		}
 	}
 
@@ -34,29 +32,25 @@ public abstract class MultiFingerGestureRecognizer : GestureRecognizer
 	{
 		get
 		{
-			return GetRequiredFingerCount();
+			return 0;
 		}
 	}
 
 	protected override void Start()
 	{
-		base.Start();
-		OnFingerCountChanged(GetRequiredFingerCount());
 	}
 
 	protected void OnFingerCountChanged(int fingerCount)
 	{
-		StartPosition = new Vector2[fingerCount];
-		Position = new Vector2[fingerCount];
 	}
 
 	public Vector2 GetPosition(int index)
 	{
-		return pos[index];
+		return default(Vector2);
 	}
 
 	public Vector2 GetStartPosition(int index)
 	{
-		return startPos[index];
+		return default(Vector2);
 	}
 }

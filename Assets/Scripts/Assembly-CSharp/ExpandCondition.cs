@@ -6,13 +6,11 @@ public class ExpandCondition : MatchableCondition
 
 	public static ExpandCondition FromDict(Dictionary<string, object> dict)
 	{
-		ExpandCondition expandCondition = new ExpandCondition();
-		expandCondition.Parse(dict, "expand", new List<string> { typeof(NewExpansionAction).ToString() }, new List<IMatcher> { ExpansionMatcher.FromDict(dict) });
-		return expandCondition;
+		return null;
 	}
 
 	public override string Description(Game game)
 	{
-		return Language.Get("!!COND_BUY_EXPANSION");
+		return null;
 	}
 }

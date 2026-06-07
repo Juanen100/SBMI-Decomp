@@ -4,27 +4,27 @@ namespace Helpshift
 	{
 		public static int v(string tag, string log)
 		{
-			return HelpshiftAndroidLog.v(tag, log);
+			return 0;
 		}
 
 		public static int d(string tag, string log)
 		{
-			return HelpshiftAndroidLog.d(tag, log);
+			return 0;
 		}
 
 		public static int i(string tag, string log)
 		{
-			return HelpshiftAndroidLog.i(tag, log);
+			return 0;
 		}
 
 		public static int w(string tag, string log)
 		{
-			return HelpshiftAndroidLog.w(tag, log);
+			return 0;
 		}
 
 		public static int e(string tag, string log)
 		{
-			return HelpshiftAndroidLog.e(tag, log);
+			return 0;
 		}
 	}
 }

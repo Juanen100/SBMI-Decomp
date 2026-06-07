@@ -4,7 +4,7 @@ public class TreasureEntity : EntityDecorator
 	{
 		get
 		{
-			return EntityType.TREASURE;
+			return default(EntityType);
 		}
 	}
 
@@ -12,7 +12,7 @@ public class TreasureEntity : EntityDecorator
 	{
 		get
 		{
-			return (ulong)Invariable["time.clear"];
+			return 0uL;
 		}
 	}
 
@@ -20,7 +20,7 @@ public class TreasureEntity : EntityDecorator
 	{
 		get
 		{
-			return (float)Invariable["timer_duration"];
+			return 0f;
 		}
 	}
 
@@ -28,15 +28,10 @@ public class TreasureEntity : EntityDecorator
 	{
 		get
 		{
-			if (!Variable.ContainsKey("clearCompleteTime"))
-			{
-				return null;
-			}
-			return (ulong?)Variable["clearCompleteTime"];
+			return null;
 		}
 		set
 		{
-			Variable["clearCompleteTime"] = value;
 		}
 	}
 
@@ -44,7 +39,7 @@ public class TreasureEntity : EntityDecorator
 	{
 		get
 		{
-			return (bool)Invariable["quick_clear"];
+			return false;
 		}
 	}
 
@@ -52,15 +47,10 @@ public class TreasureEntity : EntityDecorator
 	{
 		get
 		{
-			if (!Variable.ContainsKey("treasure_timing"))
-			{
-				return null;
-			}
-			return (TreasureSpawner)Variable["treasure_timing"];
+			return null;
 		}
 		set
 		{
-			Variable["treasure_timing"] = value;
 		}
 	}
 
@@ -68,7 +58,7 @@ public class TreasureEntity : EntityDecorator
 	{
 		get
 		{
-			return (!ClearCompleteTime.HasValue) ? 0 : (ClearCompleteTime.Value - TFUtils.EpochTime());
+			return 0uL;
 		}
 	}
 
@@ -76,15 +66,10 @@ public class TreasureEntity : EntityDecorator
 	{
 		get
 		{
-			if (Variable.ContainsKey("raising_time"))
-			{
-				return (float)Variable["raising_time"];
-			}
 			return 0f;
 		}
 		set
 		{
-			Variable["raising_time"] = value;
 		}
 	}
 
@@ -92,7 +77,7 @@ public class TreasureEntity : EntityDecorator
 	{
 		get
 		{
-			return (RewardDefinition)Invariable["clearing_reward"];
+			return null;
 		}
 	}
 
@@ -100,32 +85,17 @@ public class TreasureEntity : EntityDecorator
 	{
 		get
 		{
-			if (!Variable.ContainsKey("clearCompleteTime"))
-			{
-				return false;
-			}
-			return ClearCompleteTime != 0;
+			return false;
 		}
 	}
 
 	public TreasureEntity(Entity toDecorate)
-		: base(toDecorate)
+		: base(null)
 	{
-		new StructureDecorator(this);
 	}
 
 	public bool IsClearing(ulong utcNow)
 	{
-		int result;
-		if (HasStartedClearing)
-		{
-			ulong? clearCompleteTime = ClearCompleteTime;
-			result = ((clearCompleteTime.HasValue && utcNow < clearCompleteTime.Value) ? 1 : 0);
-		}
-		else
-		{
-			result = 0;
-		}
-		return (byte)result != 0;
+		return false;
 	}
 }

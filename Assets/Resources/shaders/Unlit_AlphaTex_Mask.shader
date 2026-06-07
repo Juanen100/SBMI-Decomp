@@ -1,58 +1,57 @@
-Shader "Unlit/TransparentMask"
-{
-    Properties
-    {
-        _MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
-        _Mask    ("Mask Offset", Float) = 0
-    }
+Shader "Unlit/TransparentMask" {
+	Properties {
+		_MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
+		_Mask ("Mask Offset", Float) = 0
+	}
+	//DummyShaderTextExporter
+	SubShader{
+		Tags { "RenderType"="Opaque" }
+		LOD 200
 
-    SubShader
-    {
-        LOD 100
-        Tags { "Queue"="Transparent" "IgnoreProjector"="true" "RenderType"="Transparent" }
+		Pass
+		{
+			HLSLPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
 
-        Pass
-        {
-            ZWrite Off
-            Blend SrcAlpha OneMinusSrcAlpha
+			float4x4 unity_ObjectToWorld;
+			float4x4 unity_MatrixVP;
+			float4 _MainTex_ST;
 
-            CGPROGRAM
-            #pragma vertex   vert
-            #pragma fragment frag
-            #pragma target   2.0
+			struct Vertex_Stage_Input
+			{
+				float4 pos : POSITION;
+				float2 uv : TEXCOORD0;
+			};
 
-            #include "UnityCG.cginc"
+			struct Vertex_Stage_Output
+			{
+				float2 uv : TEXCOORD0;
+				float4 pos : SV_POSITION;
+			};
 
-            sampler2D _MainTex;
-            float4    _MainTex_ST;
-            float     _Mask;
+			Vertex_Stage_Output vert(Vertex_Stage_Input input)
+			{
+				Vertex_Stage_Output output;
+				output.uv = (input.uv.xy * _MainTex_ST.xy) + _MainTex_ST.zw;
+				output.pos = mul(unity_MatrixVP, mul(unity_ObjectToWorld, input.pos));
+				return output;
+			}
 
-            struct appdata
-            {
-                float4 vertex   : POSITION;
-                float2 texcoord : TEXCOORD0;
-            };
+			Texture2D<float4> _MainTex;
+			SamplerState sampler_MainTex;
 
-            struct v2f
-            {
-                float4 pos : SV_POSITION;
-                float2 uv  : TEXCOORD0;
-            };
+			struct Fragment_Stage_Input
+			{
+				float2 uv : TEXCOORD0;
+			};
 
-            v2f vert(appdata v)
-            {
-                v2f o;
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
-                o.uv  = TRANSFORM_TEX(v.texcoord, _MainTex);
-                return o;
-            }
+			float4 frag(Fragment_Stage_Input input) : SV_TARGET
+			{
+				return _MainTex.Sample(sampler_MainTex, input.uv.xy);
+			}
 
-            fixed4 frag(v2f i) : SV_Target
-            {
-                float mask = (float)(i.uv.y >= _Mask);
-                return tex2D(_MainTex, i.uv) * mask;
-            }
-            ENDCG
-        }
-    }
+			ENDHLSL
+		}
+	}
 }

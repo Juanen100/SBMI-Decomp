@@ -1,43 +1,29 @@
-using UnityEngine;
-
-[AddComponentMenu("FingerGestures/Gesture Recognizers/Long Press")]
 public class LongPressGestureRecognizer : AveragedGestureRecognizer
 {
-	public float Duration = 1f;
+	public float Duration;
 
-	public float MoveTolerance = 5f;
+	public float MoveTolerance;
 
-	public event EventDelegate<LongPressGestureRecognizer> OnLongPress;
+	public event EventDelegate<LongPressGestureRecognizer> OnLongPress
+	{
+		add
+		{
+		}
+		remove
+		{
+		}
+	}
 
 	protected override void OnBegin(FingerGestures.IFingerList touches)
 	{
-		base.Position = touches.GetAveragePosition();
-		base.StartPosition = base.Position;
 	}
 
 	protected override GestureState OnActive(FingerGestures.IFingerList touches)
 	{
-		if (touches.Count != RequiredFingerCount)
-		{
-			return GestureState.Failed;
-		}
-		if (base.ElapsedTime >= Duration)
-		{
-			RaiseOnLongPress();
-			return GestureState.Recognized;
-		}
-		if (touches.GetAverageDistanceFromStart() > MoveTolerance)
-		{
-			return GestureState.Failed;
-		}
-		return GestureState.InProgress;
+		return default(GestureState);
 	}
 
 	protected void RaiseOnLongPress()
 	{
-		if (this.OnLongPress != null)
-		{
-			this.OnLongPress(this);
-		}
 	}
 }

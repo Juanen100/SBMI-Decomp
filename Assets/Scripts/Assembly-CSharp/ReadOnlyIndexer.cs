@@ -4,28 +4,26 @@ public class ReadOnlyIndexer
 {
 	private Dictionary<string, object> properties;
 
-	public object this[string property]
+	public object Item
 	{
 		get
 		{
-			return properties[property];
+			return null;
 		}
 	}
 
 	public ReadOnlyIndexer(Dictionary<string, object> properties)
 	{
-		this.properties = properties;
 	}
 
 	public bool ContainsKey(string property)
 	{
-		return properties.ContainsKey(property);
+		return false;
 	}
 
 	public bool TryGetValue(string property, out object value)
 	{
 		value = null;
-		properties.TryGetValue(property, out value);
-		return value != null;
+		return false;
 	}
 }

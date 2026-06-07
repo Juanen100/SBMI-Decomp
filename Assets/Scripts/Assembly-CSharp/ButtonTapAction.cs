@@ -10,7 +10,7 @@ public class ButtonTapAction : PersistedTriggerableAction
 	{
 		get
 		{
-			return triggerable;
+			return null;
 		}
 	}
 
@@ -18,46 +18,39 @@ public class ButtonTapAction : PersistedTriggerableAction
 	{
 		get
 		{
-			return true;
+			return false;
 		}
 	}
 
 	public ButtonTapAction(string sID)
-		: base("bt", Identity.Null())
+		: base(null, null)
 	{
-		m_sID = sID;
 	}
 
 	public new static ButtonTapAction FromDict(Dictionary<string, object> data)
 	{
-		string sID = TFUtils.LoadString(data, "button_id");
-		return new ButtonTapAction(sID);
+		return null;
 	}
 
 	public override Dictionary<string, object> ToDict()
 	{
-		Dictionary<string, object> dictionary = base.ToDict();
-		dictionary["button_id"] = m_sID;
-		return dictionary;
+		return null;
 	}
 
 	public override void Apply(Game game, ulong utcNow)
 	{
-		base.Apply(game, utcNow);
 	}
 
 	public override void Confirm(Dictionary<string, object> gameState)
 	{
-		base.Confirm(gameState);
 	}
 
 	public virtual void AddMoreDataToTrigger(ref Dictionary<string, object> data)
 	{
-		data.Add("button_id", m_sID);
 	}
 
 	public override ITrigger CreateTrigger(Dictionary<string, object> data)
 	{
-		return triggerable.BuildTrigger(GetType().ToString(), AddMoreDataToTrigger);
+		return null;
 	}
 }

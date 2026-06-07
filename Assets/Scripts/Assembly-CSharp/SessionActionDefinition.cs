@@ -38,7 +38,7 @@ public abstract class SessionActionDefinition
 	{
 		get
 		{
-			return id;
+			return 0u;
 		}
 	}
 
@@ -46,7 +46,7 @@ public abstract class SessionActionDefinition
 	{
 		get
 		{
-			return type;
+			return null;
 		}
 	}
 
@@ -54,7 +54,7 @@ public abstract class SessionActionDefinition
 	{
 		get
 		{
-			return sound;
+			return null;
 		}
 	}
 
@@ -62,7 +62,7 @@ public abstract class SessionActionDefinition
 	{
 		get
 		{
-			return postpone;
+			return 0f;
 		}
 	}
 
@@ -70,7 +70,7 @@ public abstract class SessionActionDefinition
 	{
 		get
 		{
-			return startConditions;
+			return null;
 		}
 	}
 
@@ -78,7 +78,7 @@ public abstract class SessionActionDefinition
 	{
 		get
 		{
-			return succeedConditions;
+			return null;
 		}
 	}
 
@@ -86,7 +86,7 @@ public abstract class SessionActionDefinition
 	{
 		get
 		{
-			return true;
+			return false;
 		}
 	}
 
@@ -94,7 +94,7 @@ public abstract class SessionActionDefinition
 	{
 		get
 		{
-			return isFailproof;
+			return false;
 		}
 	}
 
@@ -102,7 +102,7 @@ public abstract class SessionActionDefinition
 	{
 		get
 		{
-			return slave;
+			return null;
 		}
 	}
 
@@ -110,7 +110,7 @@ public abstract class SessionActionDefinition
 	{
 		get
 		{
-			return true;
+			return false;
 		}
 	}
 
@@ -118,60 +118,17 @@ public abstract class SessionActionDefinition
 	{
 		get
 		{
-			return usingDefaultSucceedConditions;
+			return false;
 		}
 	}
 
 	public virtual Dictionary<string, object> ToDict()
 	{
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary.Add("type", type);
-		dictionary.Add("sound", sound);
-		dictionary.Add("postpone", postpone);
-		if (!usingDefaultSucceedConditions)
-		{
-			dictionary.Add("end_conditions", ((LoadableCondition)succeedConditions).ToDict());
-		}
-		dictionary.Add("failproof", isFailproof ? 1 : 0);
-		if (slave != null)
-		{
-			dictionary["slave"] = slave.ToDict();
-		}
-		return dictionary;
+		return null;
 	}
 
 	protected virtual void Parse(Dictionary<string, object> actionData, uint id, ICondition startConditions, ICondition defaultSuccessConditions, uint originatedFromQuest)
 	{
-		this.id = id;
-		this.startConditions = startConditions;
-		type = TFUtils.LoadString(actionData, "type");
-		if (actionData.ContainsKey("failproof"))
-		{
-			isFailproof = ((TFUtils.LoadInt(actionData, "failproof") != 0) ? true : false);
-		}
-		if (actionData.ContainsKey("sound"))
-		{
-			sound = TFUtils.LoadString(actionData, "sound");
-		}
-		else
-		{
-			sound = null;
-		}
-		postpone = ((!actionData.ContainsKey("postpone")) ? 0f : TFUtils.LoadFloat(actionData, "postpone"));
-		if (actionData.ContainsKey("end_conditions"))
-		{
-			succeedConditions = ConditionFactory.FromDict(TFUtils.LoadDict(actionData, "end_conditions"));
-			usingDefaultSucceedConditions = false;
-		}
-		else
-		{
-			succeedConditions = defaultSuccessConditions;
-			usingDefaultSucceedConditions = true;
-		}
-		if (actionData.ContainsKey("slave"))
-		{
-			slave = SessionActionFactory.Create(TFUtils.LoadDict(actionData, "slave"), new DumbCondition(0u), originatedFromQuest, 0u);
-		}
 	}
 
 	public virtual void PreActivate(Game game, SessionActionTracker action)
@@ -201,6 +158,6 @@ public abstract class SessionActionDefinition
 
 	public override string ToString()
 	{
-		return string.Concat("SessionActionDefinition:(id=", id, ", type=", type, ", start_conditions=", startConditions.ToString(), ", succeed_conditions=", succeedConditions.ToString(), ", sound=", sound, ", postpone=", postpone, ", failproof=", isFailproof, ", slave=", slave, ")");
+		return null;
 	}
 }

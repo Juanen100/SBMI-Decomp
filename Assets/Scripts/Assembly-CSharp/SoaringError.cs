@@ -2,13 +2,13 @@ public class SoaringError : SoaringObjectBase
 {
 	private string mError;
 
-	private int mErrorCode = -1;
+	private int mErrorCode;
 
 	public string Error
 	{
 		get
 		{
-			return mError;
+			return null;
 		}
 	}
 
@@ -16,57 +16,47 @@ public class SoaringError : SoaringObjectBase
 	{
 		get
 		{
-			return mErrorCode;
+			return 0;
 		}
 	}
 
 	public SoaringError()
-		: base(IsType.Object)
+		: base(default(IsType))
 	{
 	}
 
 	public SoaringError(string error, int code)
-		: base(IsType.Object)
+		: base(default(IsType))
 	{
-		mError = error;
-		mErrorCode = code;
 	}
 
 	public bool InvalidErrorCode()
 	{
-		return ErrorCode == -1;
-	}
-
-	public override string ToJsonString()
-	{
-		return "{\n\"code\":" + mErrorCode + ",\n\"message\":\"" + mError + "\"\n}";
+		return false;
 	}
 
 	public static implicit operator SoaringError(int b)
 	{
-		return new SoaringError(null, b);
+		return null;
 	}
 
 	public static implicit operator SoaringError(string b)
 	{
-		return new SoaringError(b, -1);
+		return null;
 	}
 
 	public static implicit operator string(SoaringError b)
 	{
-		if (b == null)
-		{
-			return null;
-		}
-		return b.Error;
+		return null;
 	}
 
 	public static implicit operator int(SoaringError b)
 	{
-		if (b == null)
-		{
-			return -1;
-		}
-		return b.ErrorCode;
+		return 0;
+	}
+
+	public override string ToJsonString()
+	{
+		return null;
 	}
 }

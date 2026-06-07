@@ -4,7 +4,7 @@ public class ClearableDecorator : EntityDecorator
 	{
 		get
 		{
-			return (ulong)Invariable["time.clear"];
+			return 0uL;
 		}
 	}
 
@@ -12,7 +12,7 @@ public class ClearableDecorator : EntityDecorator
 	{
 		get
 		{
-			return (float)Invariable["timer_duration"];
+			return 0f;
 		}
 	}
 
@@ -20,15 +20,10 @@ public class ClearableDecorator : EntityDecorator
 	{
 		get
 		{
-			if (!Variable.ContainsKey("clearCompleteTime"))
-			{
-				return null;
-			}
-			return (ulong?)Variable["clearCompleteTime"];
+			return null;
 		}
 		set
 		{
-			Variable["clearCompleteTime"] = value;
 		}
 	}
 
@@ -36,7 +31,7 @@ public class ClearableDecorator : EntityDecorator
 	{
 		get
 		{
-			return (!ClearCompleteTime.HasValue) ? 0 : (ClearCompleteTime.Value - TFUtils.EpochTime());
+			return 0uL;
 		}
 	}
 
@@ -44,7 +39,7 @@ public class ClearableDecorator : EntityDecorator
 	{
 		get
 		{
-			return (Cost)Invariable["cost"];
+			return null;
 		}
 	}
 
@@ -52,7 +47,7 @@ public class ClearableDecorator : EntityDecorator
 	{
 		get
 		{
-			return (Cost)Invariable["clear_rush_cost"];
+			return null;
 		}
 	}
 
@@ -60,7 +55,7 @@ public class ClearableDecorator : EntityDecorator
 	{
 		get
 		{
-			return (RewardDefinition)Invariable["clearing_reward"];
+			return null;
 		}
 	}
 
@@ -68,36 +63,22 @@ public class ClearableDecorator : EntityDecorator
 	{
 		get
 		{
-			if (!Variable.ContainsKey("clearCompleteTime"))
-			{
-				return false;
-			}
-			return ClearCompleteTime != 0;
+			return false;
 		}
 	}
 
 	public ClearableDecorator(Entity toDecorate)
-		: base(toDecorate)
+		: base(null)
 	{
 	}
 
 	public bool IsClearing(ulong utcNow)
 	{
-		int result;
-		if (HasStartedClearing)
-		{
-			ulong? clearCompleteTime = ClearCompleteTime;
-			result = ((clearCompleteTime.HasValue && utcNow < clearCompleteTime.Value) ? 1 : 0);
-		}
-		else
-		{
-			result = 0;
-		}
-		return (byte)result != 0;
+		return false;
 	}
 
 	public ulong RemainingTime(ulong utcNow)
 	{
-		return ClearCompleteTime.Value - utcNow;
+		return 0uL;
 	}
 }

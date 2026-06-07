@@ -12,6 +12,7 @@ Mesh:
     firstByte: 0
     indexCount: 18
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 10
     localAABB:
@@ -26,11 +27,11 @@ Mesh:
   m_BoneNameHashes:
   m_RootBoneNameHash: 0
   m_MeshCompression: 0
-  m_StreamCompression: 0
-  m_IsReadable: 0
+  m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
-  m_IndexBuffer: 000001000200000003000100040005000600040007000500060005000800060008000900
+  m_IndexFormat: 0
+  m_IndexBuffer: 000001000200000002000300040005000600040006000700070006000800070008000900
   m_Skin: []
   m_VertexData:
     m_CurrentChannels: 9
@@ -60,29 +61,16 @@ Mesh:
       offset: 0
       format: 0
       dimension: 0
-    m_Streams:
-    - channelMask: 9
+    - stream: 0
       offset: 0
-      stride: 20
-      dividerOp: 0
-      frequency: 0
-    - channelMask: 0
+      format: 0
+      dimension: 0
+    - stream: 0
       offset: 0
-      stride: 0
-      dividerOp: 0
-      frequency: 0
-    - channelMask: 0
-      offset: 0
-      stride: 0
-      dividerOp: 0
-      frequency: 0
-    - channelMask: 0
-      offset: 0
-      stride: 0
-      dividerOp: 0
-      frequency: 0
+      format: 0
+      dimension: 0
     m_DataSize: 200
-    _typelessdata: b6dccc3ff6817d3ee68ac83e0f181a3fda17143f2b4850bffa394140e68ac83ee577cb3e0835503f2b4850bfcb2f8f3ee68ac83ee477cb3e0eca143fb6dccc3f02763d40e68ac83e0f181a3f58ee4e3fd46699bf7dc9c9bef6e2523e00000000b9c72c3fbfb8243f8d3f9cbe881d543ee87d6b3e833f313fd46699bf8ab9253f1423543e00000000e1884e3f101bc0be86cf2ebf48a1523ec973d53d0d6c233f8576ab3ef2e3423f1223543e99c8463e243a523fd46699bfed69943f1223543e00000000f2215f3f
+    _typelessdata: b6dccc3ff6817d3ee68ac83e0f181a3fda17143fb6dccc3f02763d40e68ac83e0f181a3f58ee4e3f2b4850bffa394140e68ac83ee577cb3e0835503f2b4850bfcb2f8f3ee68ac83ee477cb3e0eca143fd46699bf7dc9c9bef6e2523e00000000b9c72c3f101bc0be86cf2ebf48a1523ec973d53d0d6c233fbfb8243f8d3f9cbe881d543ee87d6b3e833f313fd46699bf8ab9253f1423543e00000000e1884e3f8576ab3ef2e3423f1223543e99c8463e243a523fd46699bfed69943f1223543e00000000f2215f3f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -91,12 +79,6 @@ Mesh:
       m_Data:
       m_BitSize: 0
     m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data:
-      m_BitSize: 0
-    m_BindPoses:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
@@ -126,6 +108,12 @@ Mesh:
       m_NumItems: 0
       m_Data:
       m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data:
+      m_BitSize: 0
     m_BoneIndices:
       m_NumItems: 0
       m_Data:
@@ -134,12 +122,11 @@ Mesh:
       m_NumItems: 0
       m_Data:
       m_BitSize: 0
-    m_Colors:
-      m_NumItems: 0
-      m_Data:
-      m_BitSize: 0
+    m_UVInfo: 0
   m_LocalAABB:
     m_Center: {x: 0.2010175, y: 1.1681547, z: 0.29868904}
     m_Extent: {x: 1.3994681, y: 1.8510089, z: 0.09299567}
   m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh:
+  m_BakedTriangleCollisionMesh:
   m_MeshOptimized: 1

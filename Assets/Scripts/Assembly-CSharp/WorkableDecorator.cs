@@ -6,16 +6,15 @@ public class WorkableDecorator : EntityDecorator
 	{
 		get
 		{
-			return worker;
+			return null;
 		}
 		set
 		{
-			worker = value;
 		}
 	}
 
 	public WorkableDecorator(Entity toDecorate)
-		: base(toDecorate)
+		: base(null)
 	{
 	}
 }

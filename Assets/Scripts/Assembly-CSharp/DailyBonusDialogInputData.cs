@@ -4,7 +4,7 @@ public class DailyBonusDialogInputData : PersistedDialogInputData
 {
 	public const string DIALOG_TYPE = "daily_bonus";
 
-	private int currentDay = -1;
+	private int currentDay;
 
 	private bool alreadyCollected;
 
@@ -14,7 +14,7 @@ public class DailyBonusDialogInputData : PersistedDialogInputData
 	{
 		get
 		{
-			return dailyBonusData;
+			return null;
 		}
 	}
 
@@ -22,7 +22,7 @@ public class DailyBonusDialogInputData : PersistedDialogInputData
 	{
 		get
 		{
-			return currentDay;
+			return 0;
 		}
 	}
 
@@ -30,28 +30,22 @@ public class DailyBonusDialogInputData : PersistedDialogInputData
 	{
 		get
 		{
-			return alreadyCollected;
+			return false;
 		}
 	}
 
 	public DailyBonusDialogInputData()
-		: base(uint.MaxValue, "daily_bonus", null, null)
+		: base(0u, null, null, null)
 	{
-		dailyBonusData = SBMISoaring.GetCachedDailyBonus(ref currentDay, ref alreadyCollected);
 	}
 
 	public override Dictionary<string, object> ToPersistenceDict()
 	{
-		Dictionary<string, object> dict = new Dictionary<string, object>();
-		BuildPersistenceDict(ref dict, "daily_bonus");
-		dict["current_day"] = currentDay;
-		dict["already_collected"] = alreadyCollected;
-		dict["dailyBonus_data"] = dailyBonusData;
-		return dict;
+		return null;
 	}
 
 	public new static DailyBonusDialogInputData FromPersistenceDict(Dictionary<string, object> dict)
 	{
-		return new DailyBonusDialogInputData();
+		return null;
 	}
 }

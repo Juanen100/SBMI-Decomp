@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public abstract class GestureRecognizer : FGComponent
 {
 	public enum GestureState
@@ -25,7 +23,7 @@ public abstract class GestureRecognizer : FGComponent
 
 	private float startTime;
 
-	public GestureResetMode ResetMode = GestureResetMode.StartOfTouchSequence;
+	public GestureResetMode ResetMode;
 
 	private int lastTouchesCount;
 
@@ -37,7 +35,7 @@ public abstract class GestureRecognizer : FGComponent
 	{
 		get
 		{
-			return prevState;
+			return default(GestureState);
 		}
 	}
 
@@ -45,19 +43,10 @@ public abstract class GestureRecognizer : FGComponent
 	{
 		get
 		{
-			return state;
+			return default(GestureState);
 		}
 		protected set
 		{
-			if (state != value)
-			{
-				prevState = state;
-				state = value;
-				if (this.OnStateChanged != null)
-				{
-					this.OnStateChanged(this);
-				}
-			}
 		}
 	}
 
@@ -65,7 +54,7 @@ public abstract class GestureRecognizer : FGComponent
 	{
 		get
 		{
-			return State == GestureState.InProgress;
+			return false;
 		}
 	}
 
@@ -73,11 +62,10 @@ public abstract class GestureRecognizer : FGComponent
 	{
 		get
 		{
-			return startTime;
+			return 0f;
 		}
 		protected set
 		{
-			startTime = value;
 		}
 	}
 
@@ -85,7 +73,7 @@ public abstract class GestureRecognizer : FGComponent
 	{
 		get
 		{
-			return Time.time - startTime;
+			return 0f;
 		}
 	}
 
@@ -93,134 +81,70 @@ public abstract class GestureRecognizer : FGComponent
 	{
 		get
 		{
-			return touchFilter;
+			return null;
 		}
 		set
 		{
-			touchFilter = value;
 		}
 	}
 
-	public event EventDelegate<GestureRecognizer> OnStateChanged;
+	public event EventDelegate<GestureRecognizer> OnStateChanged
+	{
+		add
+		{
+		}
+		remove
+		{
+		}
+	}
 
 	protected virtual void Reset()
 	{
-		State = GestureState.Ready;
 	}
 
 	protected override void Start()
 	{
-		base.Start();
-		Reset();
 	}
 
 	protected virtual void OnTouchSequenceStarted()
 	{
-		if (ResetMode == GestureResetMode.StartOfTouchSequence && (State == GestureState.Recognized || State == GestureState.Failed))
-		{
-			Reset();
-		}
 	}
 
 	protected virtual void OnTouchSequenceEnded()
 	{
-		if (ResetMode == GestureResetMode.EndOfTouchSequence && (State == GestureState.Recognized || State == GestureState.Failed))
-		{
-			Reset();
-		}
 	}
 
 	protected override void OnUpdate(FingerGestures.IFingerList touches)
 	{
-		if (touchFilter != null)
-		{
-			touches = touchFilter.Apply(touches);
-		}
-		if (touches.Count > 0 && lastTouchesCount == 0)
-		{
-			OnTouchSequenceStarted();
-		}
-		switch (State)
-		{
-		case GestureState.Failed:
-		case GestureState.Recognized:
-			if (ResetMode == GestureResetMode.NextFrame)
-			{
-				Reset();
-			}
-			break;
-		case GestureState.Ready:
-			State = OnReady(touches);
-			break;
-		case GestureState.InProgress:
-			State = OnActive(touches);
-			break;
-		default:
-			Debug.LogError(string.Concat(this, " - Unhandled state: ", State, ". Failing recognizer."));
-			State = GestureState.Failed;
-			break;
-		}
-		if (touches.Count == 0 && lastTouchesCount > 0)
-		{
-			OnTouchSequenceEnded();
-		}
-		lastTouchesCount = touches.Count;
 	}
 
 	protected virtual GestureState OnReady(FingerGestures.IFingerList touches)
 	{
-		if (ShouldFailFromReady(touches))
-		{
-			return GestureState.Failed;
-		}
-		if (CanBegin(touches))
-		{
-			StartTime = Time.time;
-			OnBegin(touches);
-			return GestureState.InProgress;
-		}
-		return GestureState.Ready;
+		return default(GestureState);
 	}
 
 	protected virtual bool ShouldFailFromReady(FingerGestures.IFingerList touches)
 	{
-		if (touches.Count != GetRequiredFingerCount() && touches.Count > 0 && !Young(touches))
-		{
-			return true;
-		}
 		return false;
 	}
 
 	protected virtual bool CanBegin(FingerGestures.IFingerList touches)
 	{
-		if (touches.Count != GetRequiredFingerCount())
-		{
-			return false;
-		}
-		if (!CheckCanBeginDelegate(touches))
-		{
-			return false;
-		}
-		return true;
+		return false;
 	}
 
 	public virtual bool CheckCanBeginDelegate(FingerGestures.IFingerList touches)
 	{
-		if (canBeginDelegate != null && !canBeginDelegate(this, touches))
-		{
-			return false;
-		}
-		return true;
+		return false;
 	}
 
 	public void SetCanBeginDelegate(CanBeginDelegate f)
 	{
-		canBeginDelegate = f;
 	}
 
 	public CanBeginDelegate GetCanBeginDelegate()
 	{
-		return canBeginDelegate;
+		return null;
 	}
 
 	protected abstract int GetRequiredFingerCount();
@@ -231,12 +155,6 @@ public abstract class GestureRecognizer : FGComponent
 
 	protected bool Young(FingerGestures.IFingerList touches)
 	{
-		FingerGestures.Finger oldest = touches.GetOldest();
-		if (oldest == null)
-		{
-			return false;
-		}
-		float num = Time.time - oldest.StarTime;
-		return num < 0.25f;
+		return false;
 	}
 }

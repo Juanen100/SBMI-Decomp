@@ -10,39 +10,30 @@ public class PickupDropAction : PersistedSimulatedAction
 	{
 		get
 		{
-			return true;
+			return false;
 		}
 	}
 
 	public PickupDropAction(Identity id, Identity dropID)
-		: base("pd", id, typeof(PickupDropAction).ToString())
+		: base(null, null, null)
 	{
-		base.dropID = dropID;
 	}
 
 	public new static PickupDropAction FromDict(Dictionary<string, object> data)
 	{
-		Identity id = new Identity((string)data["target"]);
-		Identity identity = new Identity((string)data["dropID"]);
-		return new PickupDropAction(id, identity);
+		return null;
 	}
 
 	public override Dictionary<string, object> ToDict()
 	{
-		Dictionary<string, object> dictionary = base.ToDict();
-		dictionary["dropID"] = dropID.Describe();
-		return dictionary;
+		return null;
 	}
 
 	public override void Apply(Game game, ulong utcNow)
 	{
-		game.dropManager.RemovePickupTrigger(dropID);
-		base.Apply(game, utcNow);
 	}
 
 	public override void Confirm(Dictionary<string, object> gameState)
 	{
-		ItemDropManager.RemovePickupTriggerFromGameState(gameState, dropID.Describe());
-		base.Confirm(gameState);
 	}
 }

@@ -2,7 +2,7 @@ public class SoaringContext : SoaringDictionary
 {
 	private const string kDefaultContextName = "_def";
 
-	private string mContextName = "_def";
+	private string mContextName;
 
 	private SoaringDelegate mMainResponder;
 
@@ -12,11 +12,10 @@ public class SoaringContext : SoaringDictionary
 	{
 		get
 		{
-			return mContextName;
+			return null;
 		}
 		set
 		{
-			mContextName = value;
 		}
 	}
 
@@ -24,11 +23,10 @@ public class SoaringContext : SoaringDictionary
 	{
 		get
 		{
-			return mMainResponder;
+			return null;
 		}
 		set
 		{
-			mMainResponder = value;
 		}
 	}
 
@@ -36,41 +34,25 @@ public class SoaringContext : SoaringDictionary
 	{
 		get
 		{
-			return mContextResponder;
+			return null;
 		}
 		set
 		{
-			mContextResponder = value;
 		}
 	}
 
 	public static implicit operator SoaringContext(SoaringDelegate b)
 	{
-		SoaringContext soaringContext = new SoaringContext();
-		if (b != null)
-		{
-			soaringContext.Responder = b;
-		}
-		return soaringContext;
+		return null;
 	}
 
 	public static implicit operator SoaringContext(string b)
 	{
-		SoaringContext soaringContext = new SoaringContext();
-		if (b != null)
-		{
-			soaringContext.mContextName = b;
-		}
-		return soaringContext;
+		return null;
 	}
 
 	public static implicit operator string(SoaringContext b)
 	{
-		string result = null;
-		if (b != null)
-		{
-			result = b.mContextName;
-		}
-		return result;
+		return null;
 	}
 }

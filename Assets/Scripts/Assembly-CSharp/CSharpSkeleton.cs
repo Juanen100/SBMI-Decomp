@@ -4,78 +4,10 @@ public class CSharpSkeleton : MonoBehaviour
 {
 	private void OnEnable()
 	{
-		FingerGestures.OnFingerDown += FingerGestures_OnFingerDown;
-		FingerGestures.OnFingerStationaryBegin += FingerGestures_OnFingerStationaryBegin;
-		FingerGestures.OnFingerStationary += FingerGestures_OnFingerStationary;
-		FingerGestures.OnFingerStationaryEnd += FingerGestures_OnFingerStationaryEnd;
-		FingerGestures.OnFingerMoveBegin += FingerGestures_OnFingerMoveBegin;
-		FingerGestures.OnFingerMove += FingerGestures_OnFingerMove;
-		FingerGestures.OnFingerMoveEnd += FingerGestures_OnFingerMoveEnd;
-		FingerGestures.OnFingerUp += FingerGestures_OnFingerUp;
-		FingerGestures.OnFingerLongPress += FingerGestures_OnFingerLongPress;
-		FingerGestures.OnFingerTap += FingerGestures_OnFingerTap;
-		FingerGestures.OnFingerDoubleTap += FingerGestures_OnFingerDoubleTap;
-		FingerGestures.OnFingerSwipe += FingerGestures_OnFingerSwipe;
-		FingerGestures.OnFingerDragBegin += FingerGestures_OnFingerDragBegin;
-		FingerGestures.OnFingerDragMove += FingerGestures_OnFingerDragMove;
-		FingerGestures.OnFingerDragEnd += FingerGestures_OnFingerDragEnd;
-		FingerGestures.OnLongPress += FingerGestures_OnLongPress;
-		FingerGestures.OnTap += FingerGestures_OnTap;
-		FingerGestures.OnDoubleTap += FingerGestures_OnDoubleTap;
-		FingerGestures.OnSwipe += FingerGestures_OnSwipe;
-		FingerGestures.OnDragBegin += FingerGestures_OnDragBegin;
-		FingerGestures.OnDragMove += FingerGestures_OnDragMove;
-		FingerGestures.OnDragEnd += FingerGestures_OnDragEnd;
-		FingerGestures.OnPinchBegin += FingerGestures_OnPinchBegin;
-		FingerGestures.OnPinchMove += FingerGestures_OnPinchMove;
-		FingerGestures.OnPinchEnd += FingerGestures_OnPinchEnd;
-		FingerGestures.OnRotationBegin += FingerGestures_OnRotationBegin;
-		FingerGestures.OnRotationMove += FingerGestures_OnRotationMove;
-		FingerGestures.OnRotationEnd += FingerGestures_OnRotationEnd;
-		FingerGestures.OnTwoFingerLongPress += FingerGestures_OnTwoFingerLongPress;
-		FingerGestures.OnTwoFingerTap += FingerGestures_OnTwoFingerTap;
-		FingerGestures.OnTwoFingerSwipe += FingerGestures_OnTwoFingerSwipe;
-		FingerGestures.OnTwoFingerDragBegin += FingerGestures_OnTwoFingerDragBegin;
-		FingerGestures.OnTwoFingerDragMove += FingerGestures_OnTwoFingerDragMove;
-		FingerGestures.OnTwoFingerDragEnd += FingerGestures_OnTwoFingerDragEnd;
 	}
 
 	private void OnDisable()
 	{
-		FingerGestures.OnFingerDown -= FingerGestures_OnFingerDown;
-		FingerGestures.OnFingerStationaryBegin -= FingerGestures_OnFingerStationaryBegin;
-		FingerGestures.OnFingerStationary -= FingerGestures_OnFingerStationary;
-		FingerGestures.OnFingerStationaryEnd -= FingerGestures_OnFingerStationaryEnd;
-		FingerGestures.OnFingerMoveBegin -= FingerGestures_OnFingerMoveBegin;
-		FingerGestures.OnFingerMove -= FingerGestures_OnFingerMove;
-		FingerGestures.OnFingerMoveEnd -= FingerGestures_OnFingerMoveEnd;
-		FingerGestures.OnFingerUp -= FingerGestures_OnFingerUp;
-		FingerGestures.OnFingerLongPress -= FingerGestures_OnFingerLongPress;
-		FingerGestures.OnFingerTap -= FingerGestures_OnFingerTap;
-		FingerGestures.OnFingerDoubleTap -= FingerGestures_OnFingerDoubleTap;
-		FingerGestures.OnFingerSwipe -= FingerGestures_OnFingerSwipe;
-		FingerGestures.OnFingerDragBegin -= FingerGestures_OnFingerDragBegin;
-		FingerGestures.OnFingerDragMove -= FingerGestures_OnFingerDragMove;
-		FingerGestures.OnFingerDragEnd -= FingerGestures_OnFingerDragEnd;
-		FingerGestures.OnLongPress -= FingerGestures_OnLongPress;
-		FingerGestures.OnTap -= FingerGestures_OnTap;
-		FingerGestures.OnDoubleTap -= FingerGestures_OnDoubleTap;
-		FingerGestures.OnSwipe -= FingerGestures_OnSwipe;
-		FingerGestures.OnDragBegin -= FingerGestures_OnDragBegin;
-		FingerGestures.OnDragMove -= FingerGestures_OnDragMove;
-		FingerGestures.OnDragEnd -= FingerGestures_OnDragEnd;
-		FingerGestures.OnPinchBegin -= FingerGestures_OnPinchBegin;
-		FingerGestures.OnPinchMove -= FingerGestures_OnPinchMove;
-		FingerGestures.OnPinchEnd -= FingerGestures_OnPinchEnd;
-		FingerGestures.OnRotationBegin -= FingerGestures_OnRotationBegin;
-		FingerGestures.OnRotationMove -= FingerGestures_OnRotationMove;
-		FingerGestures.OnRotationEnd -= FingerGestures_OnRotationEnd;
-		FingerGestures.OnTwoFingerLongPress -= FingerGestures_OnTwoFingerLongPress;
-		FingerGestures.OnTwoFingerTap -= FingerGestures_OnTwoFingerTap;
-		FingerGestures.OnTwoFingerSwipe -= FingerGestures_OnTwoFingerSwipe;
-		FingerGestures.OnTwoFingerDragBegin -= FingerGestures_OnTwoFingerDragBegin;
-		FingerGestures.OnTwoFingerDragMove -= FingerGestures_OnTwoFingerDragMove;
-		FingerGestures.OnTwoFingerDragEnd -= FingerGestures_OnTwoFingerDragEnd;
 	}
 
 	private void FingerGestures_OnFingerDown(int fingerIndex, Vector2 fingerPos)

@@ -6,13 +6,11 @@ public class ChangeCostumeCondition : MatchableCondition
 
 	public static ChangeCostumeCondition FromDict(Dictionary<string, object> dict)
 	{
-		ChangeCostumeCondition changeCostumeCondition = new ChangeCostumeCondition();
-		changeCostumeCondition.Parse(dict, "change_costume", new List<string> { typeof(ChangeCostumeAction).ToString() }, new List<IMatcher> { CostumeMatcher.FromDict(dict) });
-		return changeCostumeCondition;
+		return null;
 	}
 
 	public override string Description(Game game)
 	{
-		return "change_costume";
+		return null;
 	}
 }

@@ -4,7 +4,7 @@ public class VendingDecorator : EntityDecorator
 	{
 		get
 		{
-			return (int)Invariable["vendor_id"];
+			return 0;
 		}
 	}
 
@@ -12,7 +12,7 @@ public class VendingDecorator : EntityDecorator
 	{
 		get
 		{
-			return (ulong)Invariable["restock_time"];
+			return 0uL;
 		}
 	}
 
@@ -20,15 +20,10 @@ public class VendingDecorator : EntityDecorator
 	{
 		get
 		{
-			if (!Variable.ContainsKey("restock_time"))
-			{
-				Variable["restock_time"] = TFUtils.EpochTime();
-			}
-			return (ulong)Variable["restock_time"];
+			return 0uL;
 		}
 		set
 		{
-			Variable["restock_time"] = value;
 		}
 	}
 
@@ -36,7 +31,7 @@ public class VendingDecorator : EntityDecorator
 	{
 		get
 		{
-			return (ulong)Invariable["special_time"];
+			return 0uL;
 		}
 	}
 
@@ -44,20 +39,15 @@ public class VendingDecorator : EntityDecorator
 	{
 		get
 		{
-			if (!Variable.ContainsKey("special_time"))
-			{
-				Variable["special_time"] = TFUtils.EpochTime();
-			}
-			return (ulong)Variable["special_time"];
+			return 0uL;
 		}
 		set
 		{
-			Variable["special_time"] = value;
 		}
 	}
 
 	public VendingDecorator(Entity toDecorate)
-		: base(toDecorate)
+		: base(null)
 	{
 	}
 }

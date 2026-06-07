@@ -4,21 +4,20 @@ public class ConstantGenerator : ResultGenerator
 
 	public ConstantGenerator(string val)
 	{
-		this.val = val;
 	}
 
 	public string GetResult()
 	{
-		return val;
+		return null;
 	}
 
 	public string GetExpectedValue()
 	{
-		return val;
+		return null;
 	}
 
 	public string GetLowestValue()
 	{
-		return val;
+		return null;
 	}
 }

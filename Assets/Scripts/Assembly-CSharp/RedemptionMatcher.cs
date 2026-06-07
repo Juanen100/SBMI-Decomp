@@ -6,13 +6,11 @@ public class RedemptionMatcher : Matcher
 
 	public static RedemptionMatcher FromDict(Dictionary<string, object> dict)
 	{
-		RedemptionMatcher redemptionMatcher = new RedemptionMatcher();
-		redemptionMatcher.RegisterProperty("redemption_id", dict);
-		return redemptionMatcher;
+		return null;
 	}
 
 	public override string DescribeSubject(Game game)
 	{
-		return "redeem offer";
+		return null;
 	}
 }

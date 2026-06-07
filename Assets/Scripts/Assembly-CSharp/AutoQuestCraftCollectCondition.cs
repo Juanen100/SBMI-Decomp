@@ -6,8 +6,6 @@ public class AutoQuestCraftCollectCondition : CraftCondition
 
 	public static AutoQuestCraftCollectCondition FromDict(Dictionary<string, object> dict)
 	{
-		AutoQuestCraftCollectCondition autoQuestCraftCollectCondition = new AutoQuestCraftCollectCondition();
-		CraftCondition.FromDictHelper(dict, autoQuestCraftCollectCondition, "auto_quest_craft_collect", new List<string> { typeof(AutoQuestCraftCollectAction).ToString() });
-		return autoQuestCraftCollectCondition;
+		return null;
 	}
 }

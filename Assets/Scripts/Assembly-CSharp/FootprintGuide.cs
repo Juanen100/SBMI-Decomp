@@ -1,4 +1,3 @@
-#define ASSERTS_ON
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,60 +21,32 @@ public class FootprintGuide : SimulationSessionActionDefinition
 
 	private bool lockPlacement;
 
-	private FootprintGuideSpawn spawnTemplate = new FootprintGuideSpawn();
+	private FootprintGuideSpawn spawnTemplate;
 
 	public static FootprintGuide Create(Dictionary<string, object> data, uint id, ICondition startConditions, uint originatedFromQuest)
 	{
-		FootprintGuide footprintGuide = new FootprintGuide();
-		footprintGuide.Parse(data, id, startConditions, originatedFromQuest);
-		return footprintGuide;
+		return null;
 	}
 
 	protected void Parse(Dictionary<string, object> data, uint id, ICondition startConditions, uint originatedFromQuest)
 	{
-		base.Parse(data, id, startConditions, new DumbCondition(0u), originatedFromQuest);
-		TFUtils.LoadVector3(out position, (Dictionary<string, object>)data["position"]);
-		width = TFUtils.LoadFloat(data, "width");
-		height = TFUtils.LoadFloat(data, "height");
-		bool? flag = TFUtils.TryLoadBool(data, "lock_placement");
-		if (flag.HasValue)
-		{
-			lockPlacement = flag.Value;
-		}
 	}
 
 	public override Dictionary<string, object> ToDict()
 	{
-		Dictionary<string, object> dictionary = base.ToDict();
-		dictionary["position"] = position;
-		dictionary["width"] = width;
-		dictionary["height"] = height;
-		dictionary["lock_placement"] = lockPlacement;
-		return dictionary;
+		return null;
 	}
 
 	public override string ToString()
 	{
-		return string.Concat(base.ToString(), "FootprintGuide:(position=", position, "width=", width, "height=", height, "lock_placement=", lockPlacement, ")");
+		return null;
 	}
 
 	public void SpawnFootprint(Game game, SessionActionTracker tracker)
 	{
-		spawnTemplate.Spawn(game, tracker, position, width, height);
-		TFUtils.Assert(game.terrain.FootprintGuide == null, "Trying to add a footprint guide when one already exists!");
-		if (lockPlacement)
-		{
-			AlignedBox footprintGuide = new AlignedBox(position.x, position.x + width, position.y, position.y + height);
-			game.terrain.FootprintGuide = footprintGuide;
-		}
 	}
 
 	public override void OnDestroy(Game game)
 	{
-		base.OnDestroy(game);
-		if (lockPlacement)
-		{
-			game.terrain.FootprintGuide = null;
-		}
 	}
 }

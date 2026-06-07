@@ -8,27 +8,20 @@ public class ConditionalProgress
 	{
 		get
 		{
-			return metIds;
+			return null;
 		}
 	}
 
 	public ConditionalProgress()
-		: this(new List<uint>())
 	{
 	}
 
 	public ConditionalProgress(List<uint> metIds)
 	{
-		this.metIds = metIds;
 	}
 
 	public override string ToString()
 	{
-		string text = "[ConditionalProgress (metIds=";
-		foreach (uint metId in metIds)
-		{
-			text = text + metId + ", ";
-		}
-		return text + ")]";
+		return null;
 	}
 }

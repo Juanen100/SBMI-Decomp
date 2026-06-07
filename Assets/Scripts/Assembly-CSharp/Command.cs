@@ -47,7 +47,9 @@ public class Command
 		ENTER = 39,
 		STAND = 40,
 		BONUS_REWARD = 41,
-		RUSH_TASK = 42
+		RUSH_TASK = 42,
+		UPGRADE = 43,
+		UPGRADE_COMPLETE = 44
 	}
 
 	public const string PRODUCT_ID = "product_id";
@@ -70,7 +72,7 @@ public class Command
 	{
 		get
 		{
-			return type;
+			return default(TYPE);
 		}
 	}
 
@@ -78,7 +80,7 @@ public class Command
 	{
 		get
 		{
-			return sender;
+			return null;
 		}
 	}
 
@@ -86,7 +88,7 @@ public class Command
 	{
 		get
 		{
-			return receiver;
+			return null;
 		}
 	}
 
@@ -94,11 +96,10 @@ public class Command
 	{
 		get
 		{
-			return timeEpoch;
+			return 0uL;
 		}
 		set
 		{
-			timeEpoch = value;
 		}
 	}
 
@@ -106,64 +107,40 @@ public class Command
 	{
 		set
 		{
-			onComplete = value;
 		}
 	}
 
-	public object this[string property]
+	public object Item
 	{
 		get
 		{
-			return properties[property];
+			return null;
 		}
 		set
 		{
-			properties[property] = value;
 		}
 	}
 
 	public Command(TYPE type, Identity sender, Identity receiver)
 	{
-		this.type = type;
-		this.sender = sender;
-		this.receiver = receiver;
-		timeEpoch = TFUtils.EpochTime();
-		properties = new Dictionary<string, object>();
 	}
 
 	public bool HasProperty(string property)
 	{
-		return properties.ContainsKey(property);
+		return false;
 	}
 
 	public void TryExecuteOnComplete()
 	{
-		if (onComplete != null)
-		{
-			onComplete();
-		}
 	}
 
 	public string Describe()
 	{
-		return "Command(" + sender.Describe() + "," + receiver.Describe() + "):" + type;
+		return null;
 	}
 
 	public bool Match(Dictionary<string, object> matching)
 	{
-		object value = null;
-		foreach (KeyValuePair<string, object> item in matching)
-		{
-			if (properties.TryGetValue(item.Key, out value))
-			{
-				if (value.ToString() != item.Value.ToString())
-				{
-					return false;
-				}
-				continue;
-			}
-			return false;
-		}
-		return true;
+		return false;
 	}
 }

@@ -3,32 +3,32 @@ using UnityEngine;
 public class AGSSyncableNumberElement : AGSSyncableElement
 {
 	public AGSSyncableNumberElement(AmazonJavaWrapper javaObject)
-		: base(javaObject)
+		: base((AmazonJavaWrapper)null)
 	{
 	}
 
 	public AGSSyncableNumberElement(AndroidJavaObject javaObject)
-		: base(javaObject)
+		: base((AmazonJavaWrapper)null)
 	{
 	}
 
 	public long AsLong()
 	{
-		return javaObject.Call<long>("asLong", new object[0]);
+		return 0L;
 	}
 
 	public double AsDouble()
 	{
-		return javaObject.Call<double>("asDouble", new object[0]);
+		return 0.0;
 	}
 
 	public int AsInt()
 	{
-		return javaObject.Call<int>("asInt", new object[0]);
+		return 0;
 	}
 
 	public string AsString()
 	{
-		return javaObject.Call<string>("asString", new object[0]);
+		return null;
 	}
 }

@@ -20,7 +20,7 @@ public class DeviceSpec
 	{
 		get
 		{
-			return width;
+			return 0f;
 		}
 	}
 
@@ -28,7 +28,7 @@ public class DeviceSpec
 	{
 		get
 		{
-			return height;
+			return 0f;
 		}
 	}
 
@@ -36,7 +36,7 @@ public class DeviceSpec
 	{
 		get
 		{
-			return new Vector3(width / 2f, height / 2f, 0f);
+			return default(Vector3);
 		}
 	}
 
@@ -44,21 +44,7 @@ public class DeviceSpec
 	{
 		get
 		{
-			return density;
-		}
-	}
-
-	public DeviceSpec()
-	{
-		width = Screen.width;
-		height = Screen.height;
-		if (Screen.dpi >= 250f)
-		{
-			density = ResolutionDensity.Dense;
-		}
-		else
-		{
-			density = ResolutionDensity.Standard;
+			return default(ResolutionDensity);
 		}
 	}
 }

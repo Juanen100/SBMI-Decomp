@@ -20,7 +20,7 @@ public class SoaringPurchase : SoaringObjectBase
 	{
 		get
 		{
-			return mPurchasable;
+			return null;
 		}
 	}
 
@@ -28,7 +28,7 @@ public class SoaringPurchase : SoaringObjectBase
 	{
 		get
 		{
-			return mProductID;
+			return null;
 		}
 	}
 
@@ -36,7 +36,7 @@ public class SoaringPurchase : SoaringObjectBase
 	{
 		get
 		{
-			return mDatetime;
+			return null;
 		}
 	}
 
@@ -44,7 +44,7 @@ public class SoaringPurchase : SoaringObjectBase
 	{
 		get
 		{
-			return mUpdateDatetime;
+			return null;
 		}
 	}
 
@@ -52,7 +52,7 @@ public class SoaringPurchase : SoaringObjectBase
 	{
 		get
 		{
-			return mGift;
+			return false;
 		}
 	}
 
@@ -60,7 +60,7 @@ public class SoaringPurchase : SoaringObjectBase
 	{
 		get
 		{
-			return mValid;
+			return false;
 		}
 	}
 
@@ -68,7 +68,7 @@ public class SoaringPurchase : SoaringObjectBase
 	{
 		get
 		{
-			return mAmount;
+			return 0;
 		}
 	}
 
@@ -76,26 +76,12 @@ public class SoaringPurchase : SoaringObjectBase
 	{
 		get
 		{
-			return mResourceType;
+			return 0;
 		}
 	}
 
 	public SoaringPurchase(SoaringDictionary data, SoaringPurchasable purchasable)
-		: base(IsType.Object)
+		: base(default(IsType))
 	{
-		mPurchasable = purchasable;
-		mProductID = data.soaringValue("productId");
-		mDatetime = data.soaringValue("datetime");
-		mValid = data.soaringValue("valid");
-		mGift = data.soaringValue("gift");
-		mUpdateDatetime = data.soaringValue("updateDatetime");
-		mAmount = data.soaringValue("amount");
-		string s = data.soaringValue("resourceType");
-		mResourceType = -1;
-		int.TryParse(s, out mResourceType);
-		if (mResourceType < 0)
-		{
-			SoaringDebug.Log("SoaringPurchase: failed to parse resourceType as integer.");
-		}
 	}
 }

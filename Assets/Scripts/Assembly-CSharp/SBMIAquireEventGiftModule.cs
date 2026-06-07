@@ -4,6 +4,6 @@ public class SBMIAquireEventGiftModule : SoaringCustomQueryModule
 
 	public override string CustomSoaringModuleName()
 	{
-		return "acquireEventGift";
+		return null;
 	}
 }

@@ -1,27 +1,26 @@
 using UnityEngine;
 
-[AddComponentMenu("FingerGestures/Toolbox/Swipe")]
 public class TBSwipe : TBComponent
 {
-	public bool swipeLeft = true;
+	public bool swipeLeft;
 
-	public bool swipeRight = true;
+	public bool swipeRight;
 
-	public bool swipeUp = true;
+	public bool swipeUp;
 
-	public bool swipeDown = true;
+	public bool swipeDown;
 
 	public float minVelocity;
 
-	public Message swipeMessage = new Message("OnSwipe");
+	public Message swipeMessage;
 
-	public Message swipeLeftMessage = new Message("OnSwipeLeft", false);
+	public Message swipeLeftMessage;
 
-	public Message swipeRightMessage = new Message("OnSwipeRight", false);
+	public Message swipeRightMessage;
 
-	public Message swipeUpMessage = new Message("OnSwipeUp", false);
+	public Message swipeUpMessage;
 
-	public Message swipeDownMessage = new Message("OnSwipeDown", false);
+	public Message swipeDownMessage;
 
 	private FingerGestures.SwipeDirection direction;
 
@@ -31,11 +30,10 @@ public class TBSwipe : TBComponent
 	{
 		get
 		{
-			return direction;
+			return default(FingerGestures.SwipeDirection);
 		}
 		protected set
 		{
-			direction = value;
 		}
 	}
 
@@ -43,68 +41,35 @@ public class TBSwipe : TBComponent
 	{
 		get
 		{
-			return velocity;
+			return 0f;
 		}
 		protected set
 		{
-			velocity = value;
 		}
 	}
 
-	public event EventHandler<TBSwipe> OnSwipe;
+	public event EventHandler<TBSwipe> OnSwipe
+	{
+		add
+		{
+		}
+		remove
+		{
+		}
+	}
 
 	public bool IsValid(FingerGestures.SwipeDirection direction)
 	{
-		switch (direction)
-		{
-		case FingerGestures.SwipeDirection.Left:
-			return swipeLeft;
-		case FingerGestures.SwipeDirection.Right:
-			return swipeRight;
-		case FingerGestures.SwipeDirection.Up:
-			return swipeUp;
-		case FingerGestures.SwipeDirection.Down:
-			return swipeDown;
-		default:
-			return false;
-		}
+		return false;
 	}
 
 	private Message GetMessageForSwipeDirection(FingerGestures.SwipeDirection direction)
 	{
-		switch (direction)
-		{
-		case FingerGestures.SwipeDirection.Left:
-			return swipeLeftMessage;
-		case FingerGestures.SwipeDirection.Right:
-			return swipeRightMessage;
-		case FingerGestures.SwipeDirection.Up:
-			return swipeUpMessage;
-		default:
-			return swipeDownMessage;
-		}
+		return null;
 	}
 
 	public bool RaiseSwipe(int fingerIndex, Vector2 fingerPos, FingerGestures.SwipeDirection direction, float velocity)
 	{
-		if (velocity < minVelocity)
-		{
-			return false;
-		}
-		if (!IsValid(direction))
-		{
-			return false;
-		}
-		base.FingerIndex = fingerIndex;
-		base.FingerPos = fingerPos;
-		Direction = direction;
-		Velocity = velocity;
-		if (this.OnSwipe != null)
-		{
-			this.OnSwipe(this);
-		}
-		Send(swipeMessage);
-		Send(GetMessageForSwipeDirection(direction));
-		return true;
+		return false;
 	}
 }

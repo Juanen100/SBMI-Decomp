@@ -14,7 +14,7 @@ public class ItemDropDefinition
 	{
 		get
 		{
-			return displayController;
+			return null;
 		}
 	}
 
@@ -22,11 +22,10 @@ public class ItemDropDefinition
 	{
 		get
 		{
-			return cleanupScreenDestination;
+			return default(Vector2);
 		}
 		set
 		{
-			cleanupScreenDestination = value;
 		}
 	}
 
@@ -34,7 +33,7 @@ public class ItemDropDefinition
 	{
 		get
 		{
-			return did;
+			return 0;
 		}
 	}
 
@@ -42,15 +41,11 @@ public class ItemDropDefinition
 	{
 		get
 		{
-			return forceTapToCollect;
+			return false;
 		}
 	}
 
 	public ItemDropDefinition(int did, IDisplayController displayController, Vector2 cleanupScreenDestination, bool forceTapToCollect)
 	{
-		this.did = did;
-		this.displayController = displayController;
-		this.cleanupScreenDestination = cleanupScreenDestination;
-		this.forceTapToCollect = forceTapToCollect;
 	}
 }

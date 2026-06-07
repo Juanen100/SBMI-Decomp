@@ -4,14 +4,12 @@ public class LandmarkEntity : EntityDecorator
 	{
 		get
 		{
-			return EntityType.LANDMARK;
+			return default(EntityType);
 		}
 	}
 
 	public LandmarkEntity(Entity toDecorate)
-		: base(new PurchasableDecorator(toDecorate))
+		: base(null)
 	{
-		new StructureDecorator(this);
-		new ActivatableDecorator(this);
 	}
 }

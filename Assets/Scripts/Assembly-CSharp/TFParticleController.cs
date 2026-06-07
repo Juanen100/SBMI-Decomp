@@ -10,23 +10,14 @@ public class TFParticleController
 	{
 		get
 		{
-			return gameObject.transform.position;
+			return default(Vector3);
 		}
 		set
 		{
-			gameObject.transform.position = value;
 		}
-	}
-
-	public TFParticleController()
-	{
-		gameObject = UnityGameResources.CreateEmpty("TFParticle");
-		particleSystem = gameObject.AddComponent<ParticleSystem>();
-		particleSystem.startSize = 20f;
 	}
 
 	public void Destroy()
 	{
-		UnityGameResources.Destroy(gameObject);
 	}
 }

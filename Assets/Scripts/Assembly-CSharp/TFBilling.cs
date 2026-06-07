@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using UnityEngine;
-using com.amazon.device.iap.cpt;
 
 public class TFBilling
 {
@@ -51,56 +48,44 @@ public class TFBilling
 
 	public const string TITLE = "title";
 
+	public const string SIGNITURE = "pro_signiture";
+
+	public const string DATA = "pro_data";
+
+	public const string RESPONSE = "pro_response";
+
 	public static bool BillingIsAvailable()
 	{
-		return InternalBillingIsAvailable();
+		return false;
 	}
 
 	public static void InitializeStore()
 	{
-		InternalInitializeStore();
 	}
 
 	public static void ResetStore()
 	{
-		InternalResetStore();
 	}
 
 	public static void FetchProductBillingInfo(Session session, List<string> productIds)
 	{
-		InternalFetchBillingInfo(session, productIds);
 	}
 
 	public static void StartRmtPurchase(string productId)
 	{
-		InternalStartRmtPurchase(productId);
 	}
 
 	public static void CompleteRmtPurchase(string transactionId)
 	{
-		InternalCompleteRmtPurchase(transactionId);
 	}
 
 	private static bool InternalBillingIsAvailable()
 	{
-		if (TFUtils.isAmazon())
-		{
-			return AmazonIAPEventListener.getInstance().isAvailable;
-		}
-		return GoogleIAB.areSubscriptionsSupported();
+		return false;
 	}
 
 	private static void InternalInitializeStore()
 	{
-		if (TFUtils.isAmazon())
-		{
-			AmazonIAPEventListener.getInstance();
-			IAmazonIapV2 instance = AmazonIapV2Impl.Instance;
-		}
-		else
-		{
-			GoogleIAB.init(SBSettings.BillingKey);
-		}
 	}
 
 	private static void InternalResetStore()
@@ -109,59 +94,13 @@ public class TFBilling
 
 	private static void InternalFetchBillingInfo(Session session, List<string> productIds)
 	{
-		string[] array = productIds.ToArray();
-		if (TFUtils.isAmazon())
-		{
-			try
-			{
-				AmazonIAPEventListener.getInstance().session = session;
-				for (int i = 0; i < array.Length; i++)
-				{
-					TFUtils.DebugLog("fetched: " + array[i]);
-				}
-				SkusInput skusInput = new SkusInput();
-				skusInput.Skus = productIds;
-				AmazonIapV2Impl.Instance.GetProductData(skusInput);
-				return;
-			}
-			catch (Exception ex)
-			{
-				Debug.LogError(ex.Message + " : " + ex.StackTrace);
-				session.TheGame.store.receivedProductInfo = false;
-				RmtStore.IsPurchasing = false;
-				return;
-			}
-		}
-		for (int j = 0; j < array.Length; j++)
-		{
-			TFUtils.DebugLog("fetched: " + array[j]);
-		}
-		GoogleIapListener.getInstance()._productIds = array;
-		GoogleIapListener.getInstance().session = session;
-		TFUtils.DebugLog(GoogleIapListener.getInstance()._productIds.Length);
-		if (InternalBillingIsAvailable())
-		{
-			TFUtils.DebugLog("InternalBillingIsAvailable: " + InternalBillingIsAvailable());
-			GoogleIAB.queryInventory(array);
-		}
 	}
 
 	private static void InternalStartRmtPurchase(string productId)
 	{
-		if (TFUtils.isAmazon())
-		{
-			SkuInput skuInput = new SkuInput();
-			skuInput.Sku = productId;
-			AmazonIapV2Impl.Instance.Purchase(skuInput);
-		}
-		else
-		{
-			GoogleIAB.purchaseProduct(productId);
-		}
 	}
 
 	private static void InternalCompleteRmtPurchase(string transactionId)
 	{
-		Debug.Log("InternalCompleteRmtPurchase----------------------");
 	}
 }

@@ -20,17 +20,16 @@ public class SoaringObjectBase
 	{
 		get
 		{
-			return mType;
+			return default(IsType);
 		}
 	}
 
 	public SoaringObjectBase(IsType t)
 	{
-		mType = t;
 	}
 
 	public virtual string ToJsonString()
 	{
-		return ToString();
+		return null;
 	}
 }

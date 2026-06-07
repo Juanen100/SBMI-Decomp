@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
-using Yarg;
 
 public class Resource
 {
@@ -56,7 +54,7 @@ public class Resource
 	{
 		get
 		{
-			return consumable;
+			return false;
 		}
 	}
 
@@ -64,7 +62,7 @@ public class Resource
 	{
 		get
 		{
-			return reward;
+			return null;
 		}
 	}
 
@@ -72,7 +70,7 @@ public class Resource
 	{
 		get
 		{
-			return amountEarned + amountPurchased - amountSpent;
+			return 0;
 		}
 	}
 
@@ -80,7 +78,7 @@ public class Resource
 	{
 		get
 		{
-			return amountPurchased;
+			return 0;
 		}
 	}
 
@@ -88,7 +86,7 @@ public class Resource
 	{
 		get
 		{
-			return name;
+			return null;
 		}
 	}
 
@@ -96,7 +94,7 @@ public class Resource
 	{
 		get
 		{
-			return name_plural;
+			return null;
 		}
 	}
 
@@ -104,7 +102,7 @@ public class Resource
 	{
 		get
 		{
-			return tag;
+			return null;
 		}
 	}
 
@@ -112,7 +110,7 @@ public class Resource
 	{
 		get
 		{
-			return did;
+			return 0;
 		}
 	}
 
@@ -120,7 +118,7 @@ public class Resource
 	{
 		get
 		{
-			return currencyDisplayQuestTrigger;
+			return 0;
 		}
 	}
 
@@ -128,7 +126,7 @@ public class Resource
 	{
 		get
 		{
-			return collectedSound;
+			return null;
 		}
 	}
 
@@ -136,7 +134,7 @@ public class Resource
 	{
 		get
 		{
-			return tapSound;
+			return null;
 		}
 	}
 
@@ -144,7 +142,7 @@ public class Resource
 	{
 		get
 		{
-			return eatenSound;
+			return null;
 		}
 	}
 
@@ -152,7 +150,7 @@ public class Resource
 	{
 		get
 		{
-			return width;
+			return 0f;
 		}
 	}
 
@@ -160,7 +158,7 @@ public class Resource
 	{
 		get
 		{
-			return height;
+			return 0f;
 		}
 	}
 
@@ -168,7 +166,7 @@ public class Resource
 	{
 		get
 		{
-			return jellyConversion;
+			return 0f;
 		}
 	}
 
@@ -176,7 +174,7 @@ public class Resource
 	{
 		get
 		{
-			return fullnessTime;
+			return 0;
 		}
 	}
 
@@ -184,7 +182,7 @@ public class Resource
 	{
 		get
 		{
-			return forceTapToCollect;
+			return false;
 		}
 	}
 
@@ -192,7 +190,7 @@ public class Resource
 	{
 		get
 		{
-			return forceWishMatch;
+			return false;
 		}
 	}
 
@@ -200,7 +198,7 @@ public class Resource
 	{
 		get
 		{
-			return forceNoWishPayout;
+			return false;
 		}
 	}
 
@@ -208,209 +206,58 @@ public class Resource
 	{
 		get
 		{
-			return ignoreWishDurationTimer;
+			return false;
 		}
 	}
 
 	public Resource(string name, string name_plural, string tag, float width, float height, int maxAmount, string texture, string collectedSound, string tapSound, string eatenSound, RewardDefinition reward, float jellyConversion, int fullnessTime, bool forceTapToCollect, bool forceWishMatch, bool ignoreWishDurationTimer, bool forceNoWishPayout, int did, int currencyDisplayQuestTrigger, bool consumable)
 	{
-		this.name = name;
-		this.name_plural = name_plural;
-		this.tag = tag;
-		this.width = width;
-		this.height = height;
-		this.maxAmount = maxAmount;
-		this.texture = texture;
-		this.collectedSound = collectedSound;
-		this.tapSound = tapSound;
-		this.eatenSound = eatenSound;
-		this.reward = reward;
-		this.jellyConversion = jellyConversion;
-		this.fullnessTime = fullnessTime;
-		this.forceTapToCollect = forceTapToCollect;
-		this.forceWishMatch = forceWishMatch;
-		this.ignoreWishDurationTimer = ignoreWishDurationTimer;
-		this.forceNoWishPayout = forceNoWishPayout;
-		this.did = did;
-		this.currencyDisplayQuestTrigger = currencyDisplayQuestTrigger;
-		this.consumable = consumable;
 	}
 
 	public Resource(Resource other)
 	{
-		name = other.name;
-		name_plural = other.name_plural;
-		tag = other.tag;
-		width = other.width;
-		height = other.height;
-		maxAmount = other.maxAmount;
-		texture = other.texture;
-		collectedSound = other.collectedSound;
-		tapSound = other.tapSound;
-		eatenSound = other.eatenSound;
-		reward = other.reward;
-		jellyConversion = other.jellyConversion;
-		fullnessTime = other.fullnessTime;
-		forceTapToCollect = other.forceTapToCollect;
-		forceWishMatch = other.forceWishMatch;
-		ignoreWishDurationTimer = other.ignoreWishDurationTimer;
-		forceNoWishPayout = other.forceNoWishPayout;
-		did = other.did;
-		amountEarned = other.amountEarned;
-		amountPurchased = other.amountPurchased;
-		amountSpent = other.amountSpent;
-		currencyDisplayQuestTrigger = other.currencyDisplayQuestTrigger;
-		consumable = other.consumable;
 	}
 
 	public string GetResourceTexture()
 	{
-		return texture;
+		return null;
 	}
 
 	public string GetResourceTexture(int amount)
 	{
-		string text = null;
-		if (did == ResourceManager.SOFT_CURRENCY)
-		{
-			if (amount <= 7)
-			{
-				text = "IconMoney_1.png";
-			}
-			else if (amount > 7 && amount <= 20)
-			{
-				text = "IconMoney_2.png";
-			}
-			else if (amount > 20 && amount <= 54)
-			{
-				text = "IconMoney_3.png";
-			}
-			else if (amount > 54 && amount <= 143)
-			{
-				text = "IconMoney_4.png";
-			}
-			else if (amount > 143 && amount <= 376)
-			{
-				text = "IconMoney_5.png";
-			}
-			else if (amount > 376 && amount <= 986)
-			{
-				text = "IconMoney_6.png";
-			}
-			else if (amount > 986)
-			{
-				text = "IconMoney_6.png";
-			}
-		}
-		else if (did == ResourceManager.XP)
-		{
-			if (amount <= 2)
-			{
-				text = "IconXP_1.png";
-			}
-			else if (amount > 2 && amount <= 7)
-			{
-				text = "IconXP_2.png";
-			}
-			else if (amount > 7 && amount <= 20)
-			{
-				text = "IconXP_3.png";
-			}
-			else if (amount > 20 && amount <= 54)
-			{
-				text = "IconXP_4.png";
-			}
-			else if (amount > 54 && amount <= 143)
-			{
-				text = "IconXP_5.png";
-			}
-			else if (amount > 143 && amount <= 376)
-			{
-				text = "IconXP_6.png";
-			}
-			else if (amount > 376 && amount <= 986)
-			{
-				text = "IconXP_6.png";
-			}
-			else if (amount > 986)
-			{
-				text = "IconXP_6.png";
-			}
-		}
-		else if (did == ResourceManager.DEFAULT_JJ)
-		{
-			switch (amount)
-			{
-			case 1:
-				text = "IconJellyfishJelly_1.png";
-				break;
-			case 25:
-				text = "IconJellyfishJelly_2.png";
-				break;
-			case 50:
-				text = "IconJellyfishJelly_2.png";
-				break;
-			}
-		}
-		if (text != null)
-		{
-			AtlasCoords atlasCoords = YGTextureLibrary.GetAtlasCoords(text).atlasCoords;
-			width = (float)TFAnimatedSprite.CalcWorldSize(atlasCoords.frame.width, 0.8);
-			height = (float)TFAnimatedSprite.CalcWorldSize(atlasCoords.frame.height, 0.8);
-		}
-		return text;
+		return null;
 	}
 
 	public void AddAmount(int amountToAdd)
 	{
-		SetAmountEarned(amountEarned + amountToAdd);
 	}
 
 	public void SubtractAmount(int amountToSubtract)
 	{
-		amountSpent += amountToSubtract;
 	}
 
 	public void SetAmountEarned(int newAmount)
 	{
-		amountEarned = amountSpent + Mathf.Min(newAmount - amountSpent, maxAmount);
 	}
 
 	public void SetAmounts(int amountEarned, int amountSpent)
 	{
-		this.amountSpent = amountSpent;
-		SetAmountEarned(amountEarned);
 	}
 
 	public void SetAmountPurchased(int amountPurchased)
 	{
-		this.amountPurchased = amountPurchased;
 	}
 
 	public static int Prorate(int amount, float percentLeft)
 	{
-		if (percentLeft < 0f)
-		{
-			percentLeft = 0f;
-		}
-		else if (percentLeft > 1f)
-		{
-			percentLeft = 1f;
-		}
-		return Mathf.CeilToInt(percentLeft * (float)amount);
+		return 0;
 	}
 
 	public static void AddToTriggerData(ref Dictionary<string, object> data, int did)
 	{
-		AddToTriggerData(ref data, did, 1);
 	}
 
 	public static void AddToTriggerData(ref Dictionary<string, object> data, int did, int amount)
 	{
-		if (!data.ContainsKey("resource_amounts"))
-		{
-			data["resource_amounts"] = new Dictionary<string, object>();
-		}
-		((Dictionary<string, object>)data["resource_amounts"])[did.ToString()] = amount;
 	}
 }

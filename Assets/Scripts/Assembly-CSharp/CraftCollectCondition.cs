@@ -6,8 +6,6 @@ public class CraftCollectCondition : CraftCondition
 
 	public static CraftCollectCondition FromDict(Dictionary<string, object> dict)
 	{
-		CraftCollectCondition craftCollectCondition = new CraftCollectCondition();
-		CraftCondition.FromDictHelper(dict, craftCollectCondition, "craft_collect", new List<string> { "CraftPickup" });
-		return craftCollectCondition;
+		return null;
 	}
 }

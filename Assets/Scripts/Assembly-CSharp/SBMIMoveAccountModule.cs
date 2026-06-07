@@ -4,6 +4,6 @@ public class SBMIMoveAccountModule : SoaringCustomQueryModule
 
 	public override string CustomSoaringModuleName()
 	{
-		return "moveAccount";
+		return null;
 	}
 }

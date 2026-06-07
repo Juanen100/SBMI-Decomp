@@ -11,88 +11,73 @@ public class BinaryReader : Reader
 
 	public BinaryReader(string resourceName)
 	{
-		Open(resourceName);
 	}
 
 	public void Open(string resourceName)
 	{
-		TextAsset textAsset = Resources.Load(resourceName) as TextAsset;
-		if (textAsset != null)
-		{
-			binaryReader = new System.IO.BinaryReader(new MemoryStream(textAsset.bytes));
-		}
 	}
 
 	public void Close()
 	{
-		binaryReader.Close();
-		binaryReader = null;
 	}
 
 	public void Read(out bool value)
 	{
-		value = binaryReader.ReadBoolean();
+		value = default(bool);
 	}
 
 	public void Read(out byte value)
 	{
-		value = binaryReader.ReadByte();
+		value = default(byte);
 	}
 
 	public void Read(out short value)
 	{
-		value = binaryReader.ReadInt16();
+		value = default(short);
 	}
 
 	public void Read(out ushort value)
 	{
-		value = binaryReader.ReadUInt16();
+		value = default(ushort);
 	}
 
 	public void Read(out int value)
 	{
-		value = binaryReader.ReadInt32();
+		value = default(int);
 	}
 
 	public void Read(out uint value)
 	{
-		value = binaryReader.ReadUInt32();
+		value = default(uint);
 	}
 
 	public void Read(out float value)
 	{
-		value = binaryReader.ReadSingle();
+		value = default(float);
 	}
 
 	public void Read(out double value)
 	{
-		value = binaryReader.ReadDouble();
+		value = default(double);
 	}
 
 	public void Read(out Vector2 value)
 	{
-		Read(out value.x);
-		Read(out value.y);
+		value = default(Vector2);
 	}
 
 	public void Read(out Vector3 value)
 	{
-		Read(out value.x);
-		Read(out value.y);
-		Read(out value.z);
+		value = default(Vector3);
 	}
 
 	public void Read(out AlignedBox value)
 	{
-		value = new AlignedBox();
-		Read(out value.xmin);
-		Read(out value.xmax);
-		Read(out value.ymin);
-		Read(out value.ymax);
+		value = null;
 	}
 
 	public void Read(out string value)
 	{
-		value = binaryReader.ReadString();
+		value = null;
 	}
 }

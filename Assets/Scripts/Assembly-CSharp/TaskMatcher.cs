@@ -6,18 +6,11 @@ public class TaskMatcher : Matcher
 
 	public static TaskMatcher FromDict(Dictionary<string, object> dict)
 	{
-		TaskMatcher taskMatcher = new TaskMatcher();
-		taskMatcher.RegisterProperty("task_id", dict);
-		return taskMatcher;
+		return null;
 	}
 
 	public override string DescribeSubject(Game game)
 	{
-		if (game == null)
-		{
-			return "did " + GetTarget("task_id");
-		}
-		uint nDID = uint.Parse(GetTarget("task_id"));
-		return game.taskManager.GetTaskData((int)nDID).m_sName;
+		return null;
 	}
 }

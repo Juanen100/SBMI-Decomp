@@ -6,18 +6,11 @@ public class QuestMatcher : Matcher
 
 	public static QuestMatcher FromDict(Dictionary<string, object> dict)
 	{
-		QuestMatcher questMatcher = new QuestMatcher();
-		questMatcher.RegisterProperty("quest_id", dict);
-		return questMatcher;
+		return null;
 	}
 
 	public override string DescribeSubject(Game game)
 	{
-		if (game == null)
-		{
-			return "did " + GetTarget("quest_id");
-		}
-		uint did = uint.Parse(GetTarget("quest_id"));
-		return game.questManager.GetQuestDefinition(did).Name;
+		return null;
 	}
 }

@@ -6,11 +6,9 @@ public abstract class BaseTransitionBinding
 
 	protected void Initialize(Action<Session> action)
 	{
-		this.action = action;
 	}
 
 	public void Apply(Session session)
 	{
-		action(session);
 	}
 }

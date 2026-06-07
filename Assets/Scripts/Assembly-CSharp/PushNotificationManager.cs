@@ -6,19 +6,9 @@ public class PushNotificationManager
 
 	public PushNotificationManager(Session session)
 	{
-		session.RegisterExternalCallback("push_notification_action", HandlePushNotificationAction);
 	}
 
 	public void HandlePushNotificationAction(Dictionary<string, object> dict, object userData)
 	{
-		TFUtils.DebugLog("Received push notification action");
-		if (dict.ContainsKey("id"))
-		{
-			string text = (string)dict["id"];
-			if (text == "1")
-			{
-				TFUtils.GotoAppstore();
-			}
-		}
 	}
 }

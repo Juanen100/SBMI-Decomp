@@ -22,34 +22,26 @@ public class SoaringSession
 
 		static SoaringSessionStringList()
 		{
-			kSoaringSessionType = new string[2];
-			kSoaringSessionType[0] = "one-way";
-			kSoaringSessionType[1] = "persistent-one-way";
-			kSoaringQueryType = new string[4];
-			kSoaringQueryType[0] = "random";
-			kSoaringQueryType[2] = "range";
-			kSoaringQueryType[1] = "list";
-			kSoaringQueryType[3] = "list2";
 		}
 
 		public static string GetSoaringSessionString(SessionType type)
 		{
-			return kSoaringSessionType[(int)type];
+			return null;
 		}
 
 		public static string GetSoaringSessionQueryTypeString(QueryType type)
 		{
-			return kSoaringQueryType[(int)type];
+			return null;
 		}
 	}
 
 	public static string GetSoaringSessionTypeString(SessionType type)
 	{
-		return SoaringSessionStringList.GetSoaringSessionString(type);
+		return null;
 	}
 
 	public static string GetSoaringSessionQueryTypeString(QueryType type)
 	{
-		return SoaringSessionStringList.GetSoaringSessionQueryTypeString(type);
+		return null;
 	}
 }

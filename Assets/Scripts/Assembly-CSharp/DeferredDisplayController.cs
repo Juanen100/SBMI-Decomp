@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,15 +33,10 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return (idc != null) ? idc.LevelOfDetail : levelOfDetail;
+			return 0;
 		}
 		set
 		{
-			levelOfDetail = value;
-			if (idc != null)
-			{
-				idc.LevelOfDetail = value;
-			}
 		}
 	}
 
@@ -50,18 +44,10 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return idc != null && idc.Visible;
+			return false;
 		}
 		set
 		{
-			if (value)
-			{
-				InternalDisplayController.Visible = value;
-			}
-			else if (idc != null)
-			{
-				Destroy();
-			}
 		}
 	}
 
@@ -69,7 +55,7 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return idc == null || idc.IsDestroyed;
+			return false;
 		}
 	}
 
@@ -77,15 +63,10 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return (idc != null) ? idc.Alpha : alpha;
+			return 0f;
 		}
 		set
 		{
-			alpha = value;
-			if (idc != null)
-			{
-				idc.Alpha = value;
-			}
 		}
 	}
 
@@ -93,15 +74,10 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return (idc != null) ? idc.Color : color;
+			return default(Color);
 		}
 		set
 		{
-			color = value;
-			if (idc != null)
-			{
-				idc.Color = value;
-			}
 		}
 	}
 
@@ -109,15 +85,10 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return (idc != null) ? idc.DefaultDisplayState : defaultDisplayState;
+			return null;
 		}
 		set
 		{
-			defaultDisplayState = value;
-			if (idc != null)
-			{
-				idc.DefaultDisplayState = value;
-			}
 		}
 	}
 
@@ -125,15 +96,10 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return (idc != null) ? idc.Position : position;
+			return default(Vector3);
 		}
 		set
 		{
-			position = value;
-			if (idc != null)
-			{
-				idc.Position = value;
-			}
 		}
 	}
 
@@ -141,15 +107,10 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return (idc != null) ? idc.BillboardScaling : billboardScale;
+			return default(Vector3);
 		}
 		set
 		{
-			billboardScale = value;
-			if (idc != null)
-			{
-				idc.BillboardScaling = value;
-			}
 		}
 	}
 
@@ -157,15 +118,10 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return (idc != null) ? idc.Scale : scale;
+			return default(Vector3);
 		}
 		set
 		{
-			scale = value;
-			if (idc != null)
-			{
-				idc.Scale = value;
-			}
 		}
 	}
 
@@ -173,15 +129,10 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return (idc != null) ? idc.Flags : flags;
+			return default(DisplayControllerFlags);
 		}
 		set
 		{
-			flags = value;
-			if (idc != null)
-			{
-				idc.Flags = value;
-			}
 		}
 	}
 
@@ -189,15 +140,10 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return (idc != null) ? idc.isPerspectiveInArt : perspectiveInArt;
+			return false;
 		}
 		set
 		{
-			perspectiveInArt = value;
-			if (idc != null)
-			{
-				idc.isPerspectiveInArt = value;
-			}
 		}
 	}
 
@@ -205,7 +151,7 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return InternalDisplayController.Forward;
+			return default(Vector3);
 		}
 	}
 
@@ -213,7 +159,7 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return InternalDisplayController.Up;
+			return default(Vector3);
 		}
 	}
 
@@ -221,7 +167,7 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return InternalDisplayController.Width;
+			return 0f;
 		}
 	}
 
@@ -229,7 +175,7 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return InternalDisplayController.Height;
+			return 0f;
 		}
 	}
 
@@ -237,7 +183,7 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return InternalDisplayController.Transform;
+			return null;
 		}
 	}
 
@@ -245,7 +191,7 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return InternalDisplayController.NumberOfLevelsOfDetail;
+			return 0;
 		}
 	}
 
@@ -253,7 +199,7 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return InternalDisplayController.MaxLevelOfDetail;
+			return 0;
 		}
 	}
 
@@ -261,7 +207,7 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return idc != null && idc.isVisible;
+			return false;
 		}
 	}
 
@@ -269,7 +215,7 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return (idc != null) ? idc.MaterialName : null;
+			return null;
 		}
 	}
 
@@ -277,7 +223,7 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			return InternalDisplayController.HitObject;
+			return null;
 		}
 	}
 
@@ -285,166 +231,72 @@ public class DeferredDisplayController : IDisplayController
 	{
 		get
 		{
-			if (idc != null)
-			{
-				return idc;
-			}
-			idc = source.CloneAndSetVisible(dcm);
-			if (billboardDelegate != null)
-			{
-				idc.Billboard(billboardDelegate);
-			}
-			idc.Position = position;
-			if (color != source.Color)
-			{
-				idc.Color = color;
-			}
-			if (alpha != source.Alpha)
-			{
-				idc.Alpha = alpha;
-			}
-			if (scale != source.Scale)
-			{
-				idc.Scale = scale;
-			}
-			if (billboardScale != source.BillboardScaling)
-			{
-				idc.BillboardScaling = BillboardScaling;
-			}
-			if (levelOfDetail != source.LevelOfDetail)
-			{
-				idc.LevelOfDetail = levelOfDetail;
-			}
-			if (flags != source.Flags)
-			{
-				idc.Flags = flags;
-			}
-			if (defaultDisplayState != source.DefaultDisplayState)
-			{
-				idc.DefaultDisplayState = defaultDisplayState;
-			}
-			if (perspectiveInArt != source.isPerspectiveInArt)
-			{
-				idc.isPerspectiveInArt = perspectiveInArt;
-			}
-			return idc;
+			return null;
 		}
 	}
 
 	public DeferredDisplayController(IDisplayController source, DisplayControllerManager dcm)
 	{
-		this.dcm = dcm;
-		this.source = source;
-		scale = source.Scale;
-		position = source.Position;
-		alpha = source.Alpha;
-		color = source.Color;
-		flags = source.Flags;
-		levelOfDetail = source.LevelOfDetail;
-		billboardScale = source.BillboardScaling;
-		defaultDisplayState = source.DefaultDisplayState;
-		perspectiveInArt = source.isPerspectiveInArt;
 	}
 
 	public IDisplayController Clone(DisplayControllerManager dcm)
 	{
-		throw new NotImplementedException("You should not be cloning a deferred display controller!");
+		return null;
 	}
 
 	public IDisplayController CloneWithHitMesh(DisplayControllerManager dcm, string hitMeshName, bool separateTap = false)
 	{
-		throw new NotImplementedException("You should not be cloning a deferred display controller!");
+		return null;
 	}
 
 	public IDisplayController CloneAndSetVisible(DisplayControllerManager dcm)
 	{
-		throw new NotImplementedException("You should not be cloning a deferred display controller!");
+		return null;
 	}
 
 	public string GetDisplayState()
 	{
-		return (idc != null) ? idc.GetDisplayState() : null;
+		return null;
 	}
 
 	public void AddDisplayState(Dictionary<string, object> dict)
 	{
-		InternalDisplayController.AddDisplayState(dict);
 	}
 
 	public bool Intersects(Ray ray)
 	{
-		return InternalDisplayController.Intersects(ray);
+		return false;
 	}
 
 	public void ChangeMesh(string state, string meshName)
 	{
-		if (state == null)
-		{
-			Destroy();
-		}
-		else
-		{
-			InternalDisplayController.ChangeMesh(state, meshName);
-		}
 	}
 
 	public void DisplayState(string state)
 	{
-		if (state == null)
-		{
-			Destroy();
-		}
-		else
-		{
-			InternalDisplayController.DisplayState(state);
-		}
 	}
 
 	public void UpdateMaterialOrTexture(string material)
 	{
-		if (material == null)
-		{
-			Destroy();
-		}
-		else
-		{
-			InternalDisplayController.UpdateMaterialOrTexture(material);
-		}
 	}
 
 	public void SetMaskPercentage(float pct)
 	{
-		InternalDisplayController.SetMaskPercentage(pct);
 	}
 
 	public void Billboard(BillboardDelegate billboard)
 	{
-		billboardDelegate = billboard;
-		if (idc != null)
-		{
-			idc.Billboard(billboardDelegate);
-		}
 	}
 
 	public void OnUpdate(Camera sceneCamera, ParticleSystemManager psm)
 	{
-		if (idc != null)
-		{
-			idc.OnUpdate(sceneCamera, psm);
-		}
 	}
 
 	public void Destroy()
 	{
-		if (idc != null)
-		{
-			idc.Destroy();
-			idc = null;
-		}
 	}
 
 	public void AttachGUIElementToTarget(SBGUIElement element, string target)
 	{
-		InternalDisplayController.AttachGUIElementToTarget(element, target);
 	}
 }

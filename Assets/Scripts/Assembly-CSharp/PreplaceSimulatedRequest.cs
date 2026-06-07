@@ -19,7 +19,7 @@ public class PreplaceSimulatedRequest : SimulationSessionActionDefinition
 	{
 		get
 		{
-			return targetDid;
+			return null;
 		}
 	}
 
@@ -27,48 +27,25 @@ public class PreplaceSimulatedRequest : SimulationSessionActionDefinition
 	{
 		get
 		{
-			return position;
+			return default(Vector2);
 		}
 	}
 
 	public static PreplaceSimulatedRequest Create(Dictionary<string, object> data, uint id, ICondition startConditions, uint originatedFromQuest)
 	{
-		PreplaceSimulatedRequest preplaceSimulatedRequest = new PreplaceSimulatedRequest();
-		preplaceSimulatedRequest.Parse(data, id, startConditions, originatedFromQuest);
-		return preplaceSimulatedRequest;
+		return null;
 	}
 
 	protected void Parse(Dictionary<string, object> data, uint id, ICondition startConditions, uint originatedFromQuest)
 	{
-		base.Parse(data, id, startConditions, new DumbCondition(0u), originatedFromQuest);
-		targetDid = TFUtils.LoadInt(data, "definition_id");
-		TFUtils.LoadVector2(out position, (Dictionary<string, object>)data["position"]);
 	}
 
 	public override Dictionary<string, object> ToDict()
 	{
-		Dictionary<string, object> dictionary = base.ToDict();
-		dictionary["definition_id"] = targetDid;
-		dictionary["position"] = position;
-		return dictionary;
+		return null;
 	}
 
 	public void Preplace(Session session, SessionActionTracker action)
 	{
-		object obj = session.CheckAsyncRequest("preplace_request_dict");
-		if (obj != null)
-		{
-			TFUtils.ErrorLog("We're clobbering another preplacement request on definition: " + targetDid);
-			((Dictionary<int, Vector2>)obj)[targetDid] = position;
-		}
-		else
-		{
-			Dictionary<int, Vector2> dictionary = new Dictionary<int, Vector2>();
-			dictionary.Add(targetDid, position);
-			obj = dictionary;
-		}
-		session.AddAsyncResponse("preplace_request_dict", obj);
-		action.MarkStarted();
-		action.MarkSucceeded();
 	}
 }

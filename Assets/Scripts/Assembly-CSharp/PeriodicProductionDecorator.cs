@@ -1,5 +1,3 @@
-using System;
-
 public class PeriodicProductionDecorator : EntityDecorator
 {
 	public const string PRODUCTION_RUSHABLE = "rent_rushable";
@@ -8,8 +6,7 @@ public class PeriodicProductionDecorator : EntityDecorator
 	{
 		get
 		{
-			RequireProduction();
-			return (bool)Invariable["rent_rushable"];
+			return false;
 		}
 	}
 
@@ -17,8 +14,7 @@ public class PeriodicProductionDecorator : EntityDecorator
 	{
 		get
 		{
-			RequireProduction();
-			return (ulong)Invariable["time.production"];
+			return 0uL;
 		}
 	}
 
@@ -26,8 +22,7 @@ public class PeriodicProductionDecorator : EntityDecorator
 	{
 		get
 		{
-			RequireProduction();
-			return (float)Invariable["rent_timer_duration"];
+			return 0f;
 		}
 	}
 
@@ -35,7 +30,7 @@ public class PeriodicProductionDecorator : EntityDecorator
 	{
 		get
 		{
-			return (Cost)Invariable["rent_rush_cost"];
+			return null;
 		}
 	}
 
@@ -43,17 +38,10 @@ public class PeriodicProductionDecorator : EntityDecorator
 	{
 		get
 		{
-			RequireProduction();
-			if (!Variable.ContainsKey("product.ready"))
-			{
-				Variable["product.ready"] = TFUtils.EpochTime() + RentProductionTime;
-			}
-			return (ulong)Variable["product.ready"];
+			return 0uL;
 		}
 		set
 		{
-			RequireProduction();
-			Variable["product.ready"] = value;
 		}
 	}
 
@@ -61,8 +49,7 @@ public class PeriodicProductionDecorator : EntityDecorator
 	{
 		get
 		{
-			RequireProduction();
-			return (RewardDefinition)Invariable["product"];
+			return null;
 		}
 	}
 
@@ -70,20 +57,16 @@ public class PeriodicProductionDecorator : EntityDecorator
 	{
 		get
 		{
-			return Invariable["product"] != null;
+			return false;
 		}
 	}
 
 	public PeriodicProductionDecorator(Entity toDecorate)
-		: base(toDecorate)
+		: base(null)
 	{
 	}
 
 	private void RequireProduction()
 	{
-		if (Invariable["product"] == null)
-		{
-			throw new InvalidOperationException("Building does not produce rent");
-		}
 	}
 }

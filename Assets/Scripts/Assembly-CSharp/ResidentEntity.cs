@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,13 +45,13 @@ public class ResidentEntity : EntityDecorator
 
 	public const string TEMPTED_ITEM_ID = "tempted_item_id";
 
-	private const string BONUS_PAYTABLE = "bonus_paytable";
-
 	protected RewardDefinition forcedBonusReward;
+
+	private const string BONUS_PAYTABLE = "bonus_paytable";
 
 	public Task m_pTask;
 
-	public Vector2 m_pTaskTargetPosition = Vector2.zero;
+	public Vector2 m_pTaskTargetPosition;
 
 	public bool m_bReachedTaskTarget;
 
@@ -70,11 +69,7 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			if (Wanderer)
-			{
-				return EntityType.WANDERER;
-			}
-			return EntityType.RESIDENT;
+			return default(EntityType);
 		}
 	}
 
@@ -82,7 +77,7 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (bool)Invariable["disabled"];
+			return false;
 		}
 	}
 
@@ -90,7 +85,7 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (float)Invariable["timer_duration"];
+			return 0f;
 		}
 	}
 
@@ -98,7 +93,7 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (RewardDefinition)Invariable["favorite_reward"];
+			return null;
 		}
 	}
 
@@ -106,7 +101,7 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (RewardDefinition)Invariable["satisfaction_reward"];
+			return null;
 		}
 	}
 
@@ -114,11 +109,10 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (ulong)Variable["hungry_at"];
+			return 0uL;
 		}
 		set
 		{
-			Variable["hungry_at"] = value;
 		}
 	}
 
@@ -126,11 +120,10 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (ulong)Variable["fullness_length"];
+			return 0uL;
 		}
 		set
 		{
-			Variable["fullness_length"] = value;
 		}
 	}
 
@@ -138,11 +131,10 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (Cost)Variable["fullness_rush_cost"];
+			return null;
 		}
 		set
 		{
-			Variable["fullness_rush_cost"] = value;
 		}
 	}
 
@@ -150,15 +142,10 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			if (!Variable.ContainsKey("residence"))
-			{
-				return Identity.Null();
-			}
-			return (Identity)Variable["residence"];
+			return null;
 		}
 		set
 		{
-			Variable["residence"] = value;
 		}
 	}
 
@@ -166,11 +153,10 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (!Variable.ContainsKey("wish_product_id")) ? ((int?)null) : ((int?)Variable["wish_product_id"]);
+			return null;
 		}
 		set
 		{
-			Variable["wish_product_id"] = value;
 		}
 	}
 
@@ -178,11 +164,10 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (!Variable.ContainsKey("prev_wish_product_id")) ? ((int?)null) : ((int?)Variable["prev_wish_product_id"]);
+			return null;
 		}
 		set
 		{
-			Variable["prev_wish_product_id"] = value;
 		}
 	}
 
@@ -190,11 +175,10 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (!Variable.ContainsKey("costume_did")) ? ((int?)null) : ((int?)Variable["costume_did"]);
+			return null;
 		}
 		set
 		{
-			Variable["costume_did"] = value;
 		}
 	}
 
@@ -202,7 +186,7 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (int?)Invariable["default_costume_did"];
+			return null;
 		}
 	}
 
@@ -210,7 +194,7 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (int)Invariable["wish_table_did"];
+			return 0;
 		}
 	}
 
@@ -218,7 +202,7 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (int)Invariable["gross_items_wish_table_id"];
+			return 0;
 		}
 	}
 
@@ -226,7 +210,7 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (int)Invariable["forbidden_items_wish_table_id"];
+			return 0;
 		}
 	}
 
@@ -234,11 +218,10 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (!Variable.ContainsKey("product_id")) ? ((int?)null) : ((int?)Variable["product_id"]);
+			return null;
 		}
 		set
 		{
-			Variable["product_id"] = value;
 		}
 	}
 
@@ -246,7 +229,7 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (int)Invariable["wish_cooldown_min"];
+			return 0;
 		}
 	}
 
@@ -254,7 +237,7 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (int)Invariable["wish_cooldown_max"];
+			return 0;
 		}
 	}
 
@@ -262,7 +245,7 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (int)Invariable["wish_duration"];
+			return 0;
 		}
 	}
 
@@ -270,11 +253,10 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (ulong?)Variable["wish_expires_at"];
+			return null;
 		}
 		set
 		{
-			Variable["wish_expires_at"] = value;
 		}
 	}
 
@@ -282,11 +264,10 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (ulong?)Variable["hide_expires_at"];
+			return null;
 		}
 		set
 		{
-			Variable["hide_expires_at"] = value;
 		}
 	}
 
@@ -294,7 +275,7 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (int)Invariable["hide_duration"];
+			return 0;
 		}
 	}
 
@@ -302,11 +283,7 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			if (Invariable.ContainsKey("auto_quest_intro"))
-			{
-				return (int)Invariable["auto_quest_intro"];
-			}
-			return -1;
+			return 0;
 		}
 	}
 
@@ -314,11 +291,7 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			if (Invariable.ContainsKey("auto_quest_outro"))
-			{
-				return (int)Invariable["auto_quest_outro"];
-			}
-			return -1;
+			return 0;
 		}
 	}
 
@@ -326,10 +299,6 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			if (Invariable.ContainsKey("character_dialog_portrait"))
-			{
-				return (string)Invariable["character_dialog_portrait"];
-			}
 			return null;
 		}
 	}
@@ -338,10 +307,6 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			if (Invariable.ContainsKey("quest_reminder_icon"))
-			{
-				return (string)Invariable["quest_reminder_icon"];
-			}
 			return null;
 		}
 	}
@@ -350,21 +315,10 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			bool value = false;
-			if (Variable.ContainsKey("disable_flee"))
-			{
-				bool? flag = (bool?)Variable["disable_flee"];
-				if (flag.HasValue)
-				{
-					return flag.Value;
-				}
-				return value;
-			}
-			return value;
+			return null;
 		}
 		set
 		{
-			Variable["disable_flee"] = value;
 		}
 	}
 
@@ -372,17 +326,7 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			bool value = false;
-			if (Invariable.ContainsKey("disable_if_will_flee"))
-			{
-				bool? flag = (bool?)Invariable["disable_if_will_flee"];
-				if (flag.HasValue)
-				{
-					return flag.Value;
-				}
-				return value;
-			}
-			return value;
+			return null;
 		}
 	}
 
@@ -390,17 +334,7 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			bool value = true;
-			if (Invariable.ContainsKey("join_paytables"))
-			{
-				bool? flag = (bool?)Invariable["join_paytables"];
-				if (flag.HasValue)
-				{
-					return flag.Value;
-				}
-				return value;
-			}
-			return value;
+			return null;
 		}
 	}
 
@@ -408,7 +342,7 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (List<uint>)Invariable["match_bonus_paytables"];
+			return null;
 		}
 	}
 
@@ -416,11 +350,10 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (Paytable[])Variable["bonus_paytable"];
+			return null;
 		}
 		set
 		{
-			Variable["bonus_paytable"] = value;
 		}
 	}
 
@@ -428,11 +361,10 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return (Reward)Variable["match_bonus"];
+			return null;
 		}
 		set
 		{
-			Variable["match_bonus"] = value;
 		}
 	}
 
@@ -440,15 +372,10 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			if (!Variable.ContainsKey("wanderer"))
-			{
-				return false;
-			}
-			return (bool)Variable["wanderer"];
+			return false;
 		}
 		set
 		{
-			Variable["wanderer"] = value;
 		}
 	}
 
@@ -456,11 +383,10 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			return forcedBonusReward;
+			return null;
 		}
 		set
 		{
-			forcedBonusReward = value;
 		}
 	}
 
@@ -468,161 +394,105 @@ public class ResidentEntity : EntityDecorator
 	{
 		get
 		{
-			if (Invariable.ContainsKey("go_home_exempt") && (bool)Invariable["go_home_exempt"])
-			{
-				return false;
-			}
-			return homeAvailability;
+			return false;
 		}
 		set
 		{
-			homeAvailability = value;
 		}
 	}
 
 	public ResidentEntity(Entity toDecorate)
-		: base(toDecorate)
+		: base(null)
 	{
 	}
 
 	public Cost FullnessRushCostNow()
 	{
-		Cost cost = new Cost(FullnessRushCostFull);
-		double num = HungryAt - TFUtils.EpochTime();
-		float percentLeft = (float)(num / (double)FullnessLength);
-		cost.Prorate(percentLeft);
-		return cost;
+		return null;
 	}
 
 	public float FullnessPercentage()
 	{
-		double num = HungryAt - TFUtils.EpochTime();
-		return Mathf.Clamp01(1f - (float)(num / (double)FullnessLength));
+		return 0f;
 	}
 
 	public static Dictionary<string, object> GetWandererGameState(Dictionary<string, object> gameState, Identity unitId)
 	{
-		return GetGameState(gameState, unitId, "wanderers");
+		return null;
 	}
 
 	public static Dictionary<string, object> GetWandererGameState(Dictionary<string, object> gameState, int did)
 	{
-		return GetGameState(gameState, did, "wanderers");
+		return null;
 	}
 
 	public static Dictionary<string, object> GetUnitGameState(Dictionary<string, object> gameState, Identity unitId)
 	{
-		return GetGameState(gameState, unitId, "units");
+		return null;
 	}
 
 	public static Dictionary<string, object> GetUnitGameState(Dictionary<string, object> gameState, int did)
 	{
-		return GetGameState(gameState, did, "units");
+		return null;
 	}
 
 	private static Dictionary<string, object> GetGameState(Dictionary<string, object> gameState, Identity unitId, string key)
 	{
-		List<object> list = (List<object>)((Dictionary<string, object>)gameState["farm"])[key];
-		string targetString = unitId.Describe();
-		Predicate<object> match = (object b) => ((string)((Dictionary<string, object>)b)["label"]).Equals(targetString);
-		return (Dictionary<string, object>)list.Find(match);
+		return null;
 	}
 
 	private static Dictionary<string, object> GetGameState(Dictionary<string, object> gameState, int did, string key)
 	{
-		List<object> list = (List<object>)((Dictionary<string, object>)gameState["farm"])[key];
-		Predicate<object> match = (object b) => TFUtils.LoadInt((Dictionary<string, object>)b, "did") == did;
-		return (Dictionary<string, object>)list.Find(match);
+		return null;
 	}
 
 	public static void UpdateHungerTimeInGameState(Dictionary<string, object> gameState, Identity unitId, ulong hungerReadyTime)
 	{
-		Dictionary<string, object> unitGameState = GetUnitGameState(gameState, unitId);
-		UpdateHungerTimeInUnitState(unitGameState, hungerReadyTime);
 	}
 
 	public static void UpdateHungerTimeInUnitState(Dictionary<string, object> unitState, ulong hungerReadyTime)
 	{
-		if (unitState.ContainsKey("feed_ready_time"))
-		{
-			unitState["feed_ready_time"] = hungerReadyTime;
-		}
-		else
-		{
-			unitState.Add("feed_ready_time", hungerReadyTime);
-		}
 	}
 
 	public static void SetActiveStatusInUnitState(Dictionary<string, object> unitState, bool active)
 	{
-		unitState["active"] = active;
 	}
 
 	public void StartCheckForIdle()
 	{
-		StartCheckForIdle((int)Invariable["idle.cooldown.min"], (int)Invariable["idle.cooldown.max"] + 1);
 	}
 
 	public void StartCheckForIdle(int nDurationMin, int nDurationMax)
 	{
-		idleTimer = TFUtils.EpochTime();
-		timeToNextIdle = UnityEngine.Random.Range(nDurationMin, nDurationMax);
 	}
 
 	public void StopCheckForIdle()
 	{
-		idleTimer = 0uL;
-		timeToNextIdle = 0;
 	}
 
 	public bool CheckForIdle()
 	{
-		if (idleTimer == 0L || timeToNextIdle == 0)
-		{
-			return false;
-		}
-		ulong num = TFUtils.EpochTime() - idleTimer;
-		if (num >= (ulong)timeToNextIdle)
-		{
-			return true;
-		}
 		return false;
 	}
 
 	public void ClearCheckForIdle()
 	{
-		idleTimer = TFUtils.EpochTime() - 1;
-		timeToNextIdle = -1;
 	}
 
 	public void StartCheckForResume()
 	{
-		StartCheckForResume((int)Invariable["idle.duration.min"], (int)Invariable["idle.duration.max"] + 1);
 	}
 
 	public void StartCheckForResume(int nDurationMin, int nDurationMax)
 	{
-		resumeTimer = TFUtils.EpochTime();
-		timeToNextResume = UnityEngine.Random.Range(nDurationMin, nDurationMax);
 	}
 
 	public void StopCheckForResume()
 	{
-		resumeTimer = 0uL;
-		timeToNextResume = 0;
 	}
 
 	public bool CheckForResume()
 	{
-		if (resumeTimer == 0L || timeToNextResume == 0)
-		{
-			return false;
-		}
-		ulong num = TFUtils.EpochTime() - resumeTimer;
-		if (num >= (ulong)timeToNextResume)
-		{
-			return true;
-		}
 		return false;
 	}
 }

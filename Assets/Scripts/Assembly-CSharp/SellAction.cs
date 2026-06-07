@@ -1,5 +1,3 @@
-#define ASSERTS_ON
-using System;
 using System.Collections.Generic;
 
 public class SellAction : PersistedSimulatedAction
@@ -12,47 +10,31 @@ public class SellAction : PersistedSimulatedAction
 	{
 		get
 		{
-			return true;
+			return false;
 		}
 	}
 
 	public SellAction(Identity id, Cost cost)
-		: base("s", id, typeof(SellAction).ToString())
+		: base(null, null, null)
 	{
-		TFUtils.Assert(cost != null, "Cannot create a sell action with a null selling cost");
-		this.cost = cost;
 	}
 
 	public SellAction(Simulated simulated, Cost cost)
-		: this(simulated.Id, cost)
+		: base(null, null, null)
 	{
 	}
 
 	public new static SellAction FromDict(Dictionary<string, object> data)
 	{
-		Identity id = new Identity((string)data["target"]);
-		Cost cost = Cost.FromDict((Dictionary<string, object>)data["cost"]);
-		return new SellAction(id, cost);
+		return null;
 	}
 
 	public override Dictionary<string, object> ToDict()
 	{
-		Dictionary<string, object> dictionary = base.ToDict();
-		dictionary["cost"] = cost.ToDict();
-		return dictionary;
+		return null;
 	}
 
 	public override void Confirm(Dictionary<string, object> gameState)
 	{
-		string targetString = target.Describe();
-		Simulated.Building.RemoveResidentsFromGameState(gameState, targetString);
-		List<object> list = (List<object>)((Dictionary<string, object>)gameState["farm"])["buildings"];
-		Predicate<object> match = (object b) => ((string)((Dictionary<string, object>)b)["label"]).Equals(targetString);
-		foreach (KeyValuePair<int, int> resourceAmount in cost.ResourceAmounts)
-		{
-			ResourceManager.AddAmountToGameState(resourceAmount.Key, resourceAmount.Value, gameState);
-		}
-		list.RemoveAll(match);
-		base.Confirm(gameState);
 	}
 }

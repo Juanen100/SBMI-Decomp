@@ -6,17 +6,15 @@ namespace com.amazon.device.iap.cpt
 
 		public AmazonLogger(string tag)
 		{
-			this.tag = tag;
 		}
 
 		public void Debug(string msg)
 		{
-			AmazonLogging.Log(AmazonLogging.AmazonLoggingLevel.Verbose, tag, msg);
 		}
 
 		public string getTag()
 		{
-			return tag;
+			return null;
 		}
 	}
 }

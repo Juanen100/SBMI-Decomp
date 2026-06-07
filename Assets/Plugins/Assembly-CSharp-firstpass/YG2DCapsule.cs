@@ -1,14 +1,13 @@
 using FarseerPhysics.Dynamics;
-using FarseerPhysics.Factories;
 
 public class YG2DCapsule : YG2DBody
 {
-	public float height = 2f;
+	public float height;
 
-	public float radius = 0.5f;
+	public float radius;
 
 	protected override Body GetBody(World world)
 	{
-		return BodyFactory.CreateCapsule(world, height, radius, density);
+		return null;
 	}
 }

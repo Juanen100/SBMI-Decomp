@@ -10,112 +10,98 @@ namespace MTools
 
 		public MObject()
 		{
-			mObjVal = null;
 		}
 
 		public MObject(object val)
 		{
-			mObjVal = val;
 		}
 
 		public MObject(float val)
 		{
-			mDoubleVal = val;
 		}
 
 		public MObject(int val)
 		{
-			mLongVal = val;
 		}
 
 		public MObject(bool val)
 		{
-			mLongVal = (val ? 1 : 0);
 		}
 
 		~MObject()
 		{
-			mObjVal = null;
 		}
 
 		public void setValueAsObject(object v)
 		{
-			mObjVal = v;
 		}
 
 		public void setValueAsBool(bool v)
 		{
-			mLongVal = (v ? 1 : 0);
 		}
 
 		public void setValueAsString(string v)
 		{
-			mObjVal = v;
 		}
 
 		public void setValueAsInt(int v)
 		{
-			mLongVal = v;
 		}
 
 		public void setValueAsFloat(float v)
 		{
-			mDoubleVal = v;
 		}
 
 		public void setValueAsLong(long v)
 		{
-			mLongVal = v;
 		}
 
 		public void setValueAsULong(ulong v)
 		{
-			mLongVal = (long)v;
 		}
 
 		public void setValueAsDouble(double v)
 		{
-			mDoubleVal = v;
 		}
 
 		public object valueAsObject()
 		{
-			return mObjVal;
+			return null;
 		}
 
 		public bool valueAsBool()
 		{
-			return mLongVal != 0;
+			return false;
 		}
 
 		public string valueAsString()
 		{
-			return (string)mObjVal;
+			return null;
 		}
 
 		public int valueAsInt()
 		{
-			return (int)mLongVal;
+			return 0;
 		}
 
 		public float valueAsFloat()
 		{
-			return (float)mDoubleVal;
+			return 0f;
 		}
 
 		public ulong valueAsULong()
 		{
-			return (ulong)mLongVal;
+			return 0uL;
 		}
 
 		public long valueAsLong()
 		{
-			return mLongVal;
+			return 0L;
 		}
 
 		public double valueAsDouble()
 		{
-			return mDoubleVal;
+			return 0.0;
 		}
 	}
 }

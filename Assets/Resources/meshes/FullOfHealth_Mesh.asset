@@ -12,6 +12,7 @@ Mesh:
     firstByte: 0
     indexCount: 21
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 9
     localAABB:
@@ -26,10 +27,10 @@ Mesh:
   m_BoneNameHashes:
   m_RootBoneNameHash: 0
   m_MeshCompression: 0
-  m_StreamCompression: 0
-  m_IsReadable: 0
+  m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 000001000200010000000300010003000400030000000500050000000600000002000700000007000800
   m_Skin: []
   m_VertexData:
@@ -60,27 +61,14 @@ Mesh:
       offset: 0
       format: 0
       dimension: 0
-    m_Streams:
-    - channelMask: 9
+    - stream: 0
       offset: 0
-      stride: 20
-      dividerOp: 0
-      frequency: 0
-    - channelMask: 0
+      format: 0
+      dimension: 0
+    - stream: 0
       offset: 0
-      stride: 0
-      dividerOp: 0
-      frequency: 0
-    - channelMask: 0
-      offset: 0
-      stride: 0
-      dividerOp: 0
-      frequency: 0
-    - channelMask: 0
-      offset: 0
-      stride: 0
-      dividerOp: 0
-      frequency: 0
+      format: 0
+      dimension: 0
     m_DataSize: 180
     _typelessdata: d7fbdf41e8ff35420000202bce85ec3dfc0a023ff9cad5c124d17d42000000b7c2f45d3f0f59353fd867dec194849141d57adab5bdbd613f6203503ed25d1ec1489793420000003783cc223ff5e5523f5ba1edc1d620ac420000002b966e683fcff4753fde1cef41b47f98420000802aff54b73d16e9593f9999114212c54c42804da134c6c7d1383a4f123f9e90934041f20940000080b62093df3e8be9c53cd053db415ec58641cbb5f4b5a9e4fc3d89a8403e
   m_CompressedMesh:
@@ -91,12 +79,6 @@ Mesh:
       m_Data:
       m_BitSize: 0
     m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data:
-      m_BitSize: 0
-    m_BindPoses:
       m_NumItems: 0
       m_Range: 0
       m_Start: 0
@@ -126,6 +108,12 @@ Mesh:
       m_NumItems: 0
       m_Data:
       m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data:
+      m_BitSize: 0
     m_BoneIndices:
       m_NumItems: 0
       m_Data:
@@ -134,12 +122,11 @@ Mesh:
       m_NumItems: 0
       m_Data:
       m_BitSize: 0
-    m_Colors:
-      m_NumItems: 0
-      m_Data:
-      m_BitSize: 0
+    m_UVInfo: 0
   m_LocalAABB:
     m_Center: {x: 3.3481054, y: 44.10977, z: 0}
     m_Extent: {x: 33.05189, y: 41.95436, z: 7.6293945E-06}
   m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh:
+  m_BakedTriangleCollisionMesh:
   m_MeshOptimized: 1

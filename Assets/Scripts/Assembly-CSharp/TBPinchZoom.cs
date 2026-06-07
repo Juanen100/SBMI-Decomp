@@ -1,7 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Camera))]
-[AddComponentMenu("FingerGestures/Toolbox/Misc/Pinch-Zoom")]
 public class TBPinchZoom : MonoBehaviour
 {
 	public enum ZoomMethod
@@ -12,13 +10,13 @@ public class TBPinchZoom : MonoBehaviour
 
 	public ZoomMethod zoomMethod;
 
-	public float zoomSpeed = 1.5f;
+	public float zoomSpeed;
 
 	public float minZoomAmount;
 
-	public float maxZoomAmount = 50f;
+	public float maxZoomAmount;
 
-	private Vector3 defaultPos = Vector3.zero;
+	private Vector3 defaultPos;
 
 	private float defaultFov;
 
@@ -30,11 +28,10 @@ public class TBPinchZoom : MonoBehaviour
 	{
 		get
 		{
-			return defaultPos;
+			return default(Vector3);
 		}
 		set
 		{
-			defaultPos = value;
 		}
 	}
 
@@ -42,11 +39,10 @@ public class TBPinchZoom : MonoBehaviour
 	{
 		get
 		{
-			return defaultFov;
+			return 0f;
 		}
 		set
 		{
-			defaultFov = value;
 		}
 	}
 
@@ -54,11 +50,10 @@ public class TBPinchZoom : MonoBehaviour
 	{
 		get
 		{
-			return defaultOrthoSize;
+			return 0f;
 		}
 		set
 		{
-			defaultOrthoSize = value;
 		}
 	}
 
@@ -66,54 +61,30 @@ public class TBPinchZoom : MonoBehaviour
 	{
 		get
 		{
-			return zoomAmount;
+			return 0f;
 		}
 		set
 		{
-			zoomAmount = Mathf.Clamp(value, minZoomAmount, maxZoomAmount);
-			switch (zoomMethod)
-			{
-			case ZoomMethod.Position:
-				base.transform.position = defaultPos + zoomAmount * base.transform.forward;
-				break;
-			case ZoomMethod.FOV:
-				if (base.GetComponent<Camera>().orthographic)
-				{
-					base.GetComponent<Camera>().orthographicSize = Mathf.Max(defaultOrthoSize - zoomAmount, 0.1f);
-				}
-				else
-				{
-					base.GetComponent<Camera>().fov = Mathf.Max(defaultFov - zoomAmount, 0.1f);
-				}
-				break;
-			}
 		}
 	}
 
 	private void Start()
 	{
-		SetDefaults();
 	}
 
 	public void SetDefaults()
 	{
-		DefaultPos = base.transform.position;
-		DefaultFov = base.GetComponent<Camera>().fov;
-		DefaultOrthoSize = base.GetComponent<Camera>().orthographicSize;
 	}
 
 	private void OnEnable()
 	{
-		FingerGestures.OnPinchMove += FingerGestures_OnPinchMove;
 	}
 
 	private void OnDisable()
 	{
-		FingerGestures.OnPinchMove -= FingerGestures_OnPinchMove;
 	}
 
 	private void FingerGestures_OnPinchMove(Vector2 fingerPos1, Vector2 fingerPos2, float delta)
 	{
-		ZoomAmount += zoomSpeed * delta;
 	}
 }

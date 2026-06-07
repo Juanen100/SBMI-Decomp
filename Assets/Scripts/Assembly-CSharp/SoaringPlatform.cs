@@ -1,6 +1,3 @@
-using System;
-using UnityEngine;
-
 public class SoaringPlatform
 {
 	public class SoaringPlatformDelegate
@@ -11,7 +8,7 @@ public class SoaringPlatform
 
 		public virtual SoaringLoginType PreferedLoginType()
 		{
-			return SoaringLoginType.Soaring;
+			return default(SoaringLoginType);
 		}
 
 		public virtual string PlatformName()
@@ -80,12 +77,12 @@ public class SoaringPlatform
 
 		public virtual long SystemBootTime()
 		{
-			return (long)(DateTime.UtcNow - SoaringTime.Epoch).TotalSeconds - SystemTimeSinceBootTime();
+			return 0L;
 		}
 
 		public virtual long SystemTimeSinceBootTime()
 		{
-			return (long)Time.realtimeSinceStartup;
+			return 0L;
 		}
 	}
 
@@ -99,7 +96,7 @@ public class SoaringPlatform
 	{
 		get
 		{
-			return sInstance.platformDelegate.PreferedLoginType();
+			return default(SoaringLoginType);
 		}
 	}
 
@@ -107,7 +104,7 @@ public class SoaringPlatform
 	{
 		get
 		{
-			return sInstance.platformType;
+			return default(SoaringPlatformType);
 		}
 	}
 
@@ -115,7 +112,7 @@ public class SoaringPlatform
 	{
 		get
 		{
-			return sInstance.platformDelegate.PlatformLoginAvailable();
+			return false;
 		}
 	}
 
@@ -123,7 +120,7 @@ public class SoaringPlatform
 	{
 		get
 		{
-			return sInstance.platformDelegate.PlatformAuthenticated();
+			return false;
 		}
 	}
 
@@ -131,7 +128,7 @@ public class SoaringPlatform
 	{
 		get
 		{
-			return sInstance.platformDelegate.DeviceID();
+			return null;
 		}
 	}
 
@@ -139,7 +136,7 @@ public class SoaringPlatform
 	{
 		get
 		{
-			return sInstance.platformDelegate.PlatformID();
+			return null;
 		}
 	}
 
@@ -147,7 +144,7 @@ public class SoaringPlatform
 	{
 		get
 		{
-			return sInstance.platformDelegate.PlatformAlias();
+			return null;
 		}
 	}
 
@@ -155,7 +152,7 @@ public class SoaringPlatform
 	{
 		get
 		{
-			return sInstance.platformDelegate.PushNotificationsProtocol();
+			return null;
 		}
 	}
 
@@ -163,106 +160,54 @@ public class SoaringPlatform
 	{
 		get
 		{
-			return sInstance.platformDelegate.PlatformName();
+			return null;
 		}
 	}
 
 	private SoaringPlatform(SoaringPlatformType platform)
 	{
-		if (platform == SoaringPlatformType.System)
-		{
-			switch (Application.platform)
-			{
-			case RuntimePlatform.Android:
-				platform = SoaringPlatformType.Android;
-				break;
-			case RuntimePlatform.IPhonePlayer:
-				platform = SoaringPlatformType.iPhone;
-				break;
-			case RuntimePlatform.BB10Player:
-				platform = SoaringPlatformType.Blackberry;
-				break;
-			case RuntimePlatform.WindowsPlayer:
-				platform = SoaringPlatformType.Windows;
-				break;
-			case RuntimePlatform.OSXPlayer:
-				platform = SoaringPlatformType.OSX;
-				break;
-			}
-		}
-		switch (platform)
-		{
-		case SoaringPlatformType.Amazon:
-			platformDelegate = new SoaringPlatformAmazon();
-			break;
-		case SoaringPlatformType.Android:
-			platformDelegate = new SoaringPlatformAndroid();
-			break;
-		case SoaringPlatformType.iPhone:
-			platformDelegate = new SBMIIOSPlatformModule();
-			break;
-		case SoaringPlatformType.Windows:
-			platformDelegate = new SoaringPlatformWindows();
-			break;
-		case SoaringPlatformType.OSX:
-			platformDelegate = new SoaringPlatformOSX();
-			break;
-		default:
-			SoaringDebug.Log("Unknown Platform", LogType.Error);
-			break;
-		}
-		platformType = platform;
-		if (platformDelegate != null)
-		{
-			platformDelegate.Init();
-		}
 	}
 
 	internal static void Init(SoaringPlatformType platform)
 	{
-		if (sInstance == null)
-		{
-			sInstance = new SoaringPlatform(platform);
-		}
 	}
 
 	public static void SetPlatformUserData(string userID, string userAlias)
 	{
-		sInstance.platformDelegate.SetPlatformUserData(userID, userAlias);
 	}
 
 	public static SoaringDictionary GenerateDeviceDictionary()
 	{
-		return sInstance.platformDelegate.GenerateDeviceDictionary();
+		return null;
 	}
 
 	public static bool AuthenticatedPlatformUser(SoaringContext context)
 	{
-		return sInstance.platformDelegate.PlatformAuthenticate(context);
+		return false;
 	}
 
 	public static SoaringPlatformDelegate GetDelegate()
 	{
-		return sInstance.platformDelegate;
+		return null;
 	}
 
 	public static bool OpenURL(string url)
 	{
-		return sInstance.platformDelegate.OpenURL(url);
+		return false;
 	}
 
 	public static bool SendEmail(string subject, string body, string email)
 	{
-		return sInstance.platformDelegate.SendEmail(subject, body, email);
+		return false;
 	}
 
 	public static long SystemBootTime()
 	{
-		return sInstance.platformDelegate.SystemBootTime();
+		return 0L;
 	}
 
 	public static long SystemTimeSinceBootTime()
 	{
-		return sInstance.platformDelegate.SystemTimeSinceBootTime();
+		return 0L;
 	}
 }

@@ -6,13 +6,11 @@ public class TaskCompleteCondition : MatchableCondition
 
 	public static TaskCompleteCondition FromDict(Dictionary<string, object> dict)
 	{
-		TaskCompleteCondition taskCompleteCondition = new TaskCompleteCondition();
-		taskCompleteCondition.Parse(dict, "task_complete", new List<string> { typeof(TaskCompleteAction).ToString() }, new List<IMatcher> { TaskMatcher.FromDict(dict) });
-		return taskCompleteCondition;
+		return null;
 	}
 
 	public override string Description(Game game)
 	{
-		return "task_complete";
+		return null;
 	}
 }

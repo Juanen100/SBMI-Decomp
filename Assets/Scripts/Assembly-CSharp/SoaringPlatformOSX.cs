@@ -1,8 +1,3 @@
-using System;
-using System.Diagnostics;
-using System.IO;
-using UnityEngine;
-
 public class SoaringPlatformOSX : SoaringPlatform.SoaringPlatformDelegate
 {
 	public override void Init()
@@ -11,67 +6,36 @@ public class SoaringPlatformOSX : SoaringPlatform.SoaringPlatformDelegate
 
 	public override SoaringLoginType PreferedLoginType()
 	{
-		return SoaringLoginType.Soaring;
+		return default(SoaringLoginType);
 	}
 
 	public override string PlatformName()
 	{
-		return "MacOSX";
+		return null;
 	}
 
 	public override string DeviceID()
 	{
-		return Environment.MachineName;
+		return null;
 	}
 
 	public override SoaringDictionary GenerateDeviceDictionary()
 	{
-		return new SoaringDictionary();
+		return null;
 	}
 
 	public override bool OpenURL(string url)
 	{
-		bool result = false;
-		if (url == null)
-		{
-			return result;
-		}
-		Application.OpenURL(url);
-		return true;
+		return false;
 	}
 
 	public override bool SendEmail(string subject, string body, string email)
 	{
-		bool result = false;
-		if (subject == null || body == null || email == null)
-		{
-			return result;
-		}
-		subject = WWW.EscapeURL(subject).Replace("+", "%20");
-		body = WWW.EscapeURL(body).Replace("+", "%20");
-		Application.OpenURL("mailto:" + email + "?subject=" + subject + "&body=" + body);
-		return true;
+		return false;
 	}
 
 	public override bool OpenPath(string path)
 	{
-		bool result = false;
-		if (path == null)
-		{
-			return result;
-		}
-		try
-		{
-			if (File.Exists(path))
-			{
-				Process.Start("open", path);
-			}
-			result = true;
-		}
-		catch (Exception ex)
-		{
-			SoaringDebug.Log(ex.Message, LogType.Error);
-		}
-		return result;
+		return false;
 	}
 }

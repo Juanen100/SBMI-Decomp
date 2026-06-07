@@ -2,20 +2,19 @@ using System.Collections.Generic;
 using FarseerPhysics.Dynamics;
 using UnityEngine;
 
-[RequireComponent(typeof(Camera))]
 public class YG2DWorld : MonoBehaviour
 {
 	public Camera renderCamera;
 
-	private readonly Vector2 GUIGravity = Vector2.zero;
+	private readonly Vector2 GUIGravity;
 
 	protected World world;
 
-	public bool drawCursor = true;
+	public bool drawCursor;
 
-	public bool shape = true;
+	public bool shape;
 
-	public bool joint = true;
+	public bool joint;
 
 	public bool aabb;
 
@@ -39,11 +38,7 @@ public class YG2DWorld : MonoBehaviour
 	{
 		get
 		{
-			if (!renderCamera)
-			{
-				renderCamera = base.gameObject.GetComponent<Camera>();
-			}
-			return renderCamera;
+			return null;
 		}
 	}
 
@@ -51,23 +46,13 @@ public class YG2DWorld : MonoBehaviour
 	{
 		get
 		{
-			if (world == null)
-			{
-				world = new World(GUIGravity);
-			}
-			return world;
+			return null;
 		}
 	}
 
 	public Vector2 Cursor2D(Vector3 cursor3d)
 	{
-		if (!RenderCamera)
-		{
-			Debug.LogWarning("no camera attach to Yarg2DWorld");
-			return Vector2.zero;
-		}
-		cursor3d.z = 0f - RenderCamera.transform.position.z;
-		return RenderCamera.ScreenToWorldPoint(cursor3d);
+		return default(Vector2);
 	}
 
 	private void OnEnable()
@@ -80,20 +65,10 @@ public class YG2DWorld : MonoBehaviour
 
 	public List<Fixture> GetHitFixtures(Vector2 pos)
 	{
-		return World.TestPointAll(Cursor2D(pos));
+		return null;
 	}
 
 	public static void UpdateTransform(Transform t, Body body)
 	{
-		Vector2 position = body.Position;
-		float z = body.Rotation * 57.29578f;
-		Vector3 position2 = t.position;
-		position2.Set(position.x, position.y, position2.z);
-		t.position = position2;
-		Quaternion rotation = t.rotation;
-		Vector3 eulerAngles = rotation.eulerAngles;
-		eulerAngles.z = z;
-		rotation.eulerAngles = eulerAngles;
-		t.rotation = rotation;
 	}
 }

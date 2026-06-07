@@ -10,7 +10,7 @@ public class AnnexEntity : EntityDecorator
 	{
 		get
 		{
-			return EntityType.ANNEX;
+			return default(EntityType);
 		}
 	}
 
@@ -18,10 +18,6 @@ public class AnnexEntity : EntityDecorator
 	{
 		get
 		{
-			if (Invariable.ContainsKey("hub_id"))
-			{
-				return (Identity)Invariable["hub_id"];
-			}
 			return null;
 		}
 	}
@@ -30,37 +26,16 @@ public class AnnexEntity : EntityDecorator
 	{
 		get
 		{
-			if (Invariable.ContainsKey("hub_did"))
-			{
-				return (uint?)Invariable["hub_did"];
-			}
 			return null;
 		}
 	}
 
 	public AnnexEntity(Entity toDecorate)
-		: base(toDecorate)
+		: base(null)
 	{
-		new StructureDecorator(this);
 	}
 
 	public override void PatchReferences(Game game)
 	{
-		if (Invariable.ContainsKey("hub_id"))
-		{
-			Identity hubId = HubId;
-			BuildingEntity decorator = game.entities.GetEntity(hubId).GetDecorator<BuildingEntity>();
-			decorator.RegisterAnnex(this);
-		}
-		else if (Invariable.ContainsKey("hub_did"))
-		{
-			Simulated simulated = game.simulation.FindSimulated((int)HubDid.Value);
-			if (simulated != null)
-			{
-				BuildingEntity entity = simulated.GetEntity<BuildingEntity>();
-				entity.RegisterAnnex(this);
-			}
-		}
-		base.PatchReferences(game);
 	}
 }

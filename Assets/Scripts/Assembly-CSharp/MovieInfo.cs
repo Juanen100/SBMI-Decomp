@@ -18,7 +18,7 @@ public class MovieInfo
 	{
 		get
 		{
-			return identity;
+			return 0;
 		}
 	}
 
@@ -26,7 +26,7 @@ public class MovieInfo
 	{
 		get
 		{
-			return name;
+			return null;
 		}
 	}
 
@@ -34,7 +34,7 @@ public class MovieInfo
 	{
 		get
 		{
-			return collectName;
+			return null;
 		}
 	}
 
@@ -42,7 +42,7 @@ public class MovieInfo
 	{
 		get
 		{
-			return description;
+			return null;
 		}
 	}
 
@@ -50,7 +50,7 @@ public class MovieInfo
 	{
 		get
 		{
-			return moviefile;
+			return null;
 		}
 	}
 
@@ -58,17 +58,11 @@ public class MovieInfo
 	{
 		get
 		{
-			return texture;
+			return null;
 		}
 	}
 
 	public MovieInfo(Dictionary<string, object> dict)
 	{
-		identity = TFUtils.LoadInt(dict, "did");
-		name = (string)dict["name"];
-		collectName = (string)dict["collect_name"];
-		description = (string)dict["description"];
-		moviefile = (string)dict["movie"];
-		texture = (string)dict["texture"];
 	}
 }

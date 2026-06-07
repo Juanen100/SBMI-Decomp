@@ -4,6 +4,6 @@ public class SBMIRetrieveDailyBonusCalendarModule : SoaringCustomQueryModule
 
 	public override string CustomSoaringModuleName()
 	{
-		return "retrieveDailyBonusCalendar";
+		return null;
 	}
 }

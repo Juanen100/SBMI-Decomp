@@ -11,14 +11,12 @@ public abstract class ItemDropCtor
 	{
 		get
 		{
-			return definition;
+			return null;
 		}
 	}
 
 	protected ItemDropCtor(ItemDropDefinition definition, ulong creationTime)
 	{
-		this.definition = definition;
-		this.creationTime = creationTime;
 	}
 
 	public abstract ItemDrop CreateItemDrop(Vector3 position, Vector3 fixedOffset, Vector3 direction, Action onCleanupComplete);

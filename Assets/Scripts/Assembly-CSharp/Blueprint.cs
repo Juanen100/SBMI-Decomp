@@ -14,7 +14,7 @@ public class Blueprint
 	{
 		get
 		{
-			return iindexer;
+			return null;
 		}
 	}
 
@@ -22,7 +22,7 @@ public class Blueprint
 	{
 		get
 		{
-			return vindexer;
+			return null;
 		}
 	}
 
@@ -30,54 +30,29 @@ public class Blueprint
 	{
 		get
 		{
-			return (EntityType)(int)Invariable["type"];
+			return default(EntityType);
 		}
 	}
 
 	public bool Disabled { get; set; }
 
-	public Blueprint()
-	{
-		Disabled = false;
-		iproperties = new Dictionary<string, object>();
-		iindexer = new ReadWriteIndexer(iproperties);
-		vproperties = new Dictionary<string, object>();
-		vindexer = new ReadWriteIndexer(vproperties);
-	}
-
 	public int? GetInstanceLimitByLevel(int level)
 	{
-		if (Invariable["instance_limit"] == null)
-		{
-			return null;
-		}
-		Dictionary<int, int> dictionary = (Dictionary<int, int>)Invariable["instance_limit"];
-		for (int num = level; num >= 0; num--)
-		{
-			if (dictionary.ContainsKey(num))
-			{
-				return dictionary[num];
-			}
-		}
 		return null;
 	}
 
 	public Dictionary<string, object> InvariableProperties()
 	{
-		return iproperties;
+		return null;
 	}
 
 	public Dictionary<string, object> VariableProperties()
 	{
-		return TFUtils.CloneDictionary(vproperties);
+		return null;
 	}
 
 	public override string ToString()
 	{
-		if (iproperties.ContainsKey("name") && iproperties.ContainsKey("type"))
-		{
-			return iproperties["type"].ToString() + " blueprint: " + (string)iproperties["name"];
-		}
-		return base.ToString();
+		return null;
 	}
 }

@@ -5,19 +5,17 @@ public class SoaringCoupon : SoaringObjectBase
 	private string mReciept;
 
 	public SoaringCoupon(string id, string reciept)
-		: base(IsType.Object)
+		: base(default(IsType))
 	{
-		mCoupon = id;
-		mReciept = reciept;
 	}
 
 	public override string ToString()
 	{
-		return mCoupon;
+		return null;
 	}
 
 	public override string ToJsonString()
 	{
-		return "{\n\"coupon\" : \"" + mCoupon + "\",\n\"receipt\" : \"" + mReciept + "\"\n}";
+		return null;
 	}
 }

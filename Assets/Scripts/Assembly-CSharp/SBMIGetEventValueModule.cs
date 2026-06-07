@@ -4,6 +4,6 @@ public class SBMIGetEventValueModule : SoaringCustomQueryModule
 
 	public override string CustomSoaringModuleName()
 	{
-		return "getEventValue";
+		return null;
 	}
 }

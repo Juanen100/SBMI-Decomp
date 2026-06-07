@@ -1,71 +1,60 @@
-Shader "Custom/RGBAlphaOverlay"
-{
-    Properties
-    {
-        _MainTex ("Main Texture (RGB)", 2D) = "white" {}
-        _AlphaMap ("Alpha Map (A)", 2D) = "white" {}
-        _Color    ("Tint Color", Color) = (1,1,1,1)
-    }
+Shader "Custom/RGBAlphaOverlay" {
+	Properties {
+		_MainTex ("Main Texture  (RGB)", 2D) = "" {}
+		_AlphaMap ("Alpha  (A)", 2D) = "" {}
+		_Color ("Tint Color", Vector) = (1,1,1,1)
+	}
+	//DummyShaderTextExporter
+	SubShader{
+		Tags { "RenderType"="Opaque" }
+		LOD 200
 
-    SubShader
-    {
-        Tags { "Queue"="Transparent" "RenderType"="Transparent" }
+		Pass
+		{
+			HLSLPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
 
-        Pass
-        {
-            ZWrite Off
-            Blend SrcAlpha OneMinusSrcAlpha
-            AlphaTest Greater 0.01
-            ColorMask RGB
+			float4x4 unity_ObjectToWorld;
+			float4x4 unity_MatrixVP;
+			float4 _MainTex_ST;
 
-            CGPROGRAM
-            #pragma vertex   vert
-            #pragma fragment frag
-            #pragma target   2.0
+			struct Vertex_Stage_Input
+			{
+				float4 pos : POSITION;
+				float2 uv : TEXCOORD0;
+			};
 
-            #include "UnityCG.cginc"
+			struct Vertex_Stage_Output
+			{
+				float2 uv : TEXCOORD0;
+				float4 pos : SV_POSITION;
+			};
 
-            sampler2D _MainTex;
-            sampler2D _AlphaMap;
-            float4    _MainTex_ST;
-            fixed4    _Color;
+			Vertex_Stage_Output vert(Vertex_Stage_Input input)
+			{
+				Vertex_Stage_Output output;
+				output.uv = (input.uv.xy * _MainTex_ST.xy) + _MainTex_ST.zw;
+				output.pos = mul(unity_MatrixVP, mul(unity_ObjectToWorld, input.pos));
+				return output;
+			}
 
-            struct appdata
-            {
-                float4 vertex   : POSITION;
-                fixed4 color    : COLOR;
-                float2 texcoord : TEXCOORD0;
-            };
+			Texture2D<float4> _MainTex;
+			SamplerState sampler_MainTex;
+			float4 _Color;
 
-            struct v2f
-            {
-                float4 pos      : SV_POSITION;
-                fixed4 color    : COLOR;
-                float2 uv       : TEXCOORD0;
-            };
+			struct Fragment_Stage_Input
+			{
+				float2 uv : TEXCOORD0;
+			};
 
-            v2f vert(appdata v)
-            {
-                v2f o;
-                o.pos   = mul(UNITY_MATRIX_MVP, v.vertex);
-                o.color = v.color;
-                o.uv    = TRANSFORM_TEX(v.texcoord, _MainTex);
-                return o;
-            }
+			float4 frag(Fragment_Stage_Input input) : SV_TARGET
+			{
+				return _MainTex.Sample(sampler_MainTex, input.uv.xy) * _Color;
+			}
 
-            fixed4 frag(v2f i) : SV_Target
-            {
-                fixed4 col;
-                // RGB from main texture modulated by vertex color
-                col.rgb = (tex2D(_MainTex, i.uv) * i.color).rgb;
-                // Alpha from the green channel of the alpha map (matches original .y sample)
-                col.a   = tex2D(_AlphaMap, i.uv).g;
-                // Apply tint
-                return col * _Color;
-            }
-            ENDCG
-        }
-    }
-
-    Fallback "Unlit/Transparent"
+			ENDHLSL
+		}
+	}
+	Fallback "Unlit/Transparent"
 }

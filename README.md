@@ -2,7 +2,7 @@
 
 A decompilation of Spongebob Moves In! This project aims to recreate as close as possible the client for SBMI to provide a base for people to modify this game however they want to. Keep in mind that, whilst I'd like it to be as close as possible to the original client, I've added some code to make it work better with the Unity Editor because sometimes the game would softlock just by getting out of the main focus of the Game tab which is not ideal.
 
-This project was based off the Android client, specifically version 4.37.00 since the iOS version was compiled il2cpp meaning it would require far much more work to pull off. I would've liked to use the iOS build but realistically, I think it's best to just keep it to the Android version since the project is far from finished yet.
+**This branch is using version 5.01.00, which was the latest version as far as I know and was compiled with Il2Cpp making it significantly harder to decompile. For the time being, this branch is gonna be inactive while we focus on decompiling version 4.37.00 in it's entirety.**
 
 The inspiration for this decomp comes from Aubrey Holmes' video [I Revived the Lost SpongeBob Game Nickelodeon Doesn't Want You to Play](https://www.youtube.com/watch?v=G8cIHsdifxU)
 

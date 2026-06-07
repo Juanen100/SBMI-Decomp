@@ -6,14 +6,10 @@ public class ResourceCalculatorManager
 
 	public ResourceCalculatorManager(LevelingManager levelingManager)
 	{
-		calculators = new Dictionary<int, IResourceProgressCalculator>();
-		calculators[ResourceManager.XP] = levelingManager;
 	}
 
 	public IResourceProgressCalculator GetResourceCalculator(int resourceId)
 	{
-		IResourceProgressCalculator value = null;
-		calculators.TryGetValue(resourceId, out value);
-		return value;
+		return null;
 	}
 }

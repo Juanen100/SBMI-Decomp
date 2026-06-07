@@ -4,122 +4,122 @@ using UnityEngine;
 public class AGSGameDataMap : AGSSyncable
 {
 	public AGSGameDataMap(AmazonJavaWrapper javaObject)
-		: base(javaObject)
+		: base((AmazonJavaWrapper)null)
 	{
 	}
 
 	public AGSGameDataMap(AndroidJavaObject javaObject)
-		: base(javaObject)
+		: base((AmazonJavaWrapper)null)
 	{
 	}
 
 	public AGSSyncableNumber GetHighestNumber(string name)
 	{
-		return GetAGSSyncable<AGSSyncableNumber>(SyncableMethod.getHighestNumber, name);
+		return null;
 	}
 
 	public HashSet<string> GetHighestNumberKeys()
 	{
-		return GetHashSet(HashSetMethod.getHighestNumberKeys);
+		return null;
 	}
 
 	public AGSSyncableNumber GetLowestNumber(string name)
 	{
-		return GetAGSSyncable<AGSSyncableNumber>(SyncableMethod.getLowestNumber, name);
+		return null;
 	}
 
 	public HashSet<string> GetLowestNumberKeys()
 	{
-		return GetHashSet(HashSetMethod.getLowestNumberKeys);
+		return null;
 	}
 
 	public AGSSyncableNumber GetLatestNumber(string name)
 	{
-		return GetAGSSyncable<AGSSyncableNumber>(SyncableMethod.getLatestNumber, name);
+		return null;
 	}
 
 	public HashSet<string> GetLatestNumberKeys()
 	{
-		return GetHashSet(HashSetMethod.getLatestNumberKeys);
+		return null;
 	}
 
 	public AGSSyncableNumberList GetHighNumberList(string name)
 	{
-		return GetAGSSyncable<AGSSyncableNumberList>(SyncableMethod.getHighNumberList, name);
+		return null;
 	}
 
 	public HashSet<string> GetHighNumberListKeys()
 	{
-		return GetHashSet(HashSetMethod.getHighNumberListKeys);
+		return null;
 	}
 
 	public AGSSyncableNumberList GetLowNumberList(string name)
 	{
-		return GetAGSSyncable<AGSSyncableNumberList>(SyncableMethod.getLowNumberList, name);
+		return null;
 	}
 
 	public HashSet<string> GetLowNumberListKeys()
 	{
-		return GetHashSet(HashSetMethod.getLowNumberListKeys);
+		return null;
 	}
 
 	public AGSSyncableNumberList GetLatestNumberList(string name)
 	{
-		return GetAGSSyncable<AGSSyncableNumberList>(SyncableMethod.getLatestNumberList, name);
+		return null;
 	}
 
 	public HashSet<string> GetLatestNumberListKeys()
 	{
-		return GetHashSet(HashSetMethod.getLatestNumberListKeys);
+		return null;
 	}
 
 	public AGSSyncableAccumulatingNumber GetAccumulatingNumber(string name)
 	{
-		return GetAGSSyncable<AGSSyncableAccumulatingNumber>(SyncableMethod.getAccumulatingNumber, name);
+		return null;
 	}
 
 	public HashSet<string> GetAccumulatingNumberKeys()
 	{
-		return GetHashSet(HashSetMethod.getAccumulatingNumberKeys);
+		return null;
 	}
 
 	public AGSSyncableString GetLatestString(string name)
 	{
-		return GetAGSSyncable<AGSSyncableString>(SyncableMethod.getLatestString, name);
+		return null;
 	}
 
 	public HashSet<string> GetLatestStringKeys()
 	{
-		return GetHashSet(HashSetMethod.getLatestStringKeys);
+		return null;
 	}
 
 	public AGSSyncableStringList GetLatestStringList(string name)
 	{
-		return GetAGSSyncable<AGSSyncableStringList>(SyncableMethod.getLatestStringList, name);
+		return null;
 	}
 
 	public HashSet<string> GetLatestStringListKeys()
 	{
-		return GetHashSet(HashSetMethod.getLatestStringListKeys);
+		return null;
 	}
 
 	public AGSSyncableStringSet GetStringSet(string name)
 	{
-		return GetAGSSyncable<AGSSyncableStringSet>(SyncableMethod.getStringSet, name);
+		return null;
 	}
 
 	public HashSet<string> GetStringSetKeys()
 	{
-		return GetHashSet(HashSetMethod.getStringSetKeys);
+		return null;
 	}
 
 	public AGSGameDataMap GetMap(string name)
 	{
-		return GetAGSSyncable<AGSGameDataMap>(SyncableMethod.getMap);
+		return null;
 	}
 
 	public HashSet<string> GetMapKeys()
 	{
-		return GetHashSet(HashSetMethod.getMapKeys);
+		return null;
 	}
 }

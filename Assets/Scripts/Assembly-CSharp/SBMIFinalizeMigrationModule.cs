@@ -4,29 +4,20 @@ public class SBMIFinalizeMigrationModule : SoaringCustomQueryModule
 
 	public override string CustomSoaringModuleName()
 	{
-		return "finalizeMigration";
+		return null;
 	}
 
 	public override bool ShouldEncryptCall()
 	{
-		return SoaringInternalProperties.SecureCommunication;
+		return false;
 	}
 
 	public override string QueryActionName()
 	{
-		return "customQuery2";
+		return null;
 	}
 
 	public override void CallModule(SoaringDictionary data, SoaringDictionary callData, SoaringContext context)
 	{
-		SoaringDictionary soaringDictionary = new SoaringDictionary(1);
-		soaringDictionary.addValue(data.soaringValue("gameId"), "gameId");
-		callData.removeObjectWithKey("authToken");
-		string text = "{\n" + SCQueueTools.CreateJsonMessage("action", QueryActionName(), null, soaringDictionary) + ",\n";
-		string text2 = text;
-		text = text2 + "\"data\" : {\n\"queryService\" : \"" + CustomSoaringModuleName() + "\",\n\"queryParameters\" : " + callData.ToJsonString() + "\n}\n}";
-		soaringDictionary.clear();
-		soaringDictionary.addValue(text, "data");
-		PostCallData(soaringDictionary, context);
 	}
 }

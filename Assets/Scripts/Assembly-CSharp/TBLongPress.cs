@@ -1,21 +1,21 @@
 using UnityEngine;
 
-[AddComponentMenu("FingerGestures/Toolbox/LongPress")]
 public class TBLongPress : TBComponent
 {
-	public Message message = new Message("OnLongPress");
+	public Message message;
 
-	public event EventHandler<TBLongPress> OnLongPress;
+	public event EventHandler<TBLongPress> OnLongPress
+	{
+		add
+		{
+		}
+		remove
+		{
+		}
+	}
 
 	public bool RaiseLongPress(int fingerIndex, Vector2 fingerPos)
 	{
-		base.FingerIndex = fingerIndex;
-		base.FingerPos = fingerPos;
-		if (this.OnLongPress != null)
-		{
-			this.OnLongPress(this);
-		}
-		Send(message);
-		return true;
+		return false;
 	}
 }

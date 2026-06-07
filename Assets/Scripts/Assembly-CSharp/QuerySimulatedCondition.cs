@@ -10,22 +10,17 @@ public class QuerySimulatedCondition : MatchableCondition
 	{
 		get
 		{
-			return true;
+			return false;
 		}
 	}
 
 	public static QuerySimulatedCondition FromDict(Dictionary<string, object> dict)
 	{
-		SimulatedQuerier item = SimulatedQuerier.FromDict(dict);
-		List<IMatcher> list = new List<IMatcher>();
-		list.Insert(0, item);
-		QuerySimulatedCondition querySimulatedCondition = new QuerySimulatedCondition();
-		querySimulatedCondition.Parse(dict, "query_simulated", null, list);
-		return querySimulatedCondition;
+		return null;
 	}
 
 	public override string Description(Game game)
 	{
-		return string.Empty;
+		return null;
 	}
 }

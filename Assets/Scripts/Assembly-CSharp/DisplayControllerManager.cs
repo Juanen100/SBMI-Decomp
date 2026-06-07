@@ -8,7 +8,7 @@ public class DisplayControllerManager
 	{
 		get
 		{
-			return renderTextureManager;
+			return null;
 		}
 	}
 
@@ -16,14 +16,7 @@ public class DisplayControllerManager
 	{
 		get
 		{
-			return skeletons;
+			return null;
 		}
-	}
-
-	public DisplayControllerManager()
-	{
-		renderTextureManager = new RenderTextureManager();
-		skeletons = new SkeletonCollection();
-		TerrainSlot.MakeRealtySignPrototype(this);
 	}
 }

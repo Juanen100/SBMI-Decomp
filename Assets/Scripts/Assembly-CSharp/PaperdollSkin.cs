@@ -8,7 +8,7 @@ internal class PaperdollSkin
 
 	public string skeletonReplacement;
 
-	public List<Dictionary<string, string>> propData = new List<Dictionary<string, string>>();
+	public List<Dictionary<string, string>> propData;
 
-	public Dictionary<string, string> skeletons = new Dictionary<string, string>();
+	public Dictionary<string, string> skeletons;
 }

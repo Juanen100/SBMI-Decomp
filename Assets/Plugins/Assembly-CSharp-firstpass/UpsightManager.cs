@@ -1,257 +1,213 @@
 using System;
 using System.Collections.Generic;
-using MiniJSON;
 using UnityEngine;
 
 public class UpsightManager : MonoBehaviour
 {
-	public static event Action<Dictionary<string, object>> openRequestSucceededEvent;
+	public const string GameObjectName = "UpsightManager";
 
-	public static event Action<string> openRequestFailedEvent;
+	private static bool initialized;
 
-	public static event Action<string> contentWillDisplayEvent;
+	private bool _destroyed;
 
-	public static event Action<string> contentDidDisplayEvent;
-
-	public static event Action<string> contentRequestLoadedEvent;
-
-	public static event Action<string, string> contentRequestFailedEvent;
-
-	public static event Action<string> contentPreloadSucceededEvent;
-
-	public static event Action<string, string> contentPreloadFailedEvent;
-
-	public static event Action<int> badgeCountRequestSucceededEvent;
-
-	public static event Action<string> badgeCountRequestFailedEvent;
-
-	public static event Action trackInAppPurchaseSucceededEvent;
-
-	public static event Action<string> trackInAppPurchaseFailedEvent;
-
-	public static event Action reportCustomEventSucceededEvent;
-
-	public static event Action<string> reportCustomEventFailedEvent;
-
-	public static event Action<string, string> contentDismissedEvent;
-
-	public static event Action<UpsightPurchase> makePurchaseEvent;
-
-	public static event Action<Dictionary<string, object>> dataOptInEvent;
-
-	public static event Action<UpsightReward> unlockedRewardEvent;
-
-	public static event Action<string, string, string> pushNotificationWithContentReceivedEvent;
-
-	public static event Action<string> pushNotificationWithUrlReceivedEvent;
-
-	static UpsightManager()
+	public static event Action sessionDidStartEvent
 	{
-		try
+		add
 		{
-			GameObject gameObject = new GameObject("UpsightManager");
-			gameObject.AddComponent<UpsightManager>();
-			UnityEngine.Object.DontDestroyOnLoad(gameObject);
 		}
-		catch (UnityException)
+		remove
 		{
-			Debug.LogWarning("It looks like you have the UpsightManager on a GameObject in your scene. Please remove the script from your scene.");
 		}
 	}
 
-	public static void noop()
+	public static event Action sessionDidResumeEvent
 	{
-	}
-
-	private void openRequestSucceeded(string json)
-	{
-		if (UpsightManager.openRequestSucceededEvent != null)
+		add
 		{
-			UpsightManager.openRequestSucceededEvent(Json.Deserialize(json) as Dictionary<string, object>);
+		}
+		remove
+		{
 		}
 	}
 
-	private void openRequestFailed(string error)
+	public static event Action userSessionDidStartEvent
 	{
-		if (UpsightManager.openRequestFailedEvent != null)
+		add
 		{
-			UpsightManager.openRequestFailedEvent(error);
+		}
+		remove
+		{
 		}
 	}
 
-	private void contentWillDisplay(string placementID)
+	public static event Action userSessionDidResumeEvent
 	{
-		if (UpsightManager.contentWillDisplayEvent != null)
+		add
 		{
-			UpsightManager.contentWillDisplayEvent(placementID);
+		}
+		remove
+		{
 		}
 	}
 
-	private void contentDidDisplay(string placementID)
+	public static event Action<List<string>> managedVariablesDidSynchronizeEvent
 	{
-		if (UpsightManager.contentDidDisplayEvent != null)
+		add
 		{
-			UpsightManager.contentDidDisplayEvent(placementID);
+		}
+		remove
+		{
 		}
 	}
 
-	private void contentRequestLoaded(string placementID)
+	public static event Action<string, UpsightContentAttributes> onBillboardAppearEvent
 	{
-		if (UpsightManager.contentRequestLoadedEvent != null)
+		add
 		{
-			UpsightManager.contentRequestLoadedEvent(placementID);
+		}
+		remove
+		{
 		}
 	}
 
-	private void contentRequestFailed(string json)
+	public static event Action<string> onBillboardDismissEvent
 	{
-		if (UpsightManager.contentRequestFailedEvent != null)
+		add
 		{
-			Dictionary<string, object> dictionary = Json.Deserialize(json) as Dictionary<string, object>;
-			if (dictionary != null && dictionary.ContainsKey("error") && dictionary.ContainsKey("placement"))
-			{
-				UpsightManager.contentRequestFailedEvent(dictionary["placement"].ToString(), dictionary["error"].ToString());
-			}
+		}
+		remove
+		{
 		}
 	}
 
-	private void contentPreloadSucceeded(string placementID)
+	public static event Action<UpsightReward> billboardDidReceiveRewardEvent
 	{
-		if (UpsightManager.contentPreloadSucceededEvent != null)
+		add
 		{
-			UpsightManager.contentPreloadSucceededEvent(placementID);
+		}
+		remove
+		{
 		}
 	}
 
-	private void contentPreloadFailed(string json)
+	public static event Action<UpsightPurchase> billboardDidReceivePurchaseEvent
 	{
-		if (UpsightManager.contentPreloadFailedEvent != null)
+		add
 		{
-			Dictionary<string, object> dictionary = Json.Deserialize(json) as Dictionary<string, object>;
-			if (dictionary != null && dictionary.ContainsKey("error") && dictionary.ContainsKey("placement"))
-			{
-				UpsightManager.contentPreloadFailedEvent(dictionary["placement"].ToString(), dictionary["error"].ToString());
-			}
+		}
+		remove
+		{
 		}
 	}
 
-	private void metadataRequestSucceeded(string json)
+	public static event Action<UpsightData> billboardDidReceiveDataEvent
 	{
-		if (UpsightManager.badgeCountRequestSucceededEvent != null)
+		add
 		{
-			Dictionary<string, object> dictionary = Json.Deserialize(json) as Dictionary<string, object>;
-			if (dictionary != null && dictionary.ContainsKey("notification"))
-			{
-				Dictionary<string, object> dictionary2 = dictionary["notification"] as Dictionary<string, object>;
-				if (dictionary2.ContainsKey("type") && dictionary2.ContainsKey("value"))
-				{
-					UpsightManager.badgeCountRequestSucceededEvent(int.Parse(dictionary2["value"].ToString()));
-					return;
-				}
-			}
 		}
-		UpsightManager.badgeCountRequestFailedEvent("No badge count could be found for the placement");
-	}
-
-	private void metadataRequestFailed(string error)
-	{
-		if (UpsightManager.badgeCountRequestFailedEvent != null)
+		remove
 		{
-			UpsightManager.badgeCountRequestFailedEvent(error);
 		}
 	}
 
-	private void trackInAppPurchaseSucceeded(string empty)
+	public static event Action<string, Dictionary<string, string>> onContentAvailableEvent
 	{
-		if (UpsightManager.trackInAppPurchaseSucceededEvent != null)
+		add
 		{
-			UpsightManager.trackInAppPurchaseSucceededEvent();
+		}
+		remove
+		{
 		}
 	}
 
-	private void trackInAppPurchaseFailed(string error)
+	public static event Action<string, Dictionary<string, string>> onContentNotAvailableEvent
 	{
-		if (UpsightManager.trackInAppPurchaseFailedEvent != null)
+		add
 		{
-			UpsightManager.trackInAppPurchaseFailedEvent(error);
+		}
+		remove
+		{
 		}
 	}
 
-	private void reportCustomEventSucceeded(string empty)
+	public static event Action<string> onPartnerInitializedEvent
 	{
-		if (UpsightManager.reportCustomEventSucceededEvent != null)
+		add
 		{
-			UpsightManager.reportCustomEventSucceededEvent();
+		}
+		remove
+		{
 		}
 	}
 
-	private void reportCustomEventFailed(string error)
+	public static void init()
 	{
-		if (UpsightManager.reportCustomEventFailedEvent != null)
-		{
-			UpsightManager.reportCustomEventFailedEvent(error);
-		}
 	}
 
-	private void contentDismissed(string json)
+	private void Awake()
 	{
-		if (UpsightManager.contentDismissedEvent != null)
-		{
-			Dictionary<string, object> dictionary = Json.Deserialize(json) as Dictionary<string, object>;
-			if (dictionary != null && dictionary.ContainsKey("dismissType") && dictionary.ContainsKey("placement"))
-			{
-				UpsightManager.contentDismissedEvent(dictionary["placement"].ToString(), dictionary["dismissType"].ToString());
-			}
-		}
 	}
 
-	private void makePurchase(string json)
+	private void sessionDidStart()
 	{
-		if (UpsightManager.makePurchaseEvent != null)
-		{
-			UpsightManager.makePurchaseEvent(UpsightPurchase.purchaseFromJson(json));
-		}
 	}
 
-	private void dataOptIn(string json)
+	private void sessionDidResume()
 	{
-		if (UpsightManager.dataOptInEvent != null)
-		{
-			UpsightManager.dataOptInEvent(Json.Deserialize(json) as Dictionary<string, object>);
-		}
 	}
 
-	private void unlockedReward(string json)
+	private void userSessionDidStart()
 	{
-		if (UpsightManager.unlockedRewardEvent != null)
-		{
-			UpsightManager.unlockedRewardEvent(UpsightReward.rewardFromJson(json));
-		}
 	}
 
-	private void pushNotificationWithContentReceived(string json)
+	private void userSessionDidResume()
 	{
-		if (UpsightManager.pushNotificationWithContentReceivedEvent == null)
-		{
-			return;
-		}
-		Dictionary<string, object> dictionary = Json.Deserialize(json) as Dictionary<string, object>;
-		if (dictionary != null && dictionary.ContainsKey("messageID") && dictionary.ContainsKey("contentUnitID"))
-		{
-			string arg = string.Empty;
-			if (dictionary.ContainsKey("campaignID") && dictionary["campaignID"] != null)
-			{
-				arg = dictionary["campaignID"].ToString();
-			}
-			UpsightManager.pushNotificationWithContentReceivedEvent(dictionary["messageID"].ToString(), dictionary["contentUnitID"].ToString(), arg);
-		}
 	}
 
-	private void pushNotificationWithUrlReceived(string url)
+	private void managedVariablesDidSynchronize(string json)
 	{
-		if (UpsightManager.pushNotificationWithUrlReceivedEvent != null)
-		{
-			UpsightManager.pushNotificationWithUrlReceivedEvent(url);
-		}
+	}
+
+	private void onBillboardAppear(string json)
+	{
+	}
+
+	private void onBillboardDismiss(string scope)
+	{
+	}
+
+	private void billboardDidReceiveReward(string json)
+	{
+	}
+
+	private void billboardDidReceivePurchase(string json)
+	{
+	}
+
+	private void billboardDidReceiveData(string json)
+	{
+	}
+
+	private void onContentAvailable(string json)
+	{
+	}
+
+	private void onContentNotAvailable(string json)
+	{
+	}
+
+	private void onPartnerInitialized(string partnerName)
+	{
+	}
+
+	private bool parseContentJson(string json, out string scope, out Dictionary<string, string> data)
+	{
+		scope = null;
+		data = null;
+		return false;
+	}
+
+	private void OnApplicationPause(bool paused)
+	{
 	}
 }

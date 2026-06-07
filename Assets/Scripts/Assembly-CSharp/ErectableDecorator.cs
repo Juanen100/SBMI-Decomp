@@ -6,7 +6,7 @@ public class ErectableDecorator : EntityDecorator
 	{
 		get
 		{
-			return (Cost)Invariable["build_rush_cost"];
+			return null;
 		}
 	}
 
@@ -14,7 +14,7 @@ public class ErectableDecorator : EntityDecorator
 	{
 		get
 		{
-			return (ulong)Invariable["time.build"];
+			return 0uL;
 		}
 	}
 
@@ -22,7 +22,7 @@ public class ErectableDecorator : EntityDecorator
 	{
 		get
 		{
-			return (float)Invariable["build_timer_duration"];
+			return 0f;
 		}
 	}
 
@@ -30,15 +30,10 @@ public class ErectableDecorator : EntityDecorator
 	{
 		get
 		{
-			if (Variable.ContainsKey("buildCompleteTime"))
-			{
-				return (ulong?)Variable["buildCompleteTime"];
-			}
 			return null;
 		}
 		set
 		{
-			Variable["buildCompleteTime"] = value;
 		}
 	}
 
@@ -46,15 +41,10 @@ public class ErectableDecorator : EntityDecorator
 	{
 		get
 		{
-			if (Variable.ContainsKey("raising_time"))
-			{
-				return (double)Variable["raising_time"];
-			}
 			return 0.0;
 		}
 		set
 		{
-			Variable["raising_time"] = value;
 		}
 	}
 
@@ -62,53 +52,98 @@ public class ErectableDecorator : EntityDecorator
 	{
 		get
 		{
-			return (RewardDefinition)Invariable["completion_reward"];
+			return null;
+		}
+	}
+
+	public RewardDefinition UpgradeReward
+	{
+		get
+		{
+			return null;
+		}
+	}
+
+	public int? UpgradeLevel
+	{
+		get
+		{
+			return null;
+		}
+		set
+		{
+		}
+	}
+
+	public ulong UpgradeTime
+	{
+		get
+		{
+			return 0uL;
+		}
+	}
+
+	public ulong? UpgradeCompleteTime
+	{
+		get
+		{
+			return null;
+		}
+		set
+		{
+		}
+	}
+
+	public ulong? UpgradeStartedTime
+	{
+		get
+		{
+			return null;
+		}
+		set
+		{
+		}
+	}
+
+	public ulong? UpgradeFinishTime
+	{
+		get
+		{
+			return null;
+		}
+		set
+		{
 		}
 	}
 
 	public ErectableDecorator(Entity toDecorate)
-		: base(toDecorate)
+		: base(null)
 	{
 	}
 
 	public bool IsErecting(ulong utcNow)
 	{
-		int result;
-		if (Variable.ContainsKey("buildCompleteTime"))
-		{
-			ulong? erectionCompleteTime = ErectionCompleteTime;
-			result = ((erectionCompleteTime.HasValue && utcNow < erectionCompleteTime.Value) ? 1 : 0);
-		}
-		else
-		{
-			result = 0;
-		}
-		return (byte)result != 0;
+		return false;
+	}
+
+	public bool IsUpgrading(ulong utcNow)
+	{
+		return false;
+	}
+
+	public void IncrementUpgradeLevel()
+	{
 	}
 
 	public override void DeserializeDecorator(Dictionary<string, object> data)
 	{
-		if (data.ContainsKey("activated_time"))
-		{
-			ErectionCompleteTime = TFUtils.LoadUlong(data, "activated_time");
-			if (ErectionCompleteTime == 0)
-			{
-				ErectionCompleteTime = TFUtils.LoadUlong(data, "build_finish_time");
-			}
-		}
-		else if (data.ContainsKey("build_finish_time"))
-		{
-			ErectionCompleteTime = TFUtils.LoadUlong(data, "build_finish_time");
-		}
 	}
 
 	public override void SerializeDecorator(ref Dictionary<string, object> data)
 	{
-		data["build_finish_time"] = ErectionCompleteTime;
 	}
 
 	public static void Serialize(ref Dictionary<string, object> data, ulong completeTime)
 	{
-		data["build_finish_time"] = completeTime;
 	}
 }

@@ -24,33 +24,18 @@ public class TFError
 
 	public static void DM_LOG_ERROR_INVALID_SHEET(string sheetName)
 	{
-		TFUtils.ErrorLog("Cannot find database with sheet name: " + sheetName);
 	}
 
 	public static void DM_LOG_ERROR_NO_ROWS(string sheetName)
 	{
-		TFUtils.ErrorLog("No rows in sheet name: " + sheetName);
 	}
 
 	public static void DM_LOG_ERROR_INVALID_COLUMN(string col)
 	{
-		TFUtils.ErrorLog("Invalid Columns Name: " + col);
 	}
 
 	public static int GetErrorCode(Exception e, int default_code)
 	{
-		if (e == null)
-		{
-			return default_code;
-		}
-		if (e.Data == null)
-		{
-			return default_code;
-		}
-		if (!e.Data.Contains("error_code"))
-		{
-			return default_code;
-		}
-		return (int)e.Data["error_code"];
+		return 0;
 	}
 }

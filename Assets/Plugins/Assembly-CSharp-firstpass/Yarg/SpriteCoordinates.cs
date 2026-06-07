@@ -31,7 +31,7 @@ namespace Yarg
 		{
 			get
 			{
-				return new YGSprite.MeshUpdate(this);
+				return null;
 			}
 		}
 
@@ -41,27 +41,15 @@ namespace Yarg
 
 		public SpriteCoordinates(string asset)
 		{
-			name = asset;
 		}
 
 		public bool Reload(Dictionary<string, AtlasCoords> frames)
 		{
-			if (!frames.ContainsKey(name))
-			{
-				Debug.LogError("couldn't reload " + name);
-				return false;
-			}
-			coords = frames[name].frame;
-			return true;
+			return false;
 		}
 
 		public void SetMesh(Mesh mesh)
 		{
-			verts = mesh.vertices;
-			normals = mesh.normals;
-			color = mesh.colors;
-			tris = mesh.triangles;
-			uvs = mesh.uv;
 		}
 	}
 }

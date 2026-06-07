@@ -1,9 +1,8 @@
 using UnityEngine;
 
-[AddComponentMenu("FingerGestures/Toolbox/FingerUp")]
 public class TBFingerUp : TBComponent
 {
-	public Message message = new Message("OnFingerUp");
+	public Message message;
 
 	private float timeHeldDown;
 
@@ -11,26 +10,25 @@ public class TBFingerUp : TBComponent
 	{
 		get
 		{
-			return timeHeldDown;
+			return 0f;
 		}
 		private set
 		{
-			timeHeldDown = value;
 		}
 	}
 
-	public event EventHandler<TBFingerUp> OnFingerUp;
+	public event EventHandler<TBFingerUp> OnFingerUp
+	{
+		add
+		{
+		}
+		remove
+		{
+		}
+	}
 
 	public bool RaiseFingerUp(int fingerIndex, Vector2 fingerPos, float timeHeldDown)
 	{
-		base.FingerIndex = fingerIndex;
-		base.FingerPos = fingerPos;
-		TimeHeldDown = timeHeldDown;
-		if (this.OnFingerUp != null)
-		{
-			this.OnFingerUp(this);
-		}
-		Send(message);
-		return true;
+		return false;
 	}
 }

@@ -5,13 +5,13 @@ public class InitializeAction : PersistedActionBuffer.PersistedAction
 	public const string INITIALIZE = "i";
 
 	public InitializeAction()
-		: base("i", Identity.Null())
+		: base(null, null)
 	{
 	}
 
 	public new static InitializeAction FromDict(Dictionary<string, object> data)
 	{
-		return new InitializeAction();
+		return null;
 	}
 
 	public override void Process(Game game)

@@ -8,7 +8,7 @@ public abstract class BaseSoundIndex : ISoundIndex
 	{
 		get
 		{
-			return key;
+			return null;
 		}
 	}
 
@@ -16,14 +16,12 @@ public abstract class BaseSoundIndex : ISoundIndex
 	{
 		get
 		{
-			return maxInstances;
+			return 0;
 		}
 	}
 
 	public BaseSoundIndex(string key, int maxInstances)
 	{
-		this.key = key;
-		this.maxInstances = maxInstances;
 	}
 
 	public abstract TFSound GetNextSound(SoundEffectManager sfxMgr);

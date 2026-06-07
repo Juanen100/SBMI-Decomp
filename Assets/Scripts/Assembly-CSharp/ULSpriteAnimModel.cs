@@ -8,129 +8,112 @@ public class ULSpriteAnimModel : ULSpriteAnimModelInterface
 
 	public ULSpriteAnimModel(ULSpriteAnimationSetting[] animationSettings)
 	{
-		animationHashtable = new Hashtable();
-		foreach (ULSpriteAnimationSetting uLSpriteAnimationSetting in animationSettings)
-		{
-			animationHashtable.Add(uLSpriteAnimationSetting.animName, uLSpriteAnimationSetting);
-		}
 	}
 
 	public ULSpriteAnimModel(Hashtable hashtable)
 	{
-		animationHashtable = hashtable;
 	}
 
 	public ULSpriteAnimModel()
 	{
-		animationHashtable = new Hashtable();
 	}
 
 	public void AddAnimationSetting(string key, ULSpriteAnimationSetting setting)
 	{
-		animationHashtable.Add(key, setting);
 	}
 
 	public string GetMaterialName(string animName)
 	{
-		ULSpriteAnimationSetting uLSpriteAnimationSetting = (ULSpriteAnimationSetting)animationHashtable[animName];
-		if (uLSpriteAnimationSetting.texture != null)
-		{
-			return "Materials/lod/" + uLSpriteAnimationSetting.resourceName;
-		}
-		return uLSpriteAnimationSetting.resourceName;
+		return null;
 	}
 
 	public string GetResourceName(string animName)
 	{
-		return ((ULSpriteAnimationSetting)animationHashtable[animName]).resourceName;
+		return null;
 	}
 
 	public string GetTextureName(string animName)
 	{
-		return ((ULSpriteAnimationSetting)animationHashtable[animName]).texture;
+		return null;
 	}
 
 	public bool HasAnimation(string animName)
 	{
-		if (animationHashtable.ContainsKey(animName))
-		{
-			return true;
-		}
 		return false;
 	}
 
 	public float CellTop(string animName)
 	{
-		return ((ULSpriteAnimationSetting)animationHashtable[animName]).cellTop;
+		return 0f;
 	}
 
 	public float CellLeft(string animName)
 	{
-		return ((ULSpriteAnimationSetting)animationHashtable[animName]).cellLeft;
+		return 0f;
 	}
 
 	public float CellWidth(string animName)
 	{
-		return ((ULSpriteAnimationSetting)animationHashtable[animName]).cellWidth;
+		return 0f;
 	}
 
 	public float CellHeight(string animName)
 	{
-		return ((ULSpriteAnimationSetting)animationHashtable[animName]).cellHeight;
+		return 0f;
 	}
 
 	public int CellStartColumn(string animName)
 	{
-		return ((ULSpriteAnimationSetting)animationHashtable[animName]).cellStartColumn;
+		return 0;
 	}
 
 	public int CellColumns(string animName)
 	{
-		return ((ULSpriteAnimationSetting)animationHashtable[animName]).cellColumns;
+		return 0;
 	}
 
 	public int CellCount(string animName)
 	{
-		return ((ULSpriteAnimationSetting)animationHashtable[animName]).cellCount;
+		return 0;
 	}
 
 	public int FramesPerSecond(string animName)
 	{
-		return ((ULSpriteAnimationSetting)animationHashtable[animName]).framesPerSecond;
+		return 0;
 	}
 
 	public float TimingTotal(string animName)
 	{
-		return ((ULSpriteAnimationSetting)animationHashtable[animName]).timingTotal;
+		return 0f;
 	}
 
 	public List<float> TimingList(string animName)
 	{
-		return ((ULSpriteAnimationSetting)animationHashtable[animName]).timingList;
+		return null;
 	}
 
 	public bool Loop(string animName)
 	{
-		return ((ULSpriteAnimationSetting)animationHashtable[animName]).loopMode == ULSpriteAnimationSetting.LoopMode.Loop;
+		return false;
 	}
 
 	public bool FlipH(string animName)
 	{
-		return ((ULSpriteAnimationSetting)animationHashtable[animName]).flipH;
+		return false;
 	}
 
 	public bool FlipV(string animName)
 	{
-		return ((ULSpriteAnimationSetting)animationHashtable[animName]).flipV;
+		return false;
 	}
 
 	public Color32 MainColor(string animName)
 	{
-		return ((ULSpriteAnimationSetting)animationHashtable[animName]).mainColor;
+		return default(Color32);
 	}
 
 	public string MaskName(string animName)
 	{
-		return ((ULSpriteAnimationSetting)animationHashtable[animName]).maskName;
+		return null;
 	}
 }

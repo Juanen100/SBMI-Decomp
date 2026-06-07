@@ -4,7 +4,7 @@ public class DebrisEntity : EntityDecorator
 	{
 		get
 		{
-			return EntityType.DEBRIS;
+			return default(EntityType);
 		}
 	}
 
@@ -12,24 +12,15 @@ public class DebrisEntity : EntityDecorator
 	{
 		get
 		{
-			object value = null;
-			if (Variable.TryGetValue("expansionId", out value))
-			{
-				return (int?)value;
-			}
 			return null;
 		}
 		set
 		{
-			Variable["expansionId"] = value;
 		}
 	}
 
 	public DebrisEntity(Entity toDecorate)
-		: base(toDecorate)
+		: base(null)
 	{
-		new PurchasableDecorator(this);
-		new ClearableDecorator(this);
-		new StructureDecorator(this);
 	}
 }

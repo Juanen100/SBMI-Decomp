@@ -6,13 +6,11 @@ public class ExpansionMatcher : Matcher
 
 	public static ExpansionMatcher FromDict(Dictionary<string, object> dict)
 	{
-		ExpansionMatcher expansionMatcher = new ExpansionMatcher();
-		expansionMatcher.RegisterProperty("expansion_id", dict);
-		return expansionMatcher;
+		return null;
 	}
 
 	public override string DescribeSubject(Game game)
 	{
-		return "expand";
+		return null;
 	}
 }

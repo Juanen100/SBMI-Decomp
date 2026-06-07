@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 public class Identity
@@ -7,12 +6,12 @@ public class Identity
 	{
 		public bool Equals(Identity lhs, Identity rhs)
 		{
-			return lhs.Equals(rhs);
+			return false;
 		}
 
 		public int GetHashCode(Identity lhs)
 		{
-			return lhs.GetHashCode();
+			return 0;
 		}
 	}
 
@@ -20,60 +19,46 @@ public class Identity
 
 	public Identity()
 	{
-		value = Guid.NewGuid().ToString();
 	}
 
 	public Identity(string value)
 	{
-		this.value = value;
 	}
 
 	public Identity(Reader reader)
 	{
-		Unserialize(reader);
 	}
 
 	public void Unserialize(Reader reader)
 	{
-		reader.Read(out value);
 	}
 
 	public void Serialize(Writer writer)
 	{
-		writer.Write(value);
 	}
 
 	public string Describe()
 	{
-		return value;
+		return null;
 	}
 
 	public static Identity Null()
 	{
-		return new Identity(Guid.Empty.ToString());
+		return null;
 	}
 
 	public override bool Equals(object obj)
 	{
-		if (obj == null)
-		{
-			return false;
-		}
-		Identity identity = obj as Identity;
-		if (identity == null)
-		{
-			return false;
-		}
-		return value.Equals(identity.value);
+		return false;
 	}
 
 	public override int GetHashCode()
 	{
-		return value.GetHashCode();
+		return 0;
 	}
 
 	public override string ToString()
 	{
-		return "Identity(guid=" + value + ")";
+		return null;
 	}
 }

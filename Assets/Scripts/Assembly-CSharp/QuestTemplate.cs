@@ -20,7 +20,7 @@ public class QuestTemplate
 	{
 		get
 		{
-			return did;
+			return 0u;
 		}
 	}
 
@@ -28,7 +28,7 @@ public class QuestTemplate
 	{
 		get
 		{
-			return name;
+			return null;
 		}
 	}
 
@@ -36,7 +36,7 @@ public class QuestTemplate
 	{
 		get
 		{
-			return icon;
+			return null;
 		}
 	}
 
@@ -44,26 +44,16 @@ public class QuestTemplate
 	{
 		get
 		{
-			return templateData;
+			return null;
 		}
 	}
 
 	public static QuestTemplate FromDict(Dictionary<string, object> data)
 	{
-		QuestTemplate questTemplate = new QuestTemplate();
-		uint id = TFUtils.LoadUint(data, "did");
-		string text = TFUtils.LoadString(data, "name");
-		string text2 = TFUtils.LoadString(data, "icon");
-		questTemplate.AddRandomTemplate(id, text, text2, data);
-		TFUtils.DebugLog("Loaded Random Quest:" + questTemplate.name);
-		return questTemplate;
+		return null;
 	}
 
 	private void AddRandomTemplate(uint id, string name, string icon, Dictionary<string, object> data)
 	{
-		did = id;
-		this.name = name;
-		this.icon = icon;
-		templateData = data;
 	}
 }

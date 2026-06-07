@@ -14,7 +14,7 @@ public abstract class BaseCondition : ICondition
 	{
 		get
 		{
-			return id;
+			return 0u;
 		}
 	}
 
@@ -22,7 +22,7 @@ public abstract class BaseCondition : ICondition
 	{
 		get
 		{
-			return count;
+			return 0u;
 		}
 	}
 
@@ -30,7 +30,7 @@ public abstract class BaseCondition : ICondition
 	{
 		get
 		{
-			return prerequisiteConditions;
+			return null;
 		}
 	}
 
@@ -38,7 +38,7 @@ public abstract class BaseCondition : ICondition
 	{
 		get
 		{
-			return relevantTypes;
+			return null;
 		}
 	}
 
@@ -54,20 +54,16 @@ public abstract class BaseCondition : ICondition
 
 	protected void Initialize(uint id, uint count, ICollection<string> relevantTypes, IList<uint> prerequisiteConditions)
 	{
-		this.id = id;
-		this.count = count;
-		this.relevantTypes = relevantTypes;
-		this.prerequisiteConditions = prerequisiteConditions;
 	}
 
 	public virtual uint FindNextId()
 	{
-		return FindNextId(id);
+		return 0u;
 	}
 
 	public virtual uint FindNextId(uint floor)
 	{
-		return (floor <= id) ? (id + 1) : floor;
+		return 0u;
 	}
 
 	public virtual void FillSubstates(ref List<ConditionState> substates)
@@ -78,21 +74,11 @@ public abstract class BaseCondition : ICondition
 
 	protected bool IsTypeApplicable(ITrigger trigger)
 	{
-		return relevantTypes == null || relevantTypes.Contains(trigger.Type);
+		return false;
 	}
 
 	public override string ToString()
 	{
-		string text = string.Empty;
-		if (relevantTypes != null)
-		{
-			text += ", relevantTypes=[";
-			foreach (string relevantType in relevantTypes)
-			{
-				text = text + relevantType + ",";
-			}
-			text += "]";
-		}
-		return "BaseCondition:(id=" + id + ", count=" + count + text + ")";
+		return null;
 	}
 }

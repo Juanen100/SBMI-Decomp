@@ -6,21 +6,12 @@ public class LocalizationSettings : ScriptableObject
 {
 	public string[] sheetTitles;
 
-	public bool useSystemLanguagePerDefault = true;
+	public bool useSystemLanguagePerDefault;
 
-	public string defaultLangCode = "EN";
+	public string defaultLangCode;
 
 	public static LanguageCode GetLanguageEnum(string langCode)
 	{
-		langCode = langCode.ToUpper();
-		foreach (int value in Enum.GetValues(typeof(LanguageCode)))
-		{
-			if (string.Concat((LanguageCode)value, string.Empty) == langCode)
-			{
-				return (LanguageCode)value;
-			}
-		}
-		Debug.LogError("ERORR: There is no language: [" + langCode + "]");
-		return LanguageCode.EN;
+		return default(LanguageCode);
 	}
 }

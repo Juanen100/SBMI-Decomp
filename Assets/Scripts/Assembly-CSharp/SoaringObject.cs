@@ -6,28 +6,22 @@ public class SoaringObject : SoaringObjectBase
 	{
 		get
 		{
-			return mObject;
+			return null;
 		}
 	}
 
 	public SoaringObject(object obj)
-		: base(IsType.Object)
+		: base(default(IsType))
 	{
-		mObject = obj;
 	}
 
 	public override string ToString()
 	{
-		string text = null;
-		if (mObject != null)
-		{
-			return mObject.ToString();
-		}
-		return string.Empty;
+		return null;
 	}
 
 	public override string ToJsonString()
 	{
-		return "\"" + ToString() + "\"";
+		return null;
 	}
 }

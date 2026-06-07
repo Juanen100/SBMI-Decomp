@@ -6,8 +6,6 @@ public class CraftStartCondition : CraftCondition
 
 	public static CraftStartCondition FromDict(Dictionary<string, object> dict)
 	{
-		CraftStartCondition craftStartCondition = new CraftStartCondition();
-		CraftCondition.FromDictHelper(dict, craftStartCondition, "craft_start", new List<string> { typeof(CraftStartAction).ToString() });
-		return craftStartCondition;
+		return null;
 	}
 }

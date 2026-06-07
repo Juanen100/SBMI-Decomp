@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using MiniJSON;
 
 public class SBInventoryCategory : SBTabCategory
 {
@@ -17,11 +16,10 @@ public class SBInventoryCategory : SBTabCategory
 	{
 		get
 		{
-			return name;
+			return null;
 		}
 		set
 		{
-			name = value;
 		}
 	}
 
@@ -29,11 +27,10 @@ public class SBInventoryCategory : SBTabCategory
 	{
 		get
 		{
-			return type;
+			return null;
 		}
 		set
 		{
-			type = value;
 		}
 	}
 
@@ -41,11 +38,10 @@ public class SBInventoryCategory : SBTabCategory
 	{
 		get
 		{
-			return texture;
+			return null;
 		}
 		set
 		{
-			texture = value;
 		}
 	}
 
@@ -53,7 +49,7 @@ public class SBInventoryCategory : SBTabCategory
 	{
 		get
 		{
-			return -1;
+			return 0;
 		}
 		set
 		{
@@ -75,11 +71,10 @@ public class SBInventoryCategory : SBTabCategory
 	{
 		get
 		{
-			return numItems;
+			return 0;
 		}
 		set
 		{
-			numItems = value;
 		}
 	}
 
@@ -87,35 +82,19 @@ public class SBInventoryCategory : SBTabCategory
 	{
 		get
 		{
-			return label;
+			return null;
 		}
 		set
 		{
-			label = value;
 		}
 	}
 
 	public SBInventoryCategory(Dictionary<string, object> cat)
 	{
-		name = (string)cat["name"];
-		if (cat.ContainsKey("display.material"))
-		{
-			texture = (string)cat["display.material"];
-		}
-		if (cat.ContainsKey("type"))
-		{
-			type = (string)cat["type"];
-		}
-		label = (string)cat["label"];
 	}
 
 	public override string ToString()
 	{
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary["name"] = name;
-		dictionary["type"] = type;
-		dictionary["texture"] = texture;
-		dictionary["label"] = label;
-		return Json.Serialize(dictionary);
+		return null;
 	}
 }

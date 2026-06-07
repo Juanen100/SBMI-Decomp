@@ -12,6 +12,7 @@ Mesh:
     firstByte: 0
     indexCount: 156
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 56
     localAABB:
@@ -39,13 +40,13 @@ Mesh:
     e31: 0
     e32: 0
     e33: 1
-  m_BoneNameHashes: 26824f83
+  m_BoneNameHashes: 26824f(3
   m_RootBoneNameHash: 2203025958
   m_MeshCompression: 3
-  m_StreamCompression: 0
-  m_IsReadable: 0
+  m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer:
   m_Skin: []
   m_VertexData:
@@ -76,27 +77,14 @@ Mesh:
       offset: 0
       format: 0
       dimension: 0
-    m_Streams:
-    - channelMask: 0
+    - stream: 0
       offset: 0
-      stride: 0
-      dividerOp: 0
-      frequency: 0
-    - channelMask: 0
+      format: 0
+      dimension: 0
+    - stream: 0
       offset: 0
-      stride: 0
-      dividerOp: 0
-      frequency: 0
-    - channelMask: 0
-      offset: 0
-      stride: 0
-      dividerOp: 0
-      frequency: 0
-    - channelMask: 0
-      offset: 0
-      stride: 0
-      dividerOp: 0
-      frequency: 0
+      format: 0
+      dimension: 0
     m_DataSize: 0
     _typelessdata:
   m_CompressedMesh:
@@ -104,20 +92,14 @@ Mesh:
       m_NumItems: 168
       m_Range: 1.1078063
       m_Start: -0.56742036
-      m_Data: f92f5866fe0bfef7ff8232a2bf60a5e82f085df30b9ad6fc82bfa6bee060a92f186ee00ba625f5825879bca054eb2e8815af0ba625e98283bdb9a069552e081d910bfee7e3823212b96099552e58e99b0bfe2ae982e1f2ba20bfeb2ed8b0c70b4e2cf5820d07be20bfc22d489f700b2e86dc82bfc5b62089b12db895650bc664d9824ecab56043722d1827520bca83d182e090b3e036ae2c088e1f0bca53c5820dc5b0604c172cb855010b2e06c082bf15b0207d172c48620c0b3a59c58271fab120a3ae2cd829390b928ad1829d22b520a3
+      m_Data: f9336866fe0cfef73f8333a2cf60a5e833089df30c9ee63c83bfaece2061ab33286ee00ca6253583587dcca054eb328815af0ca625298384c1c9e0695532081d910cfee723833312c9a099553258299c0cfe2a2983e2f2ca20bfeb32d8f0c70c4e2c35830d07ce20bfc231489f700c32861c83c0c5c62089b131b895650cc66419834ecec5a04373312867520cce931183e290c32037b030280e200cce6305830ec9c0604c1730b895010c32060083c019c0207d173048a20c0c3a6905837202c260a3b030e829390c929a11839e26c560a3
       m_BitSize: 10
     m_UV:
       m_NumItems: 112
       m_Range: 0.67694384
       m_Start: 0.19064729
-      m_Data: bf18bf10bf13c11ac10dc30ac31ec508c51fc807cb05ce05d105d407d708d90adb0ddc10dd13dc18db1ad91ed71fd422d122ce22cb22c822e210e20ae10de314e307e504e516e702e719e901ed00f000f300f601f902fb04fd07fe0aff0dfe10fd14fb16f919f61af31cf01ced1ce91a
+      m_Data: c018c011c015c11bc10ec30cc31ec509c520c808cb06ce06d206d508d809da0cdc0edd11dd15dd18dc1bda1ed820d522d223ce24cb23c822e212e20be20fe315e308e505e518e703e71aea01ed00f000f400f701fa03fc05fe08ff0bff0fff12fe15fc18fa1af71cf41df01ded1dea1c
       m_BitSize: 8
-    m_BindPoses:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data:
-      m_BitSize: 0
     m_Normals:
       m_NumItems: 0
       m_Range: 0
@@ -142,6 +124,12 @@ Mesh:
       m_NumItems: 0
       m_Data:
       m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data:
+      m_BitSize: 0
     m_BoneIndices:
       m_NumItems: 56
       m_Data:
@@ -150,12 +138,11 @@ Mesh:
       m_NumItems: 156
       m_Data: 40200043100c043114c56014c67118c8812409a228c8b2200c83340de238c8f320108444112249c83421148554156259c8752118866419a269c8c6751ef775dd07825f187e62288ea3488e645992a6499e2789a2649a92aa4aae2bc9b264db92ae4bbe2f09c3641c93b24cce3349d3645d93b64dde
       m_BitSize: 6
-    m_Colors:
-      m_NumItems: 0
-      m_Data:
-      m_BitSize: 0
+    m_UVInfo: 5
   m_LocalAABB:
     m_Center: {x: -0.013517201, y: 9.758652E-10, z: -0.022325218}
     m_Extent: {x: 0.55390316, y: 1.3433551E-08, z: 0.3073238}
   m_MeshUsageFlags: 1
+  m_BakedConvexCollisionMesh:
+  m_BakedTriangleCollisionMesh:
   m_MeshOptimized: 1

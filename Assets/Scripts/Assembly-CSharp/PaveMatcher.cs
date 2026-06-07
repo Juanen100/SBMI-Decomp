@@ -6,13 +6,11 @@ public class PaveMatcher : Matcher
 
 	public static PaveMatcher FromDict(Dictionary<string, object> dict)
 	{
-		PaveMatcher paveMatcher = new PaveMatcher();
-		paveMatcher.RegisterProperty("pave_type", dict);
-		return paveMatcher;
+		return null;
 	}
 
 	public override string DescribeSubject(Game game)
 	{
-		return "path";
+		return null;
 	}
 }

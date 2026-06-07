@@ -4,7 +4,7 @@ public class StructureDecorator : EntityDecorator
 	{
 		get
 		{
-			return true;
+			return false;
 		}
 	}
 
@@ -12,7 +12,7 @@ public class StructureDecorator : EntityDecorator
 	{
 		get
 		{
-			return true;
+			return false;
 		}
 	}
 
@@ -20,7 +20,7 @@ public class StructureDecorator : EntityDecorator
 	{
 		get
 		{
-			return (AlignedBox)Invariable["footprint"];
+			return null;
 		}
 	}
 
@@ -28,12 +28,7 @@ public class StructureDecorator : EntityDecorator
 	{
 		get
 		{
-			object value;
-			if (Invariable.TryGetValue("immobile", out value))
-			{
-				return (bool)value;
-			}
-			return true;
+			return false;
 		}
 	}
 
@@ -41,11 +36,6 @@ public class StructureDecorator : EntityDecorator
 	{
 		get
 		{
-			object value;
-			if (Invariable.TryGetValue("shareable_space", out value))
-			{
-				return (bool)value;
-			}
 			return false;
 		}
 	}
@@ -54,17 +44,12 @@ public class StructureDecorator : EntityDecorator
 	{
 		get
 		{
-			object value;
-			if (Invariable.TryGetValue("shareable_space_snap", out value))
-			{
-				return (bool)value;
-			}
 			return false;
 		}
 	}
 
 	public StructureDecorator(Entity toDecorate)
-		: base(toDecorate)
+		: base(null)
 	{
 	}
 }

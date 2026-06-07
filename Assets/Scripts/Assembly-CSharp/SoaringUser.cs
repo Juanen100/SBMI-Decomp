@@ -14,23 +14,10 @@ public class SoaringUser : SoaringObjectBase
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return string.Empty;
-			}
-			string text = mUserData.soaringValue("userId");
-			if (text == null)
-			{
-				text = string.Empty;
-			}
-			return text;
+			return null;
 		}
 		set
 		{
-			if (mUserData != null)
-			{
-				mUserData.setValue(value, "userId");
-			}
 		}
 	}
 
@@ -38,23 +25,10 @@ public class SoaringUser : SoaringObjectBase
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return string.Empty;
-			}
-			string text = mUserData.soaringValue("tag");
-			if (text == null)
-			{
-				text = string.Empty;
-			}
-			return text;
+			return null;
 		}
 		set
 		{
-			if (mUserData != null)
-			{
-				mUserData.setValue(value, "tag");
-			}
 		}
 	}
 
@@ -62,23 +36,10 @@ public class SoaringUser : SoaringObjectBase
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return string.Empty;
-			}
-			string text = mUserData.soaringValue("pictureUrl");
-			if (text == null)
-			{
-				text = string.Empty;
-			}
-			return text;
+			return null;
 		}
 		set
 		{
-			if (mUserData != null)
-			{
-				mUserData.setValue(value, "pictureUrl");
-			}
 		}
 	}
 
@@ -86,23 +47,10 @@ public class SoaringUser : SoaringObjectBase
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return 0;
-			}
-			SoaringValue soaringValue = mUserData.soaringValue("score");
-			if (soaringValue == null)
-			{
-				soaringValue = 0;
-			}
-			return soaringValue;
+			return 0;
 		}
 		set
 		{
-			if (mUserData != null)
-			{
-				mUserData.setValue(value, "score");
-			}
 		}
 	}
 
@@ -110,16 +58,7 @@ public class SoaringUser : SoaringObjectBase
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return string.Empty;
-			}
-			string text = mUserData.soaringValue("status");
-			if (text == null)
-			{
-				text = string.Empty;
-			}
-			return text;
+			return null;
 		}
 	}
 
@@ -127,28 +66,7 @@ public class SoaringUser : SoaringObjectBase
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return string.Empty;
-			}
-			string text = mUserData.soaringValue("email");
-			if (string.IsNullOrEmpty(text))
-			{
-				SoaringArray soaringArray = (SoaringArray)mUserData.objectWithKey("emails");
-				if (soaringArray != null && soaringArray.count() != 0)
-				{
-					SoaringValue soaringValue = (SoaringValue)soaringArray.objectAtIndex(0);
-					if (soaringValue != null)
-					{
-						text = soaringValue;
-					}
-				}
-				if (text == null)
-				{
-					text = string.Empty;
-				}
-			}
-			return text;
+			return null;
 		}
 	}
 
@@ -156,23 +74,10 @@ public class SoaringUser : SoaringObjectBase
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return string.Empty;
-			}
-			SoaringValue soaringValue = mUserData.soaringValue("facebookId");
-			if (soaringValue == null)
-			{
-				soaringValue = string.Empty;
-			}
-			return soaringValue;
+			return null;
 		}
 		set
 		{
-			if (mUserData != null)
-			{
-				mUserData.setValue(value, "facebookId");
-			}
 		}
 	}
 
@@ -180,23 +85,10 @@ public class SoaringUser : SoaringObjectBase
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return string.Empty;
-			}
-			SoaringValue soaringValue = mUserData.soaringValue("name");
-			if (soaringValue == null)
-			{
-				soaringValue = string.Empty;
-			}
-			return soaringValue;
+			return null;
 		}
 		set
 		{
-			if (mUserData != null)
-			{
-				mUserData.setValue(value, "name");
-			}
 		}
 	}
 
@@ -204,29 +96,7 @@ public class SoaringUser : SoaringObjectBase
 	{
 		get
 		{
-			string text = null;
-			SoaringDictionary publicData = PublicData;
-			if (publicData == null)
-			{
-				publicData = CustomData;
-				if (CustomData != null)
-				{
-					text = publicData.soaringValue("gameSessionId");
-				}
-				if (text == null)
-				{
-					text = string.Empty;
-				}
-			}
-			else
-			{
-				text = publicData.soaringValue("gameSessionId");
-				if (text == null)
-				{
-					text = string.Empty;
-				}
-			}
-			return text;
+			return null;
 		}
 	}
 
@@ -234,11 +104,7 @@ public class SoaringUser : SoaringObjectBase
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return null;
-			}
-			return (SoaringDictionary)mUserData.objectWithKey("custom");
+			return null;
 		}
 	}
 
@@ -246,16 +112,7 @@ public class SoaringUser : SoaringObjectBase
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return null;
-			}
-			SoaringDictionary customData = CustomData;
-			if (customData == null)
-			{
-				return null;
-			}
-			return (SoaringDictionary)customData.objectWithKey("public");
+			return null;
 		}
 	}
 
@@ -263,23 +120,7 @@ public class SoaringUser : SoaringObjectBase
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return null;
-			}
-			SoaringDictionary soaringDictionary = CustomData;
-			if (soaringDictionary == null)
-			{
-				soaringDictionary = new SoaringDictionary();
-				mUserData.addValue(new SoaringDictionary(), "custom");
-			}
-			SoaringDictionary soaringDictionary2 = (SoaringDictionary)soaringDictionary.objectWithKey("public");
-			if (soaringDictionary2 == null)
-			{
-				soaringDictionary2 = new SoaringDictionary();
-				soaringDictionary.addValue(soaringDictionary2, "public");
-			}
-			return soaringDictionary2;
+			return null;
 		}
 	}
 
@@ -287,16 +128,7 @@ public class SoaringUser : SoaringObjectBase
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return null;
-			}
-			SoaringDictionary customData = CustomData;
-			if (customData == null)
-			{
-				return null;
-			}
-			return (SoaringDictionary)customData.objectWithKey("private");
+			return null;
 		}
 	}
 
@@ -304,23 +136,7 @@ public class SoaringUser : SoaringObjectBase
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return null;
-			}
-			SoaringDictionary soaringDictionary = CustomData;
-			if (soaringDictionary == null)
-			{
-				soaringDictionary = new SoaringDictionary();
-				mUserData.addValue(new SoaringDictionary(), "custom");
-			}
-			SoaringDictionary soaringDictionary2 = (SoaringDictionary)soaringDictionary.objectWithKey("private");
-			if (soaringDictionary2 == null)
-			{
-				soaringDictionary2 = new SoaringDictionary();
-				soaringDictionary.addValue(soaringDictionary2, "private");
-			}
-			return soaringDictionary2;
+			return null;
 		}
 	}
 
@@ -328,62 +144,29 @@ public class SoaringUser : SoaringObjectBase
 	{
 		get
 		{
-			return mUserData;
+			return null;
 		}
 	}
 
 	public SoaringUser()
-		: base(IsType.Object)
+		: base(default(IsType))
 	{
 	}
 
 	public void SetUserData(SoaringDictionary userData)
 	{
-		SetUserData(userData, false);
 	}
 
 	public void SetUserData(SoaringDictionary userData, bool clearExisting)
 	{
-		if (userData == null)
-		{
-			return;
-		}
-		if (mUserData == null || clearExisting)
-		{
-			mUserData = userData;
-			return;
-		}
-		int num = userData.count();
-		string[] array = userData.allKeys();
-		SoaringObjectBase[] array2 = userData.allValues();
-		for (int i = 0; i < num; i++)
-		{
-			mUserData.setValue(array2[i], array[i]);
-		}
 	}
 
 	public void SetUserInfo(SoaringValue val, string key)
 	{
-		if (!string.IsNullOrEmpty(key) && val != null)
-		{
-			if (mUserData == null)
-			{
-				mUserData = new SoaringDictionary();
-			}
-			mUserData.addValue(val, key);
-		}
 	}
 
 	public SoaringValue GetUserInfo(string key)
 	{
-		if (string.IsNullOrEmpty(key))
-		{
-			return null;
-		}
-		if (mUserData == null)
-		{
-			return null;
-		}
-		return mUserData.soaringValue(key);
+		return null;
 	}
 }

@@ -6,13 +6,11 @@ public class ButtonTapMatcher : Matcher
 
 	public static ButtonTapMatcher FromDict(Dictionary<string, object> dict)
 	{
-		ButtonTapMatcher buttonTapMatcher = new ButtonTapMatcher();
-		buttonTapMatcher.RegisterProperty("button_id", dict);
-		return buttonTapMatcher;
+		return null;
 	}
 
 	public override string DescribeSubject(Game game)
 	{
-		return "button_tap";
+		return null;
 	}
 }

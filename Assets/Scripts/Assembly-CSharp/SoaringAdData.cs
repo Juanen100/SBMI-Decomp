@@ -20,7 +20,7 @@ public class SoaringAdData : SoaringObjectBase
 
 	private long mAdStarts;
 
-	private short mAdDisplays = -1;
+	private short mAdDisplays;
 
 	private short mTimesShown;
 
@@ -30,13 +30,13 @@ public class SoaringAdData : SoaringObjectBase
 
 	private SoaringDictionary mLocalizations;
 
-	private SoaringAdType mAdType = SoaringAdType.Local;
+	private SoaringAdType mAdType;
 
 	public Texture2D AdTexture
 	{
 		get
 		{
-			return mTexture;
+			return null;
 		}
 	}
 
@@ -44,7 +44,7 @@ public class SoaringAdData : SoaringObjectBase
 	{
 		get
 		{
-			return mAdID;
+			return null;
 		}
 	}
 
@@ -52,7 +52,7 @@ public class SoaringAdData : SoaringObjectBase
 	{
 		get
 		{
-			return mAdPath;
+			return null;
 		}
 	}
 
@@ -60,7 +60,7 @@ public class SoaringAdData : SoaringObjectBase
 	{
 		get
 		{
-			return mAdExpires;
+			return 0L;
 		}
 	}
 
@@ -68,7 +68,7 @@ public class SoaringAdData : SoaringObjectBase
 	{
 		get
 		{
-			return mAdStarts;
+			return 0L;
 		}
 	}
 
@@ -76,7 +76,7 @@ public class SoaringAdData : SoaringObjectBase
 	{
 		get
 		{
-			return mAdType;
+			return default(SoaringAdType);
 		}
 	}
 
@@ -84,7 +84,7 @@ public class SoaringAdData : SoaringObjectBase
 	{
 		get
 		{
-			return mAdDisplays;
+			return 0;
 		}
 	}
 
@@ -92,7 +92,7 @@ public class SoaringAdData : SoaringObjectBase
 	{
 		get
 		{
-			return mTimesShown;
+			return 0;
 		}
 	}
 
@@ -100,7 +100,7 @@ public class SoaringAdData : SoaringObjectBase
 	{
 		get
 		{
-			return mTimesClicked;
+			return 0;
 		}
 	}
 
@@ -108,7 +108,7 @@ public class SoaringAdData : SoaringObjectBase
 	{
 		get
 		{
-			return mUserData;
+			return null;
 		}
 	}
 
@@ -116,60 +116,37 @@ public class SoaringAdData : SoaringObjectBase
 	{
 		get
 		{
-			return mLocalizations;
+			return null;
 		}
 	}
 
 	public SoaringAdData()
-		: base(IsType.Object)
+		: base(default(IsType))
 	{
 	}
 
 	internal void SetData(Texture2D texture, string addID, string path, long starts, long expires, int mAdDisplays, SoaringAdType adType, SoaringDictionary localizations)
 	{
-		mAdType = adType;
-		mTexture = texture;
-		mAdID = addID;
-		mAdPath = path;
-		mAdExpires = expires;
-		mAdStarts = starts;
-		mLocalizations = localizations;
 	}
 
 	internal void SetUserData(SoaringDictionary userData)
 	{
-		mUserData = userData;
 	}
 
 	internal void SetCachedData(short shown, short clicks)
 	{
-		mTimesClicked = clicks;
-		mTimesShown = shown;
 	}
 
 	internal void SetAdShown()
 	{
-		mTimesShown++;
 	}
 
 	public bool OpenAdPage()
 	{
-		bool result = false;
-		if ((mAdType == SoaringAdType.Market || mAdType == SoaringAdType.Web) && !string.IsNullOrEmpty(mAdPath))
-		{
-			Application.OpenURL(mAdPath);
-			result = true;
-		}
-		mTimesClicked++;
-		return result;
+		return false;
 	}
 
 	public void Invalidate()
 	{
-		if (mTexture != null)
-		{
-			Object.Destroy(mTexture);
-		}
-		mTexture = null;
 	}
 }

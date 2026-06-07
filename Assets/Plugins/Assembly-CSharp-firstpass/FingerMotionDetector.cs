@@ -9,7 +9,7 @@ public class FingerMotionDetector : FGComponent
 		Moving = 2
 	}
 
-	public float MoveThreshold = 5f;
+	public float MoveThreshold;
 
 	private FingerGestures.Finger finger;
 
@@ -21,7 +21,7 @@ public class FingerMotionDetector : FGComponent
 
 	private float stationaryStartTime;
 
-	private Vector2 anchorPos = Vector2.zero;
+	private Vector2 anchorPos;
 
 	private bool wasDown;
 
@@ -29,11 +29,10 @@ public class FingerMotionDetector : FGComponent
 	{
 		get
 		{
-			return finger;
+			return null;
 		}
 		set
 		{
-			finger = value;
 		}
 	}
 
@@ -41,11 +40,10 @@ public class FingerMotionDetector : FGComponent
 	{
 		get
 		{
-			return state;
+			return default(MotionState);
 		}
 		private set
 		{
-			state = value;
 		}
 	}
 
@@ -53,11 +51,10 @@ public class FingerMotionDetector : FGComponent
 	{
 		get
 		{
-			return prevState;
+			return default(MotionState);
 		}
 		private set
 		{
-			prevState = value;
 		}
 	}
 
@@ -65,11 +62,10 @@ public class FingerMotionDetector : FGComponent
 	{
 		get
 		{
-			return moves;
+			return 0;
 		}
 		private set
 		{
-			moves = value;
 		}
 	}
 
@@ -77,7 +73,7 @@ public class FingerMotionDetector : FGComponent
 	{
 		get
 		{
-			return Moves > 0;
+			return false;
 		}
 	}
 
@@ -85,7 +81,7 @@ public class FingerMotionDetector : FGComponent
 	{
 		get
 		{
-			return PreviousState == MotionState.Moving;
+			return false;
 		}
 	}
 
@@ -93,7 +89,7 @@ public class FingerMotionDetector : FGComponent
 	{
 		get
 		{
-			return State == MotionState.Moving;
+			return false;
 		}
 	}
 
@@ -101,7 +97,7 @@ public class FingerMotionDetector : FGComponent
 	{
 		get
 		{
-			return Time.time - stationaryStartTime;
+			return 0f;
 		}
 	}
 
@@ -109,143 +105,102 @@ public class FingerMotionDetector : FGComponent
 	{
 		get
 		{
-			return anchorPos;
+			return default(Vector2);
 		}
 		private set
 		{
-			anchorPos = value;
 		}
 	}
 
-	public event EventDelegate<FingerMotionDetector> OnMoveBegin;
+	public event EventDelegate<FingerMotionDetector> OnMoveBegin
+	{
+		add
+		{
+		}
+		remove
+		{
+		}
+	}
 
-	public event EventDelegate<FingerMotionDetector> OnMove;
+	public event EventDelegate<FingerMotionDetector> OnMove
+	{
+		add
+		{
+		}
+		remove
+		{
+		}
+	}
 
-	public event EventDelegate<FingerMotionDetector> OnMoveEnd;
+	public event EventDelegate<FingerMotionDetector> OnMoveEnd
+	{
+		add
+		{
+		}
+		remove
+		{
+		}
+	}
 
-	public event EventDelegate<FingerMotionDetector> OnStationaryBegin;
+	public event EventDelegate<FingerMotionDetector> OnStationaryBegin
+	{
+		add
+		{
+		}
+		remove
+		{
+		}
+	}
 
-	public event EventDelegate<FingerMotionDetector> OnStationary;
+	public event EventDelegate<FingerMotionDetector> OnStationary
+	{
+		add
+		{
+		}
+		remove
+		{
+		}
+	}
 
-	public event EventDelegate<FingerMotionDetector> OnStationaryEnd;
+	public event EventDelegate<FingerMotionDetector> OnStationaryEnd
+	{
+		add
+		{
+		}
+		remove
+		{
+		}
+	}
 
 	protected override void OnUpdate(FingerGestures.IFingerList touches)
 	{
-		if (Finger.IsDown)
-		{
-			if (!wasDown)
-			{
-				Moves = 0;
-				AnchorPos = Finger.Position;
-				State = MotionState.Stationary;
-			}
-			if (Finger.Phase == FingerGestures.FingerPhase.Moved)
-			{
-				if (State != MotionState.Moving)
-				{
-					if ((Finger.Position - AnchorPos).sqrMagnitude >= MoveThreshold * MoveThreshold)
-					{
-						State = MotionState.Moving;
-					}
-					else
-					{
-						State = MotionState.Stationary;
-					}
-				}
-			}
-			else
-			{
-				State = MotionState.Stationary;
-			}
-		}
-		else
-		{
-			State = MotionState.None;
-		}
-		RaiseEvents();
-		PreviousState = State;
-		wasDown = Finger.IsDown;
 	}
 
 	private void RaiseEvents()
 	{
-		if (State != PreviousState)
-		{
-			if (PreviousState == MotionState.Moving)
-			{
-				RaiseOnMoveEnd();
-				AnchorPos = Finger.Position;
-			}
-			else if (PreviousState == MotionState.Stationary)
-			{
-				RaiseOnStationaryEnd();
-			}
-			if (State == MotionState.Moving)
-			{
-				RaiseOnMoveBegin();
-				Moves++;
-			}
-			else if (State == MotionState.Stationary)
-			{
-				stationaryStartTime = Time.time;
-				RaiseOnStationaryBegin();
-			}
-		}
-		if (State == MotionState.Stationary)
-		{
-			RaiseOnStationary();
-		}
-		else if (State == MotionState.Moving)
-		{
-			RaiseOnMove();
-		}
 	}
 
 	protected void RaiseOnMoveBegin()
 	{
-		if (this.OnMoveBegin != null)
-		{
-			this.OnMoveBegin(this);
-		}
 	}
 
 	protected void RaiseOnMove()
 	{
-		if (this.OnMove != null)
-		{
-			this.OnMove(this);
-		}
 	}
 
 	protected void RaiseOnMoveEnd()
 	{
-		if (this.OnMoveEnd != null)
-		{
-			this.OnMoveEnd(this);
-		}
 	}
 
 	protected void RaiseOnStationaryBegin()
 	{
-		if (this.OnStationaryBegin != null)
-		{
-			this.OnStationaryBegin(this);
-		}
 	}
 
 	protected void RaiseOnStationary()
 	{
-		if (this.OnStationary != null)
-		{
-			this.OnStationary(this);
-		}
 	}
 
 	protected void RaiseOnStationaryEnd()
 	{
-		if (this.OnStationaryEnd != null)
-		{
-			this.OnStationaryEnd(this);
-		}
 	}
 }

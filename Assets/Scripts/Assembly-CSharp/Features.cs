@@ -2,6 +2,8 @@ using System.Collections.Generic;
 
 public static class Features
 {
+	public static readonly HashSet<string> FeatureSet;
+
 	public const string FEATURE_TREASURE = "allow_treasure";
 
 	public const string FEATURE_DRIFTWOOD = "allow_driftwood";
@@ -39,10 +41,4 @@ public static class Features
 	public const string FEATURE_ALLOW_PRODUCTION_SLOT_PURCHASE = "allow_production_slot_purchase";
 
 	public const string FEATURE_TUTORIAL_COMPLETE = "unrestrict_clicks";
-
-	public static readonly HashSet<string> FeatureSet = new HashSet<string>
-	{
-		"jit_jj_purchases", "purchase_expansions", "debris_clearing", "resident_wishes", "resident_wishes_full_pool", "inventory_soft", "stash_soft", "sell_soft", "move_reject_lock", "recipe_drops",
-		"autofeed", "allow_random_quests", "allow_auto_quests", "allow_production_slot_purchase", "allow_treasure", "allow_driftwood", "allow_driftwood_tutorial", "unrestrict_clicks", "purchase_expansions_boardwalk"
-	};
 }

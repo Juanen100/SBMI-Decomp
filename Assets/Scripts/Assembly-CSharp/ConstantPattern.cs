@@ -4,11 +4,10 @@ public class ConstantPattern : PeriodicPattern
 
 	public ConstantPattern(float constant)
 	{
-		this.constant = constant;
 	}
 
 	public override float ValueAtTime(float atTime)
 	{
-		return constant;
+		return 0f;
 	}
 }

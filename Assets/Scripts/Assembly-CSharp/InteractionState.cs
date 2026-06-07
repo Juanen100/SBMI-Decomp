@@ -1,4 +1,3 @@
-#define ASSERTS_ON
 using System.Collections.Generic;
 
 public class InteractionState
@@ -13,13 +12,13 @@ public class InteractionState
 
 	private BaseTransitionBinding selectedStateTransition;
 
-	private Stack<ICollection<IControlBinding>> controls = new Stack<ICollection<IControlBinding>>();
+	private Stack<ICollection<IControlBinding>> controls;
 
 	public bool HasClickCommandFunctionality
 	{
 		get
 		{
-			return hasSendClickAction;
+			return false;
 		}
 	}
 
@@ -27,7 +26,7 @@ public class InteractionState
 	{
 		get
 		{
-			return isGrabbable;
+			return false;
 		}
 	}
 
@@ -35,11 +34,10 @@ public class InteractionState
 	{
 		get
 		{
-			return isSelectable;
+			return false;
 		}
 		set
 		{
-			isSelectable = value;
 		}
 	}
 
@@ -47,7 +45,7 @@ public class InteractionState
 	{
 		get
 		{
-			return isEditable;
+			return false;
 		}
 	}
 
@@ -55,11 +53,10 @@ public class InteractionState
 	{
 		get
 		{
-			return selectedStateTransition;
+			return null;
 		}
 		set
 		{
-			selectedStateTransition = value;
 		}
 	}
 
@@ -67,51 +64,28 @@ public class InteractionState
 	{
 		get
 		{
-			if (controls.Count > 0)
-			{
-				return controls.Peek();
-			}
 			return null;
 		}
 	}
 
 	public void SetInteractions(bool isEditable, bool isGrabbable, bool isSelectable, bool hasSendClickAction, BaseTransitionBinding transition = null, ICollection<IControlBinding> newControls = null)
 	{
-		this.isEditable = isEditable;
-		this.isGrabbable = isGrabbable;
-		this.isSelectable = isSelectable;
-		this.hasSendClickAction = hasSendClickAction;
-		selectedStateTransition = transition;
-		ClearControls();
-		if (newControls != null)
-		{
-			controls.Push(newControls);
-		}
 	}
 
 	public void Clear()
 	{
-		isEditable = false;
-		isGrabbable = false;
-		isSelectable = false;
-		hasSendClickAction = false;
-		selectedStateTransition = null;
-		controls.Clear();
 	}
 
 	public void PushControls(ICollection<IControlBinding> newControls)
 	{
-		controls.Push(newControls);
 	}
 
 	public ICollection<IControlBinding> PopControls()
 	{
-		TFUtils.Assert(controls.Count > 0, "Trying to pop the controls stack, but it has nothing on it");
-		return controls.Pop();
+		return null;
 	}
 
 	public void ClearControls()
 	{
-		controls.Clear();
 	}
 }

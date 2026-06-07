@@ -1,46 +1,60 @@
 Shader "Custom/TwoImageWithMask" {
-Properties {
- _MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
- _Mask ("Mask Offset", Float) = 0
- _Color ("Main Color", Color) = (1,1,1,1)
- _AlphaTex ("Alpha Mask (A)", 2D) = "white" {}
-}
-	SubShader
-    {
-        Tags { "RenderType" = "Opaque" }
-        LOD 200
-        ZWrite On
-        
-        CGPROGRAM
-        #pragma surface surf Lambert
+	Properties {
+		_MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
+		_Mask ("Mask Offset", Float) = 0
+		_Color ("Main Color", Vector) = (1,1,1,1)
+		_AlphaTex ("Alpha Mask (A)", 2D) = "white" {}
+	}
+	//DummyShaderTextExporter
+	SubShader{
+		Tags { "RenderType"="Opaque" }
+		LOD 200
 
-        sampler2D _MainTex;
-        sampler2D _AlphaTex;
-        fixed4 _Color;
-        float _Mask;
+		Pass
+		{
+			HLSLPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
 
-        struct Input
-        {
-            float2 uv_MainTex;
-        };
+			float4x4 unity_ObjectToWorld;
+			float4x4 unity_MatrixVP;
+			float4 _MainTex_ST;
 
-        void surf(Input IN, inout SurfaceOutput o)
-        {
-            float2 baseUV = IN.uv_MainTex;
-            float2 maskUV = baseUV + float2(_Mask, _Mask);
+			struct Vertex_Stage_Input
+			{
+				float4 pos : POSITION;
+				float2 uv : TEXCOORD0;
+			};
 
-            fixed4 baseCol = tex2D(_MainTex, baseUV);
-            float maskVal = tex2D(_AlphaTex, maskUV).r;
+			struct Vertex_Stage_Output
+			{
+				float2 uv : TEXCOORD0;
+				float4 pos : SV_POSITION;
+			};
 
-            float influence = 1.0 - saturate(maskVal);
+			Vertex_Stage_Output vert(Vertex_Stage_Input input)
+			{
+				Vertex_Stage_Output output;
+				output.uv = (input.uv.xy * _MainTex_ST.xy) + _MainTex_ST.zw;
+				output.pos = mul(unity_MatrixVP, mul(unity_ObjectToWorld, input.pos));
+				return output;
+			}
 
-            fixed3 tinted = lerp(baseCol.rgb, baseCol.rgb * _Color.rgb, influence);
+			Texture2D<float4> _MainTex;
+			SamplerState sampler_MainTex;
+			float4 _Color;
 
-            o.Albedo = tinted;
-            o.Alpha = baseCol.a;
-        }
-        ENDCG
-    }
+			struct Fragment_Stage_Input
+			{
+				float2 uv : TEXCOORD0;
+			};
 
-    FallBack "Diffuse"
+			float4 frag(Fragment_Stage_Input input) : SV_TARGET
+			{
+				return _MainTex.Sample(sampler_MainTex, input.uv.xy) * _Color;
+			}
+
+			ENDHLSL
+		}
+	}
 }

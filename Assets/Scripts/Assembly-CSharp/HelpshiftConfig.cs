@@ -5,11 +5,13 @@ using UnityEngine;
 [Serializable]
 public class HelpshiftConfig : ScriptableObject
 {
+	private static HelpshiftConfig instance;
+
 	private const string helpshiftConfigAssetName = "HelpshiftConfig";
 
 	private const string helpshiftConfigPath = "Helpshift/Resources";
 
-	private static HelpshiftConfig instance;
+	public const string pluginVersion = "4.1.0";
 
 	[SerializeField]
 	private string apiKey;
@@ -33,10 +35,7 @@ public class HelpshiftConfig : ScriptableObject
 	private bool presentFullScreen;
 
 	[SerializeField]
-	private bool enableDialogUIForTablets;
-
-	[SerializeField]
-	private bool enableInApp;
+	private int enableInAppNotification;
 
 	[SerializeField]
 	private bool requireEmail;
@@ -51,16 +50,36 @@ public class HelpshiftConfig : ScriptableObject
 	private bool showSearchOnNewConversation;
 
 	[SerializeField]
-	private bool showConversationResolutionQuestion;
+	private int showConversationResolutionQuestion;
 
 	[SerializeField]
-	private bool enableDefaultFallbackLanguage;
+	private int enableDefaultFallbackLanguage;
+
+	[SerializeField]
+	private bool disableEntryExitAnimations;
 
 	[SerializeField]
 	private string conversationPrefillText;
 
 	[SerializeField]
-	private string[] contactUsOptions = new string[3] { "always", "never", "after_viewing_faqs" };
+	private bool enableInboxPolling;
+
+	[SerializeField]
+	private bool enableLogging;
+
+	[SerializeField]
+	private bool enableTypingIndicator;
+
+	[SerializeField]
+	private int screenOrientation;
+
+	[SerializeField]
+	private bool showConversationInfoScreen;
+
+	[SerializeField]
+	private string supportedFileFormats;
+
+	private string[] contactUsOptions;
 
 	[SerializeField]
 	private string unityGameObject;
@@ -69,18 +88,25 @@ public class HelpshiftConfig : ScriptableObject
 	private string notificationIcon;
 
 	[SerializeField]
+	private string largeNotificationIcon;
+
+	[SerializeField]
 	private string notificationSound;
+
+	[SerializeField]
+	private string customFont;
+
+	[SerializeField]
+	private string supportNotificationChannel;
+
+	[SerializeField]
+	private string campaignsNotificationChannel;
 
 	public static HelpshiftConfig Instance
 	{
 		get
 		{
-			instance = Resources.Load("HelpshiftConfig") as HelpshiftConfig;
-			if (instance == null)
-			{
-				instance = ScriptableObject.CreateInstance<HelpshiftConfig>();
-			}
-			return instance;
+			return null;
 		}
 	}
 
@@ -88,15 +114,10 @@ public class HelpshiftConfig : ScriptableObject
 	{
 		get
 		{
-			return gotoConversation;
+			return false;
 		}
 		set
 		{
-			if (gotoConversation != value)
-			{
-				gotoConversation = value;
-				DirtyEditor();
-			}
 		}
 	}
 
@@ -104,15 +125,10 @@ public class HelpshiftConfig : ScriptableObject
 	{
 		get
 		{
-			return contactUsOption;
+			return 0;
 		}
 		set
 		{
-			if (contactUsOption != value)
-			{
-				contactUsOption = value;
-				DirtyEditor();
-			}
 		}
 	}
 
@@ -120,15 +136,10 @@ public class HelpshiftConfig : ScriptableObject
 	{
 		get
 		{
-			return presentFullScreen;
+			return false;
 		}
 		set
 		{
-			if (presentFullScreen != value)
-			{
-				presentFullScreen = value;
-				DirtyEditor();
-			}
 		}
 	}
 
@@ -136,31 +147,10 @@ public class HelpshiftConfig : ScriptableObject
 	{
 		get
 		{
-			return enableInApp;
+			return false;
 		}
 		set
 		{
-			if (enableInApp != value)
-			{
-				enableInApp = value;
-				DirtyEditor();
-			}
-		}
-	}
-
-	public bool EnableDialogUIForTablets
-	{
-		get
-		{
-			return enableDialogUIForTablets;
-		}
-		set
-		{
-			if (enableDialogUIForTablets != value)
-			{
-				enableDialogUIForTablets = value;
-				DirtyEditor();
-			}
 		}
 	}
 
@@ -168,15 +158,10 @@ public class HelpshiftConfig : ScriptableObject
 	{
 		get
 		{
-			return requireEmail;
+			return false;
 		}
 		set
 		{
-			if (requireEmail != value)
-			{
-				requireEmail = value;
-				DirtyEditor();
-			}
 		}
 	}
 
@@ -184,15 +169,10 @@ public class HelpshiftConfig : ScriptableObject
 	{
 		get
 		{
-			return hideNameAndEmail;
+			return false;
 		}
 		set
 		{
-			if (hideNameAndEmail != value)
-			{
-				hideNameAndEmail = value;
-				DirtyEditor();
-			}
 		}
 	}
 
@@ -200,15 +180,10 @@ public class HelpshiftConfig : ScriptableObject
 	{
 		get
 		{
-			return enablePrivacy;
+			return false;
 		}
 		set
 		{
-			if (enablePrivacy != value)
-			{
-				enablePrivacy = value;
-				DirtyEditor();
-			}
 		}
 	}
 
@@ -216,15 +191,10 @@ public class HelpshiftConfig : ScriptableObject
 	{
 		get
 		{
-			return showSearchOnNewConversation;
+			return false;
 		}
 		set
 		{
-			if (showSearchOnNewConversation != value)
-			{
-				showSearchOnNewConversation = value;
-				DirtyEditor();
-			}
 		}
 	}
 
@@ -232,15 +202,10 @@ public class HelpshiftConfig : ScriptableObject
 	{
 		get
 		{
-			return showConversationResolutionQuestion;
+			return false;
 		}
 		set
 		{
-			if (showConversationResolutionQuestion != value)
-			{
-				showConversationResolutionQuestion = value;
-				DirtyEditor();
-			}
 		}
 	}
 
@@ -248,15 +213,21 @@ public class HelpshiftConfig : ScriptableObject
 	{
 		get
 		{
-			return enableDefaultFallbackLanguage;
+			return false;
 		}
 		set
 		{
-			if (enableDefaultFallbackLanguage != value)
-			{
-				enableDefaultFallbackLanguage = value;
-				DirtyEditor();
-			}
+		}
+	}
+
+	public bool DisableEntryExitAnimations
+	{
+		get
+		{
+			return false;
+		}
+		set
+		{
 		}
 	}
 
@@ -264,15 +235,10 @@ public class HelpshiftConfig : ScriptableObject
 	{
 		get
 		{
-			return conversationPrefillText;
+			return null;
 		}
 		set
 		{
-			if (conversationPrefillText != value)
-			{
-				conversationPrefillText = value;
-				DirtyEditor();
-			}
 		}
 	}
 
@@ -280,15 +246,10 @@ public class HelpshiftConfig : ScriptableObject
 	{
 		get
 		{
-			return apiKey;
+			return null;
 		}
 		set
 		{
-			if (apiKey != value)
-			{
-				apiKey = value;
-				DirtyEditor();
-			}
 		}
 	}
 
@@ -296,15 +257,10 @@ public class HelpshiftConfig : ScriptableObject
 	{
 		get
 		{
-			return domainName;
+			return null;
 		}
 		set
 		{
-			if (domainName != value)
-			{
-				domainName = value;
-				DirtyEditor();
-			}
 		}
 	}
 
@@ -312,15 +268,10 @@ public class HelpshiftConfig : ScriptableObject
 	{
 		get
 		{
-			return androidAppId;
+			return null;
 		}
 		set
 		{
-			if (androidAppId != value)
-			{
-				androidAppId = value;
-				DirtyEditor();
-			}
 		}
 	}
 
@@ -328,15 +279,10 @@ public class HelpshiftConfig : ScriptableObject
 	{
 		get
 		{
-			return iosAppId;
+			return null;
 		}
 		set
 		{
-			if (iosAppId != value)
-			{
-				iosAppId = value;
-				DirtyEditor();
-			}
 		}
 	}
 
@@ -344,15 +290,10 @@ public class HelpshiftConfig : ScriptableObject
 	{
 		get
 		{
-			return unityGameObject;
+			return null;
 		}
 		set
 		{
-			if (unityGameObject != value)
-			{
-				unityGameObject = value;
-				DirtyEditor();
-			}
 		}
 	}
 
@@ -360,15 +301,21 @@ public class HelpshiftConfig : ScriptableObject
 	{
 		get
 		{
-			return notificationIcon;
+			return null;
 		}
 		set
 		{
-			if (notificationIcon != value)
-			{
-				notificationIcon = value;
-				DirtyEditor();
-			}
+		}
+	}
+
+	public string LargeNotificationIcon
+	{
+		get
+		{
+			return null;
+		}
+		set
+		{
 		}
 	}
 
@@ -376,23 +323,117 @@ public class HelpshiftConfig : ScriptableObject
 	{
 		get
 		{
-			return notificationSound;
+			return null;
 		}
 		set
 		{
-			if (notificationSound != value)
-			{
-				notificationSound = value;
-				DirtyEditor();
-			}
 		}
 	}
 
-	public Dictionary<string, string> InstallConfig
+	public string CustomFont
 	{
 		get
 		{
-			return instance.getInstallConfig();
+			return null;
+		}
+		set
+		{
+		}
+	}
+
+	public string SupportNotificationChannel
+	{
+		get
+		{
+			return null;
+		}
+		set
+		{
+		}
+	}
+
+	public string CampaignsNotificationChannel
+	{
+		get
+		{
+			return null;
+		}
+		set
+		{
+		}
+	}
+
+	public bool EnableInboxPolling
+	{
+		get
+		{
+			return false;
+		}
+		set
+		{
+		}
+	}
+
+	public bool EnableLogging
+	{
+		get
+		{
+			return false;
+		}
+		set
+		{
+		}
+	}
+
+	public bool EnableTypingIndicator
+	{
+		get
+		{
+			return false;
+		}
+		set
+		{
+		}
+	}
+
+	public int ScreenOrientation
+	{
+		get
+		{
+			return 0;
+		}
+		set
+		{
+		}
+	}
+
+	public string SupportedFileFormats
+	{
+		get
+		{
+			return null;
+		}
+		set
+		{
+		}
+	}
+
+	public bool ShowConversationInfoScreen
+	{
+		get
+		{
+			return false;
+		}
+		set
+		{
+		}
+	}
+
+	public Dictionary<string, object> InstallConfig
+	{
+		get
+		{
+			return null;
 		}
 	}
 
@@ -400,12 +441,8 @@ public class HelpshiftConfig : ScriptableObject
 	{
 		get
 		{
-			return instance.getApiConfig();
+			return null;
 		}
-	}
-
-	private static void DirtyEditor()
-	{
 	}
 
 	public void SaveConfig()
@@ -414,32 +451,11 @@ public class HelpshiftConfig : ScriptableObject
 
 	public Dictionary<string, object> getApiConfig()
 	{
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		string value = instance.contactUsOptions[instance.contactUsOption];
-		dictionary.Add("enableContactUs", value);
-		dictionary.Add("gotoConversationAfterContactUs", (!instance.gotoConversation) ? "no" : "yes");
-		dictionary.Add("presentFullScreenOniPad", (!instance.presentFullScreen) ? "no" : "yes");
-		dictionary.Add("requireEmail", (!instance.requireEmail) ? "no" : "yes");
-		dictionary.Add("hideNameAndEmail", (!instance.hideNameAndEmail) ? "no" : "yes");
-		dictionary.Add("enableFullPrivacy", (!instance.enablePrivacy) ? "no" : "yes");
-		dictionary.Add("showSearchOnNewConversation", (!instance.showSearchOnNewConversation) ? "no" : "yes");
-		dictionary.Add("showConversationResolutionQuestion", (!instance.showConversationResolutionQuestion) ? "no" : "yes");
-		dictionary.Add("conversationPrefillText", instance.conversationPrefillText);
-		return dictionary;
+		return null;
 	}
 
-	public Dictionary<string, string> getInstallConfig()
+	public Dictionary<string, object> getInstallConfig()
 	{
-		Dictionary<string, string> dictionary = new Dictionary<string, string>();
-		dictionary.Add("unityGameObject", instance.unityGameObject);
-		dictionary.Add("notificationIcon", instance.notificationIcon);
-		dictionary.Add("notificationSound", instance.notificationSound);
-		dictionary.Add("enableDialogUIForTablets", (!instance.enableDialogUIForTablets) ? "no" : "yes");
-		dictionary.Add("enableInAppNotification", (!instance.enableInApp) ? "no" : "yes");
-		dictionary.Add("enableDefaultFallbackLanguage", (!instance.enableDefaultFallbackLanguage) ? "no" : "yes");
-		dictionary.Add("__hs__apiKey", instance.ApiKey);
-		dictionary.Add("__hs__domainName", instance.DomainName);
-		dictionary.Add("__hs__appId", instance.AndroidAppId);
-		return dictionary;
+		return null;
 	}
 }

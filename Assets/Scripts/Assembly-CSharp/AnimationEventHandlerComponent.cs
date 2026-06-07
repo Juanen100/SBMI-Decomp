@@ -6,9 +6,5 @@ public class AnimationEventHandlerComponent : MonoBehaviour
 
 	public void HandleAnimationEvent(AnimationEvent animationEvent)
 	{
-		if (animationEventHandlerDelegate != null)
-		{
-			animationEventHandlerDelegate.HandleAnimationEvent(animationEvent);
-		}
 	}
 }

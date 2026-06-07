@@ -10,7 +10,7 @@ public class SoaringConnection
 	{
 		get
 		{
-			return mError != null;
+			return false;
 		}
 	}
 
@@ -18,7 +18,7 @@ public class SoaringConnection
 	{
 		get
 		{
-			return mError;
+			return null;
 		}
 	}
 
@@ -26,7 +26,7 @@ public class SoaringConnection
 	{
 		get
 		{
-			return mErrorCode;
+			return 0;
 		}
 	}
 
@@ -74,7 +74,7 @@ public class SoaringConnection
 	{
 		get
 		{
-			return -1;
+			return 0;
 		}
 	}
 
@@ -88,7 +88,6 @@ public class SoaringConnection
 
 	public virtual bool Create(SCWebQueue.SCData properties)
 	{
-		mProperties = properties;
 		return false;
 	}
 

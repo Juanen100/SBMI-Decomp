@@ -1,8 +1,5 @@
-#define ASSERTS_ON
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Yarg;
 
 public class BasicSprite : IDisplayController
 {
@@ -10,19 +7,19 @@ public class BasicSprite : IDisplayController
 
 	public const int MAX_LOD = 0;
 
-	private static Shader maskShader = Shader.Find("Unlit/TransparentMask");
+	private static Shader maskShader;
 
-	private static Shader twoImageMaskShader = Shader.Find("Custom/TwoImageWithMask");
+	private static Shader twoImageMaskShader;
 
-	private static Shader altMaskShader = Shader.Find("Custom/RGBAlphaOverlay_Mask");
+	private static Shader altMaskShader;
 
-	private static Shader altShader = Shader.Find("Custom/RGBAlphaOverlay");
+	private static Shader altShader;
 
 	private float ymax;
 
-	private float ymin = 1f;
+	private float ymin;
 
-	protected Vector3 overallScale = Vector3.one;
+	protected Vector3 overallScale;
 
 	protected Transform tform;
 
@@ -44,7 +41,7 @@ public class BasicSprite : IDisplayController
 
 	private int levelOfDetail;
 
-	private string defaultDisplayState = "default";
+	private string defaultDisplayState;
 
 	private Shader assignedShader;
 
@@ -52,7 +49,7 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return tform;
+			return null;
 		}
 	}
 
@@ -60,11 +57,10 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return (!(tform == null)) ? tform.position : Vector3.zero;
+			return default(Vector3);
 		}
 		set
 		{
-			tform.position = value;
 		}
 	}
 
@@ -72,7 +68,7 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return tform.forward;
+			return default(Vector3);
 		}
 	}
 
@@ -80,7 +76,7 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return tform.up;
+			return default(Vector3);
 		}
 	}
 
@@ -88,11 +84,10 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return (!(tform == null)) ? tform.localScale : Vector3.one;
+			return default(Vector3);
 		}
 		set
 		{
-			tform.localScale = value;
 		}
 	}
 
@@ -100,12 +95,10 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return overallScale;
+			return default(Vector3);
 		}
 		set
 		{
-			overallScale = value;
-			Resize(center, width, height);
 		}
 	}
 
@@ -113,12 +106,10 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return gameObject.GetComponent<Renderer>().enabled;
+			return false;
 		}
 		set
 		{
-			gameObject.GetComponent<Renderer>().enabled = value;
-			gameObject.SetActiveRecursively(value);
 		}
 	}
 
@@ -126,7 +117,7 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return gameObject.GetComponent<Renderer>().isVisible;
+			return false;
 		}
 	}
 
@@ -134,11 +125,10 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return levelOfDetail;
+			return 0;
 		}
 		set
 		{
-			levelOfDetail = ((value >= NumberOfLevelsOfDetail) ? MaxLevelOfDetail : value);
 		}
 	}
 
@@ -146,7 +136,7 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return 1;
+			return 0;
 		}
 	}
 
@@ -162,7 +152,7 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return (texture == null) ? material : texture;
+			return null;
 		}
 	}
 
@@ -174,16 +164,10 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			if (gameObject != null && gameObject.GetComponent<Renderer>() != null && gameObject.GetComponent<Renderer>().material != null)
-			{
-				return gameObject.GetComponent<Renderer>().material.color.a;
-			}
-			return 1f;
+			return 0f;
 		}
 		set
 		{
-			Color color = gameObject.GetComponent<Renderer>().material.color;
-			gameObject.GetComponent<Renderer>().material.color = new Color(color.r, color.g, color.b, value);
 		}
 	}
 
@@ -191,15 +175,10 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			if (gameObject != null && gameObject.GetComponent<Renderer>() != null && gameObject.GetComponent<Renderer>().material != null)
-			{
-				return gameObject.GetComponent<Renderer>().material.color;
-			}
-			return Color.white;
+			return default(Color);
 		}
 		set
 		{
-			gameObject.GetComponent<Renderer>().material.color = value;
 		}
 	}
 
@@ -207,7 +186,7 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return quadHitObject;
+			return null;
 		}
 	}
 
@@ -215,11 +194,10 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return defaultDisplayState;
+			return null;
 		}
 		set
 		{
-			defaultDisplayState = value;
 		}
 	}
 
@@ -227,7 +205,7 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return gameObject;
+			return null;
 		}
 	}
 
@@ -235,11 +213,10 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return gameObject.name;
+			return null;
 		}
 		set
 		{
-			gameObject.name = value;
 		}
 	}
 
@@ -247,7 +224,7 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return gameObject.GetComponent<Renderer>().material;
+			return null;
 		}
 	}
 
@@ -255,12 +232,10 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return gameObject.layer != 22;
+			return false;
 		}
 		set
 		{
-			int layer = ((!value) ? 22 : LayerMask.NameToLayer("Default"));
-			ULRenderTextureCameraRig.SetRenderLayer(gameObject, layer);
 		}
 	}
 
@@ -268,11 +243,10 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return width;
+			return 0f;
 		}
 		set
 		{
-			width = value;
 		}
 	}
 
@@ -280,11 +254,10 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return height;
+			return 0f;
 		}
 		set
 		{
-			height = value;
 		}
 	}
 
@@ -292,11 +265,10 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return center;
+			return default(Vector2);
 		}
 		set
 		{
-			center = value;
 		}
 	}
 
@@ -304,7 +276,7 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return tform.rotation;
+			return default(Quaternion);
 		}
 	}
 
@@ -312,11 +284,10 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return flags;
+			return default(DisplayControllerFlags);
 		}
 		set
 		{
-			flags = value;
 		}
 	}
 
@@ -324,68 +295,35 @@ public class BasicSprite : IDisplayController
 	{
 		get
 		{
-			return gameObject == null;
+			return false;
 		}
 	}
 
 	public bool isPerspectiveInArt { get; set; }
 
 	public BasicSprite(string material, string texture, Vector2 center, float width, float height)
-		: this(material, texture, center, width, height, new QuadHitObject(center, width, height))
 	{
 	}
 
 	public BasicSprite(string material, string texture, Vector2 center, float width, float height, QuadHitObject hitObject)
 	{
-		this.texture = texture;
-		if (this.texture != null)
-		{
-			this.material = YGTextureLibrary.GetAtlasCoords(texture).atlas.name;
-		}
-		else
-		{
-			this.material = material;
-		}
-		this.center = center;
-		this.width = width;
-		this.height = height;
-		quadHitObject = hitObject;
 	}
 
 	public BasicSprite(BasicSprite prototype)
 	{
-		material = prototype.material;
-		texture = prototype.texture;
-		center = prototype.center;
-		width = prototype.width;
-		height = prototype.height;
-		quadHitObject = prototype.quadHitObject;
-		isPerspectiveInArt = prototype.isPerspectiveInArt;
 	}
 
 	public void Billboard(BillboardDelegate billboard)
 	{
-		billboard(tform, this);
 	}
 
 	public virtual void Face(Vector3 direction, Vector3 worldUp)
 	{
-		tform.LookAt(tform.position + direction, worldUp);
 	}
 
 	public virtual bool Intersects(Ray ray)
 	{
-		MeshCollider component = gameObject.GetComponent<MeshCollider>();
-		if (component != null)
-		{
-			RaycastHit hitInfo;
-			if (component.Raycast(ray, out hitInfo, 5000f))
-			{
-				return true;
-			}
-			return false;
-		}
-		return quadHitObject.Intersects(tform, ray, Vector2.zero);
+		return false;
 	}
 
 	public virtual void OnUpdate(Camera sceneCamera, ParticleSystemManager psm)
@@ -394,215 +332,82 @@ public class BasicSprite : IDisplayController
 
 	public virtual void AddDisplayState(Dictionary<string, object> dict)
 	{
-		TFUtils.Assert(false, "BasicSprite.AddDisplayState(Dictionary) is not implemented and should not be called.");
 	}
 
 	public virtual string GetDisplayState()
 	{
-		throw new InvalidOperationException("Cannot call GetDisplayState() in BasicSprite");
+		return null;
 	}
 
 	public virtual IDisplayController Clone(DisplayControllerManager dcm)
 	{
-		BasicSprite basicSprite = new BasicSprite(this);
-		basicSprite.Initialize();
-		return basicSprite;
+		return null;
 	}
 
 	public virtual IDisplayController CloneWithHitMesh(DisplayControllerManager dcm, string hitMeshName, bool separateTap = false)
 	{
-		HitMeshName = hitMeshName;
-		SeparateTap = separateTap;
-		BasicSprite basicSprite = new BasicSprite(this);
-		basicSprite.Initialize();
-		return basicSprite;
+		return null;
 	}
 
 	public virtual IDisplayController CloneAndSetVisible(DisplayControllerManager dcm)
 	{
-		IDisplayController displayController = Clone(dcm);
-		displayController.Visible = true;
-		return displayController;
+		return null;
 	}
 
 	public virtual void ChangeMesh(string state, string HitMeshName)
 	{
-		TFUtils.Assert(false, "BasicSprite.ChangeMesh(string, string) is not implemented and should not be called.");
 	}
 
 	public virtual void DisplayState(string state)
 	{
-		TFUtils.Assert(false, "BasicSprite.DisplayState(string) is not implemented and should not be called.");
 	}
 
 	public virtual void UpdateMaterialOrTexture(string material)
 	{
-		if (material == null)
-		{
-			TFUtils.Assert(false, "Cannot update BasicSprite to use a null material!");
-			return;
-		}
-		int num = material.LastIndexOf('/');
-		Material material2;
-		Vector2[] uv;
-		if (num >= 0)
-		{
-			material2 = TextureLibrarian.LookUp(material);
-			TFUtils.Assert(material2 != null, "Could not find the material " + material);
-			uv = new Vector2[4]
-			{
-				new Vector2(1f, 0f),
-				new Vector2(1f, 1f),
-				new Vector2(0f, 0f),
-				new Vector2(0f, 1f)
-			};
-			texture = null;
-			this.material = material;
-		}
-		else
-		{
-			AtlasAndCoords atlasCoords = YGTextureLibrary.GetAtlasCoords(material);
-			material2 = TextureLibrarian.LookUp("Materials/lod/" + atlasCoords.atlas.name);
-			Rect rect = default(Rect);
-			atlasCoords.atlas.GetUVs(atlasCoords.atlasCoords, ref rect);
-			uv = new Vector2[4]
-			{
-				new Vector2(rect.xMax, rect.yMin),
-				new Vector2(rect.xMax, rect.yMax),
-				new Vector2(rect.xMin, rect.yMin),
-				new Vector2(rect.xMin, rect.yMax)
-			};
-			texture = material;
-			this.material = null;
-		}
-		gameObject.GetComponent<Renderer>().material = material2;
-		gameObject.GetComponent<MeshFilter>().mesh.uv = uv;
 	}
 
 	public virtual void SetMaskPercentage(float pct)
 	{
-		pct = TFMath.ClampF(pct, 0f, 1f);
-		if (assignedShader == null)
-		{
-			Shader shader = gameObject.GetComponent<Renderer>().material.shader;
-			Shader shader2 = ((!shader.name.Contains("TwoImageColorOverlay")) ? maskShader : twoImageMaskShader);
-			assignedShader = shader;
-			if (CommonUtils.CheckReloadShader() && shader == altShader)
-			{
-				shader2 = altMaskShader;
-			}
-			gameObject.GetComponent<Renderer>().material.shader = shader2;
-		}
-		else if (pct == 0f)
-		{
-			gameObject.GetComponent<Renderer>().material.shader = assignedShader;
-			assignedShader = null;
-			return;
-		}
-		if (ymin == 1f)
-		{
-			Vector2[] uv = gameObject.GetComponent<MeshFilter>().mesh.uv;
-			ymin = uv[0].y;
-			ymax = uv[1].y;
-		}
-		float value = (ymax - ymin) * pct + ymin;
-		gameObject.GetComponent<Renderer>().material.SetFloat("_Mask", value);
 	}
 
 	public virtual void Destroy()
 	{
-		UnityGameResources.Destroy(gameObject);
-		gameObject = null;
 	}
 
 	protected GameObject CreateQuadGameObject(string name, Material material, Rect? uvs = null, Mesh hitMesh = null)
 	{
-		TFUtils.Assert(gameObject == null, "Recreating a Basic Sprite - this will cause an untracked game object!");
-		gameObject = UnityGameResources.CreateEmpty(name);
-		tform = gameObject.transform;
-		TFQuad.SetupQuad(gameObject, material, width, height, center, uvs, hitMesh);
-		LayerRendering = true;
-		if (hitMesh != null)
-		{
-			Vector2[] uv = gameObject.GetComponent<MeshFilter>().mesh.uv;
-			ymax = 0f;
-			ymin = 1f;
-			for (int i = 0; i < uv.Length; i++)
-			{
-				if (uv[i].y > ymax)
-				{
-					ymax = uv[i].y;
-				}
-				if (uv[i].y < ymin)
-				{
-					ymin = uv[i].y;
-				}
-			}
-		}
-		return gameObject;
+		return null;
 	}
 
 	public virtual void PublicInitialize()
 	{
-		Initialize();
-		gameObject.GetComponent<Renderer>().enabled = true;
 	}
 
 	protected virtual void Initialize()
 	{
-		Rect? uvs = null;
-		Material material;
-		if (texture == null)
-		{
-			material = TextureLibrarian.LookUp(this.material);
-		}
-		else
-		{
-			AtlasAndCoords atlasCoords = YGTextureLibrary.GetAtlasCoords(texture);
-			material = TextureLibrarian.LookUp("Materials/lod/" + atlasCoords.atlas.name);
-			Rect rect = default(Rect);
-			atlasCoords.atlas.GetUVs(atlasCoords.atlasCoords, ref rect);
-			uvs = rect;
-		}
-		CreateQuadGameObject("BasicSprite", material, uvs);
-		gameObject.GetComponent<Renderer>().enabled = false;
 	}
 
 	public virtual void Resize(Vector2 center, float width, float height)
 	{
-		if (string.IsNullOrEmpty(HitMeshName) || !(HitMeshName.Substring(HitMeshName.Length - 10, 10) == "_asset.fbx"))
-		{
-			TFQuad.SetupQuadMesh(gameObject.GetComponent<MeshFilter>().mesh, width * overallScale.x, height * overallScale.y, center, true);
-		}
-		this.width = width;
-		this.height = height;
-		this.center = center;
 	}
 
 	public void Translate(Vector3 v)
 	{
-		tform.Translate(v);
 	}
 
 	public void RotateAround(Vector3 point, Vector3 axis, float angle)
 	{
-		tform.RotateAround(point, axis, angle);
 	}
 
 	public void Rotate(Vector3 v)
 	{
-		tform.Rotate(v);
 	}
 
 	public void ResetRotation()
 	{
-		Billboard(SBCamera.BillboardDefinition);
 	}
 
 	public void AttachGUIElementToTarget(SBGUIElement element, string target)
 	{
-		element.SetTransformParent(tform);
-		element.transform.localPosition = Vector3.zero;
-		element.tform.localPosition = Vector3.zero;
 	}
 }

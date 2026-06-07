@@ -8,7 +8,6 @@ namespace com.amazon.device.iap.cpt
 
 		public GetPurchaseUpdatesResponseDelegator(GetPurchaseUpdatesResponseDelegate responseDelegate)
 		{
-			this.responseDelegate = responseDelegate;
 		}
 
 		public void ExecuteSuccess()
@@ -17,7 +16,6 @@ namespace com.amazon.device.iap.cpt
 
 		public void ExecuteSuccess(Dictionary<string, object> objectDictionary)
 		{
-			responseDelegate(GetPurchaseUpdatesResponse.CreateFromDictionary(objectDictionary));
 		}
 
 		public void ExecuteError(AmazonException e)

@@ -10,34 +10,27 @@ public class TapWandererAction : PersistedSimulatedAction
 	{
 		get
 		{
-			return true;
+			return false;
 		}
 	}
 
 	public TapWandererAction(Identity id, int did)
-		: base("tw", id, typeof(TapWandererAction).ToString())
+		: base(null, null, null)
 	{
-		dId = did;
 	}
 
 	public TapWandererAction(Simulated simulated)
-		: base("tw", simulated.Id, typeof(TapWandererAction).ToString())
+		: base(null, null, null)
 	{
-		Entity entity = simulated.entity;
-		dId = entity.DefinitionId;
 	}
 
 	public new static TapWandererAction FromDict(Dictionary<string, object> data)
 	{
-		Identity id = new Identity((string)data["target"]);
-		int did = TFUtils.LoadInt(data, "did");
-		return new TapWandererAction(id, did);
+		return null;
 	}
 
 	public override Dictionary<string, object> ToDict()
 	{
-		Dictionary<string, object> dictionary = base.ToDict();
-		dictionary["did"] = dId;
-		return dictionary;
+		return null;
 	}
 }

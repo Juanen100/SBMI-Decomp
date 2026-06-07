@@ -8,14 +8,9 @@ public class TriggerRouter
 
 	public TriggerRouter(List<ITriggerObserver> observers)
 	{
-		this.observers = observers;
 	}
 
 	public void RouteTrigger(ITrigger trigger, Game game)
 	{
-		foreach (ITriggerObserver observer in observers)
-		{
-			observer.ProcessTrigger(trigger, game);
-		}
 	}
 }

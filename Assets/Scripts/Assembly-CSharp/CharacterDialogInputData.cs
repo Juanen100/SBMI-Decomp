@@ -10,43 +10,32 @@ public class CharacterDialogInputData : PersistedDialogInputData
 	{
 		get
 		{
-			return promptsData;
+			return null;
 		}
 	}
 
 	public CharacterDialogInputData(uint sequenceId, Dictionary<string, object> promptData)
-		: this(sequenceId, new List<object> { promptData })
+		: base(0u, null, null, null)
 	{
 	}
 
 	public CharacterDialogInputData(uint sequenceId, List<object> promptsData)
-		: base(sequenceId, "character", null, null)
+		: base(0u, null, null, null)
 	{
-		this.promptsData = promptsData;
 	}
 
 	public override Dictionary<string, object> ToPersistenceDict()
 	{
-		Dictionary<string, object> dict = new Dictionary<string, object>();
-		BuildPersistenceDict(ref dict, "character");
-		dict["sequence_id"] = base.SequenceId;
-		dict["prompts"] = promptsData;
-		return dict;
+		return null;
 	}
 
 	public new static CharacterDialogInputData FromPersistenceDict(Dictionary<string, object> dict)
 	{
-		uint num = uint.MaxValue;
-		if (dict.ContainsKey("sequence_id"))
-		{
-			num = TFUtils.LoadUint(dict, "sequence_id");
-		}
-		List<object> list = (List<object>)dict["prompts"];
-		return new CharacterDialogInputData(num, list);
+		return null;
 	}
 
 	public override string ToString()
 	{
-		return "CharacterDialogInputData(prompts=" + TFUtils.DebugListToString(promptsData) + "," + base.ToString() + ")";
+		return null;
 	}
 }

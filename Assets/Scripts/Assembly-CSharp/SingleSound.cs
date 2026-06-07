@@ -3,23 +3,20 @@ public class SingleSound : BaseSoundIndex
 	private TFSound sound;
 
 	public SingleSound(string key, int maxInstances, string filename, string characterName)
-		: base(key, maxInstances)
+		: base(null, 0)
 	{
-		sound = new TFSound(filename, characterName);
 	}
 
 	public override TFSound GetNextSound(SoundEffectManager sfxMgr)
 	{
-		return sound;
+		return null;
 	}
 
 	public override void Clear()
 	{
-		sound.Clear();
 	}
 
 	public override void Init()
 	{
-		sound.Init();
 	}
 }

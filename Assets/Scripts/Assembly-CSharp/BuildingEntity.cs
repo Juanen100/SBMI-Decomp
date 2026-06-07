@@ -1,4 +1,3 @@
-#define ASSERTS_ON
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,7 +19,7 @@ public class BuildingEntity : EntityDecorator
 	{
 		get
 		{
-			return EntityType.BUILDING;
+			return default(EntityType);
 		}
 	}
 
@@ -28,7 +27,7 @@ public class BuildingEntity : EntityDecorator
 	{
 		get
 		{
-			return (List<Entity>)Variable["annexes"];
+			return null;
 		}
 	}
 
@@ -36,7 +35,7 @@ public class BuildingEntity : EntityDecorator
 	{
 		get
 		{
-			return (List<int>)Invariable["residents"];
+			return null;
 		}
 	}
 
@@ -44,7 +43,7 @@ public class BuildingEntity : EntityDecorator
 	{
 		get
 		{
-			return (int?)Invariable["pet"];
+			return null;
 		}
 	}
 
@@ -52,7 +51,7 @@ public class BuildingEntity : EntityDecorator
 	{
 		get
 		{
-			return (Vector2)Invariable["point_of_interest"];
+			return default(Vector2);
 		}
 	}
 
@@ -60,7 +59,7 @@ public class BuildingEntity : EntityDecorator
 	{
 		get
 		{
-			return !Invariable.ContainsKey("residents") || Invariable["residents"] != null;
+			return false;
 		}
 	}
 
@@ -68,7 +67,7 @@ public class BuildingEntity : EntityDecorator
 	{
 		get
 		{
-			return Invariable.ContainsKey("crafting_menu") && Invariable["crafting_menu"] != null;
+			return false;
 		}
 	}
 
@@ -76,7 +75,7 @@ public class BuildingEntity : EntityDecorator
 	{
 		get
 		{
-			return (int)Invariable["crafting_menu"];
+			return 0;
 		}
 	}
 
@@ -84,7 +83,7 @@ public class BuildingEntity : EntityDecorator
 	{
 		get
 		{
-			return (bool)Invariable["shunts_crafting"];
+			return false;
 		}
 	}
 
@@ -92,7 +91,7 @@ public class BuildingEntity : EntityDecorator
 	{
 		get
 		{
-			return Variable.ContainsKey("crafting_slots") && Slots != -1;
+			return false;
 		}
 	}
 
@@ -100,12 +99,10 @@ public class BuildingEntity : EntityDecorator
 	{
 		get
 		{
-			TFUtils.Assert(Variable.ContainsKey("crafting_slots"), "Trying to lookup production slots on this entity, but none were assigned. Is there an appropriate production slots file linked to this entity? EntityDid=" + DefinitionId);
-			return (int)Variable["crafting_slots"];
+			return 0;
 		}
 		set
 		{
-			Variable["crafting_slots"] = value;
 		}
 	}
 
@@ -113,11 +110,10 @@ public class BuildingEntity : EntityDecorator
 	{
 		get
 		{
-			return (!Variable.ContainsKey("craft_rewards")) ? null : ((Reward)Variable["craft_rewards"]);
+			return null;
 		}
 		set
 		{
-			Variable["craft_rewards"] = value;
 		}
 	}
 
@@ -125,15 +121,10 @@ public class BuildingEntity : EntityDecorator
 	{
 		get
 		{
-			if (Variable.ContainsKey("task_source_feed_did"))
-			{
-				return (int)Variable["task_source_feed_did"];
-			}
 			return 0;
 		}
 		set
 		{
-			Variable["task_source_feed_did"] = value;
 		}
 	}
 
@@ -141,7 +132,7 @@ public class BuildingEntity : EntityDecorator
 	{
 		get
 		{
-			return Invariable.ContainsKey("vendor_id");
+			return false;
 		}
 	}
 
@@ -149,10 +140,6 @@ public class BuildingEntity : EntityDecorator
 	{
 		get
 		{
-			if (Invariable.ContainsKey("crafted_icon"))
-			{
-				return (string)Invariable["crafted_icon"];
-			}
 			return null;
 		}
 	}
@@ -161,7 +148,7 @@ public class BuildingEntity : EntityDecorator
 	{
 		get
 		{
-			return (bool)Invariable["stashable"];
+			return false;
 		}
 	}
 
@@ -169,7 +156,7 @@ public class BuildingEntity : EntityDecorator
 	{
 		get
 		{
-			return (bool)Invariable["flippable"];
+			return false;
 		}
 	}
 
@@ -177,64 +164,31 @@ public class BuildingEntity : EntityDecorator
 	{
 		get
 		{
-			return (int)Variable["busy_annex_count"];
+			return 0;
 		}
 		set
 		{
-			Variable["busy_annex_count"] = value;
 		}
 	}
 
 	public BuildingEntity(Entity toDecorate)
-		: base(toDecorate)
+		: base(null)
 	{
-		new StructureDecorator(this);
-		new ErectableDecorator(this);
-		new ActivatableDecorator(this);
-		if (Invariable["product"] != null)
-		{
-			new PeriodicProductionDecorator(this);
-		}
-		if (Invariable.ContainsKey("vendor_id"))
-		{
-			new VendingDecorator(this);
-		}
-		Variable["annexes"] = new List<Entity>();
 	}
 
 	public void RegisterAnnex(Entity annex)
 	{
-		List<Entity> list = (List<Entity>)Variable["annexes"];
-		list.Add(annex);
 	}
 
 	public void CraftingComplete(Reward reward)
 	{
-		Reward craftRewards = CraftRewards;
-		if (craftRewards != null)
-		{
-			CraftRewards = craftRewards + reward;
-		}
-		else
-		{
-			CraftRewards = reward;
-		}
 	}
 
 	public void ClearCraftingRewards()
 	{
-		if (Variable.ContainsKey("craft_rewards"))
-		{
-			Variable.Remove("craft_rewards");
-		}
-		else if (Variable.ContainsKey("craft.rewards"))
-		{
-			Variable.Remove("craft.rewards");
-		}
 	}
 
 	public void AddCraftingSlot()
 	{
-		Variable["crafting_slots"] = Slots + 1;
 	}
 }

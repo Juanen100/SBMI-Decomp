@@ -5,19 +5,17 @@ public class GoodToSimulatedDeliveryRequest : GoodWidgetTransfer
 	private Simulated targetSimulated;
 
 	public GoodToSimulatedDeliveryRequest(Simulated targetSimulated, int goodId, string materialName)
-		: base(goodId, materialName, 30f, 20f)
+		: base(0, null, 0f, 0f)
 	{
-		this.targetSimulated = targetSimulated;
 	}
 
 	public override Vector2 GetOriginalScreenPosition(Session session, Vector2 hudWidgetPosition)
 	{
-		return hudWidgetPosition;
+		return default(Vector2);
 	}
 
 	public override Vector2 GetTargetScreenPosition(Session session, Vector2 hudWidgetPosition)
 	{
-		Vector3 position = targetSimulated.ThoughtDisplayController.Position;
-		return session.TheCamera.WorldPointToScreenPoint(position);
+		return default(Vector2);
 	}
 }

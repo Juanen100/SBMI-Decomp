@@ -6,13 +6,11 @@ public class TaskStartCondition : MatchableCondition
 
 	public static TaskStartCondition FromDict(Dictionary<string, object> dict)
 	{
-		TaskStartCondition taskStartCondition = new TaskStartCondition();
-		taskStartCondition.Parse(dict, "task_start", new List<string> { typeof(TaskStartAction).ToString() }, new List<IMatcher> { TaskMatcher.FromDict(dict) });
-		return taskStartCondition;
+		return null;
 	}
 
 	public override string Description(Game game)
 	{
-		return "task_start";
+		return null;
 	}
 }

@@ -1,5 +1,3 @@
-using MTools;
-
 internal static class SoaringInternalProperties
 {
 	private static int mSettings;
@@ -10,17 +8,17 @@ internal static class SoaringInternalProperties
 
 	public static string DeveloperLoginPassword;
 
-	public static string SoaringTestingURL = string.Empty;
+	public static string SoaringTestingURL;
 
-	public static string SoaringDevelopmentURL = string.Empty;
+	public static string SoaringDevelopmentURL;
 
-	public static string SoaringProductionURL = string.Empty;
+	public static string SoaringProductionURL;
 
-	public static string SoaringTestingCDN = string.Empty;
+	public static string SoaringTestingCDN;
 
-	public static string SoaringDevelopmentCDN = string.Empty;
+	public static string SoaringDevelopmentCDN;
 
-	public static string SoaringProductionCDN = string.Empty;
+	public static string SoaringProductionCDN;
 
 	private static string DevAuthLoginToken;
 
@@ -30,11 +28,10 @@ internal static class SoaringInternalProperties
 	{
 		get
 		{
-			return Get(0);
+			return false;
 		}
 		set
 		{
-			Set(value, 0);
 		}
 	}
 
@@ -42,11 +39,10 @@ internal static class SoaringInternalProperties
 	{
 		get
 		{
-			return Get(1);
+			return false;
 		}
 		set
 		{
-			Set(value, 1);
 		}
 	}
 
@@ -54,11 +50,10 @@ internal static class SoaringInternalProperties
 	{
 		get
 		{
-			return Get(2);
+			return false;
 		}
 		set
 		{
-			Set(value, 2);
 		}
 	}
 
@@ -66,11 +61,10 @@ internal static class SoaringInternalProperties
 	{
 		get
 		{
-			return Get(3);
+			return false;
 		}
 		set
 		{
-			Set(value, 3);
 		}
 	}
 
@@ -78,11 +72,10 @@ internal static class SoaringInternalProperties
 	{
 		get
 		{
-			return Get(4);
+			return false;
 		}
 		set
 		{
-			Set(value, 4);
 		}
 	}
 
@@ -90,11 +83,10 @@ internal static class SoaringInternalProperties
 	{
 		get
 		{
-			return Get(5);
+			return false;
 		}
 		set
 		{
-			Set(value, 5);
 		}
 	}
 
@@ -102,11 +94,10 @@ internal static class SoaringInternalProperties
 	{
 		get
 		{
-			return Get(6);
+			return false;
 		}
 		set
 		{
-			Set(value, 6);
 		}
 	}
 
@@ -114,11 +105,10 @@ internal static class SoaringInternalProperties
 	{
 		get
 		{
-			return Get(7);
+			return false;
 		}
 		set
 		{
-			Set(value, 7);
 		}
 	}
 
@@ -126,11 +116,10 @@ internal static class SoaringInternalProperties
 	{
 		get
 		{
-			return Get(8);
+			return false;
 		}
 		set
 		{
-			Set(value, 8);
 		}
 	}
 
@@ -138,11 +127,10 @@ internal static class SoaringInternalProperties
 	{
 		get
 		{
-			return Get(9);
+			return false;
 		}
 		set
 		{
-			Set(value, 9);
 		}
 	}
 
@@ -150,11 +138,10 @@ internal static class SoaringInternalProperties
 	{
 		get
 		{
-			return Get(10);
+			return false;
 		}
 		set
 		{
-			Set(value, 10);
 		}
 	}
 
@@ -162,11 +149,10 @@ internal static class SoaringInternalProperties
 	{
 		get
 		{
-			return Get(11);
+			return false;
 		}
 		set
 		{
-			Set(value, 11);
 		}
 	}
 
@@ -174,205 +160,23 @@ internal static class SoaringInternalProperties
 	{
 		get
 		{
-			return Get(12);
+			return false;
 		}
 		set
 		{
-			Set(value, 12);
 		}
 	}
 
 	private static bool Get(int x)
 	{
-		return (mSettings & (1 << x)) != 0;
+		return false;
 	}
 
 	private static void Set(bool v, int x)
 	{
-		mSettings = ((!v) ? (mSettings & ~(1 << x)) : (mSettings | (1 << x)));
 	}
 
 	internal static void Load()
 	{
-		EnableAddressKeeper = true;
-		EnableVersions = true;
-		EnableServerTimeVersions = true;
-		EnableDeveloperLogin = false;
-		EnableLocalMode = false;
-		EnableAdServer = true;
-		EnableDeviceData = true;
-		EnableAnalytics = true;
-		LoginOnInitialize = true;
-		SaveUserCredentials = true;
-		SecureCommunication = false;
-		AutoChooseUserPlayer = false;
-		ForceOfflineModeUser = false;
-		MBinaryReader fileStream = ResourceUtils.GetFileStream("SoaringPR", "Soaring", "bytes", 3);
-		SoaringDictionary soaringDictionary = null;
-		if (fileStream != null)
-		{
-			string text = string.Empty;
-			byte[] array = fileStream.ReadAllBytes();
-			if (array != null)
-			{
-				for (int i = 0; i < array.Length; i++)
-				{
-					text += (char)array[i];
-				}
-			}
-			soaringDictionary = new SoaringDictionary(text);
-			fileStream.Close();
-			fileStream = null;
-		}
-		if (soaringDictionary == null)
-		{
-			soaringDictionary = new SoaringDictionary();
-		}
-		if (soaringDictionary != null)
-		{
-			SoaringValue soaringValue = soaringDictionary.soaringValue("AddressKeeper");
-			if (soaringValue != null)
-			{
-				EnableAddressKeeper = (int)soaringValue != 0;
-			}
-			soaringValue = soaringDictionary.soaringValue("Versions");
-			if (soaringValue != null)
-			{
-				EnableAddressKeeper = (int)soaringValue != 0;
-			}
-			soaringValue = soaringDictionary.soaringValue("AdServer");
-			if (soaringValue != null)
-			{
-				EnableAdServer = (int)soaringValue != 0;
-			}
-			soaringValue = soaringDictionary.soaringValue("DeviceData");
-			if (soaringValue != null)
-			{
-				EnableDeviceData = (int)soaringValue != 0;
-			}
-			soaringValue = soaringDictionary.soaringValue("Analytics");
-			if (soaringValue != null)
-			{
-				EnableAnalytics = (int)soaringValue != 0;
-			}
-			soaringValue = soaringDictionary.soaringValue("ServerTime");
-			if (soaringValue != null)
-			{
-				EnableServerTimeVersions = (int)soaringValue != 0;
-			}
-			soaringValue = soaringDictionary.soaringValue("LocalMode");
-			if (soaringValue != null)
-			{
-				EnableLocalMode = (int)soaringValue != 0;
-			}
-			soaringValue = soaringDictionary.soaringValue("LoginOnInitialize");
-			if (soaringValue != null)
-			{
-				LoginOnInitialize = (int)soaringValue != 0;
-			}
-			soaringValue = soaringDictionary.soaringValue("DevLogin");
-			if (soaringValue != null)
-			{
-				EnableDeveloperLogin = (int)soaringValue != 0;
-			}
-			soaringValue = soaringDictionary.soaringValue("SaveUserCredentials");
-			if (soaringValue != null)
-			{
-				SaveUserCredentials = (int)soaringValue != 0;
-			}
-			soaringValue = soaringDictionary.soaringValue("SecureCommunication");
-			if (soaringValue != null)
-			{
-				SecureCommunication = (int)soaringValue != 0;
-			}
-			soaringValue = soaringDictionary.soaringValue("AutoChooseUserPlayer");
-			if (soaringValue != null)
-			{
-				AutoChooseUserPlayer = (int)soaringValue != 0;
-			}
-			soaringValue = soaringDictionary.soaringValue("ForceOfflineModeUser");
-			if (soaringValue != null)
-			{
-				ForceOfflineModeUser = (int)soaringValue != 0;
-			}
-			soaringValue = soaringDictionary.soaringValue("AnalyticsBufferSize");
-			if (soaringValue != null)
-			{
-				AnalyticsBufferSize = soaringValue;
-			}
-			soaringValue = soaringDictionary.soaringValue("DevName");
-			if (soaringValue != null)
-			{
-				DeveloperLoginTag = soaringValue;
-				if (string.IsNullOrEmpty(DeveloperLoginTag))
-				{
-					DeveloperLoginTag = null;
-				}
-			}
-			soaringValue = soaringDictionary.soaringValue("DevPassword");
-			if (soaringValue != null)
-			{
-				DeveloperLoginPassword = soaringValue;
-				if (string.IsNullOrEmpty(DeveloperLoginPassword))
-				{
-					DeveloperLoginPassword = null;
-				}
-			}
-			soaringValue = soaringDictionary.soaringValue("SoaringQAURL");
-			if (soaringValue != null)
-			{
-				SoaringTestingURL = soaringValue;
-				if (string.IsNullOrEmpty(SoaringTestingURL))
-				{
-					SoaringTestingURL = null;
-				}
-			}
-			soaringValue = soaringDictionary.soaringValue("SoaringDevURL");
-			if (soaringValue != null)
-			{
-				SoaringDevelopmentURL = soaringValue;
-				if (string.IsNullOrEmpty(SoaringDevelopmentURL))
-				{
-					SoaringDevelopmentURL = null;
-				}
-			}
-			soaringValue = soaringDictionary.soaringValue("SoaringProductionURL");
-			if (soaringValue != null)
-			{
-				SoaringProductionURL = soaringValue;
-				if (string.IsNullOrEmpty(SoaringProductionURL))
-				{
-					SoaringProductionURL = null;
-				}
-			}
-			soaringValue = soaringDictionary.soaringValue("SoaringQACDN");
-			if (soaringValue != null)
-			{
-				SoaringTestingCDN = soaringValue;
-				if (string.IsNullOrEmpty(SoaringTestingCDN))
-				{
-					SoaringTestingCDN = SoaringTestingURL;
-				}
-			}
-			soaringValue = soaringDictionary.soaringValue("SoaringDevCDN");
-			if (soaringValue != null)
-			{
-				SoaringDevelopmentCDN = soaringValue;
-				if (string.IsNullOrEmpty(SoaringDevelopmentCDN))
-				{
-					SoaringDevelopmentCDN = SoaringDevelopmentURL;
-				}
-			}
-			soaringValue = soaringDictionary.soaringValue("SoaringProductionCDN");
-			if (soaringValue != null)
-			{
-				SoaringProductionCDN = soaringValue;
-				if (string.IsNullOrEmpty(SoaringProductionCDN))
-				{
-					SoaringProductionCDN = SoaringProductionURL;
-				}
-			}
-		}
-		IsLoaded = true;
 	}
 }

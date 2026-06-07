@@ -1,4 +1,3 @@
-#define ASSERTS_ON
 using System.Collections.Generic;
 
 public abstract class Matcher : IMatcher
@@ -17,176 +16,96 @@ public abstract class Matcher : IMatcher
 	{
 		get
 		{
-			return matchableProperties.Keys;
+			return null;
 		}
 	}
 
 	protected Matcher()
-		: this(new Dictionary<string, MatchableProperty>())
 	{
 	}
 
 	protected Matcher(Dictionary<string, MatchableProperty> matchableProperties)
 	{
-		if (matchableProperties.Count > 0)
-		{
-			hasRequirements = true;
-		}
-		this.matchableProperties = matchableProperties;
 	}
 
 	public virtual uint MatchAmount(Game game, Dictionary<string, object> data)
 	{
-		uint num = 1u;
-		foreach (string key in matchableProperties.Keys)
-		{
-			MatchableProperty matchableProperty = matchableProperties[key];
-			if (matchableProperty.IsRequired)
-			{
-				num *= matchableProperty.Evaluate(data, game);
-			}
-		}
-		return num;
+		return 0u;
 	}
 
 	public bool IsRequired(string property)
 	{
-		TFUtils.Assert(matchableProperties.ContainsKey(property), string.Format("Can't query a property({0}) that has not been added!", property));
-		return matchableProperties[property].IsRequired;
+		return false;
 	}
 
 	public bool HasRequirements()
 	{
-		return hasRequirements;
+		return false;
 	}
 
 	protected MatchableProperty GetProperty(string key)
 	{
-		TFUtils.Assert(matchableProperties.ContainsKey(key), "Cannot get property for key=" + key + " since it does not have a registered matchable property.");
-		return matchableProperties[key];
+		return null;
 	}
 
 	public object GetTargetObject(string propertyKey)
 	{
-		return matchableProperties[propertyKey].Target;
+		return null;
 	}
 
 	public string GetTarget(string propertyKey)
 	{
-		return matchableProperties[propertyKey].Target.ToString();
+		return null;
 	}
 
 	public abstract string DescribeSubject(Game game);
 
 	protected bool RegisterProperty(string key, Dictionary<string, object> data)
 	{
-		return RegisterProperty(key, data, DefaultMatchFn);
+		return false;
 	}
 
 	protected bool RegisterProperty(string key, Dictionary<string, object> data, MatchableProperty.MatchFn matchDelegate)
 	{
-		if (data.ContainsKey(key))
-		{
-			hasRequirements = true;
-			Dictionary<string, object> dictionary = data[key] as Dictionary<string, object>;
-			if (dictionary != null)
-			{
-				return AddRequiredProperty(key, dictionary, matchDelegate);
-			}
-			return AddRequiredProperty(key, data[key].ToString(), matchDelegate);
-		}
-		matchableProperties[key] = new MatchableProperty(false, key, null, matchDelegate);
 		return false;
 	}
 
 	protected bool AddRequiredProperty(string key, object val)
 	{
-		return AddRequiredProperty(key, val, DefaultMatchFn);
+		return false;
 	}
 
 	protected bool AddRequiredProperty(string key, object val, MatchableProperty.MatchFn matchDelegate)
 	{
-		AssertNotDuplicate(key);
-		matchableProperties[key] = new MatchableProperty(true, key, val, matchDelegate);
-		return true;
+		return false;
 	}
 
 	private void AssertNotDuplicate(string key)
 	{
-		TFUtils.Assert(!matchableProperties.ContainsKey(key), "Already have value for this key!");
 	}
 
 	private static uint DefaultMatchFn(MatchableProperty property, Dictionary<string, object> triggerData, Game game)
 	{
-		TFUtils.Assert(property.IsRequired, "Should not be trying to match against an optional parameter!");
-		if (!triggerData.ContainsKey(property.Key))
-		{
-			return 0u;
-		}
-		string text = triggerData[property.Key].ToString();
-		if (text.Equals(property.Target))
-		{
-			return 1u;
-		}
 		return 0u;
 	}
 
 	public override string ToString()
 	{
-		string text = string.Empty;
-		foreach (KeyValuePair<string, MatchableProperty> matchableProperty in matchableProperties)
-		{
-			text += matchableProperty.Value.ToString();
-			text += ", ";
-		}
-		return "Matcher:(properties=[" + text + "])";
+		return null;
 	}
 
 	protected uint CompareOperandRangesToAmount(object target, int amount)
 	{
-		int result;
-		if (int.TryParse(target.ToString(), out result))
-		{
-			if (amount == result)
-			{
-				return 1u;
-			}
-			return 0u;
-		}
-		Dictionary<string, object> dict = target as Dictionary<string, object>;
-		return CompareOperatorAndROperand(dict, amount);
+		return 0u;
 	}
 
 	protected uint CompareOperatorAndROperand(Dictionary<string, object> dict, int loperand)
 	{
-		if (dict != null)
-		{
-			TFUtils.Assert(!dict.ContainsKey("loperand"), "Do not specify a loperand for a range that compares against a derived amount!");
-			int roperand = int.Parse(dict["roperand"].ToString());
-			string operatorString = dict["operator"].ToString();
-			return Compare(operatorString, loperand, roperand);
-		}
 		return 0u;
 	}
 
 	protected uint Compare(string operatorString, int loperand, int roperand)
 	{
-		if (operatorString == ">" && loperand > roperand)
-		{
-			return 1u;
-		}
-		if (operatorString == ">=" && loperand >= roperand)
-		{
-			return 1u;
-		}
-		if (operatorString == "<" && loperand < roperand)
-		{
-			return 1u;
-		}
-		if (operatorString == "<=" && loperand <= roperand)
-		{
-			return 1u;
-		}
 		return 0u;
 	}
 }

@@ -4,27 +4,25 @@ using UnityEngine;
 public class AGSSyncableString : AGSSyncableStringElement
 {
 	public AGSSyncableString(AmazonJavaWrapper javaObject)
-		: base(javaObject)
+		: base((AmazonJavaWrapper)null)
 	{
 	}
 
 	public AGSSyncableString(AndroidJavaObject javaObject)
-		: base(javaObject)
+		: base((AmazonJavaWrapper)null)
 	{
 	}
 
 	public void Set(string val)
 	{
-		javaObject.Call("set", val);
 	}
 
 	public void Set(string val, Dictionary<string, string> metadata)
 	{
-		javaObject.Call("set", val, DictionaryToAndroidHashMap(metadata));
 	}
 
 	public bool IsSet()
 	{
-		return javaObject.Call<bool>("isSet", new object[0]);
+		return false;
 	}
 }

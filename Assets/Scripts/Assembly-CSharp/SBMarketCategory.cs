@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using MiniJSON;
 
 public class SBMarketCategory : SBTabCategory
 {
@@ -24,11 +22,10 @@ public class SBMarketCategory : SBTabCategory
 	{
 		get
 		{
-			return name;
+			return null;
 		}
 		set
 		{
-			name = value;
 		}
 	}
 
@@ -36,7 +33,7 @@ public class SBMarketCategory : SBTabCategory
 	{
 		get
 		{
-			return Catalog.ConvertTypeToDeltaDNAType(Name);
+			return null;
 		}
 	}
 
@@ -44,11 +41,10 @@ public class SBMarketCategory : SBTabCategory
 	{
 		get
 		{
-			return type;
+			return null;
 		}
 		set
 		{
-			type = value;
 		}
 	}
 
@@ -56,11 +52,10 @@ public class SBMarketCategory : SBTabCategory
 	{
 		get
 		{
-			return texture;
+			return null;
 		}
 		set
 		{
-			texture = value;
 		}
 	}
 
@@ -68,11 +63,10 @@ public class SBMarketCategory : SBTabCategory
 	{
 		get
 		{
-			return microEventDID;
+			return 0;
 		}
 		set
 		{
-			microEventDID = value;
 		}
 	}
 
@@ -80,11 +74,10 @@ public class SBMarketCategory : SBTabCategory
 	{
 		get
 		{
-			return microEventOnly;
+			return false;
 		}
 		set
 		{
-			microEventOnly = value;
 		}
 	}
 
@@ -92,11 +85,10 @@ public class SBMarketCategory : SBTabCategory
 	{
 		get
 		{
-			return label;
+			return null;
 		}
 		set
 		{
-			label = value;
 		}
 	}
 
@@ -104,54 +96,19 @@ public class SBMarketCategory : SBTabCategory
 	{
 		get
 		{
-			return dids;
+			return null;
 		}
 		set
 		{
-			dids = value;
 		}
 	}
 
 	public SBMarketCategory(Dictionary<string, object> cat)
 	{
-		name = (string)cat["name"];
-		if (cat.ContainsKey("display.material"))
-		{
-			texture = (string)cat["display.material"];
-		}
-		if (cat.ContainsKey("type"))
-		{
-			type = (string)cat["type"];
-		}
-		label = (string)cat["label"];
-		List<int> list = ((List<object>)cat["dids"]).ConvertAll((object x) => Convert.ToInt32(x));
-		if (cat.ContainsKey("micro_event_did"))
-		{
-			microEventDID = TFUtils.LoadInt(cat, "micro_event_did");
-		}
-		else
-		{
-			microEventDID = -1;
-		}
-		if (cat.ContainsKey("event_only"))
-		{
-			microEventOnly = TFUtils.LoadBool(cat, "event_only");
-		}
-		else
-		{
-			microEventOnly = false;
-		}
-		dids = list.ToArray();
 	}
 
 	public override string ToString()
 	{
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary["name"] = name;
-		dictionary["type"] = type;
-		dictionary["dids"] = dids;
-		dictionary["texture"] = texture;
-		dictionary["label"] = label;
-		return Json.Serialize(dictionary);
+		return null;
 	}
 }

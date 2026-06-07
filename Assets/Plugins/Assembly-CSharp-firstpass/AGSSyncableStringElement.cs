@@ -3,17 +3,17 @@ using UnityEngine;
 public class AGSSyncableStringElement : AGSSyncableElement
 {
 	public AGSSyncableStringElement(AmazonJavaWrapper javaObject)
-		: base(javaObject)
+		: base((AmazonJavaWrapper)null)
 	{
 	}
 
 	public AGSSyncableStringElement(AndroidJavaObject javaObject)
-		: base(javaObject)
+		: base((AmazonJavaWrapper)null)
 	{
 	}
 
 	public string GetValue()
 	{
-		return javaObject.Call<string>("getValue", new object[0]);
+		return null;
 	}
 }

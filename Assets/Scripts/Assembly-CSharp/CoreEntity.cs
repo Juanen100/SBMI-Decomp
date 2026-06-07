@@ -23,7 +23,7 @@ public class CoreEntity : Entity
 	{
 		get
 		{
-			return id;
+			return null;
 		}
 	}
 
@@ -31,7 +31,7 @@ public class CoreEntity : Entity
 	{
 		get
 		{
-			return did;
+			return 0;
 		}
 	}
 
@@ -39,7 +39,7 @@ public class CoreEntity : Entity
 	{
 		get
 		{
-			return (string)Invariable["blueprint"];
+			return null;
 		}
 	}
 
@@ -47,7 +47,7 @@ public class CoreEntity : Entity
 	{
 		get
 		{
-			return (string)Invariable["name"];
+			return null;
 		}
 	}
 
@@ -55,7 +55,7 @@ public class CoreEntity : Entity
 	{
 		get
 		{
-			return iindexer;
+			return null;
 		}
 	}
 
@@ -63,7 +63,7 @@ public class CoreEntity : Entity
 	{
 		get
 		{
-			return vindexer;
+			return null;
 		}
 	}
 
@@ -71,7 +71,7 @@ public class CoreEntity : Entity
 	{
 		get
 		{
-			return (string)Invariable["sound_on_select"];
+			return null;
 		}
 	}
 
@@ -79,7 +79,7 @@ public class CoreEntity : Entity
 	{
 		get
 		{
-			return (string)Invariable["sound_on_touch"];
+			return null;
 		}
 	}
 
@@ -87,7 +87,7 @@ public class CoreEntity : Entity
 	{
 		get
 		{
-			return this;
+			return null;
 		}
 	}
 
@@ -95,7 +95,7 @@ public class CoreEntity : Entity
 	{
 		get
 		{
-			return EntityType.CORE;
+			return default(EntityType);
 		}
 	}
 
@@ -103,49 +103,26 @@ public class CoreEntity : Entity
 	{
 		get
 		{
-			EntityType entityType = Type;
-			foreach (EntityDecorator value in decorators.Values)
-			{
-				entityType |= value.Type;
-			}
-			return entityType;
+			return default(EntityType);
 		}
 	}
 
 	public CoreEntity(Identity id, Blueprint blueprint)
 	{
-		this.id = id;
-		iproperties = blueprint.InvariableProperties();
-		iindexer = new ReadOnlyIndexer(iproperties);
-		did = (int)Invariable["did"];
-		vproperties = blueprint.VariableProperties();
-		vindexer = new ReadWriteIndexer(vproperties);
-		decorators = new Dictionary<Type, Entity>();
 	}
 
 	public void AddDecorator(Entity decorator)
 	{
-		if (!decorators.ContainsKey(decorator.GetType()))
-		{
-			decorators.Add(decorator.GetType(), decorator);
-		}
 	}
 
 	public T GetDecorator<T>() where T : EntityDecorator
 	{
-		Type typeFromHandle = typeof(T);
-		Entity value = null;
-		if (decorators.TryGetValue(typeFromHandle, out value))
-		{
-			return value as T;
-		}
-		TFUtils.ErrorLog("Could not find Entity decorator of type " + typeFromHandle.ToString());
-		return (T)Activator.CreateInstance(typeFromHandle, this);
+		return null;
 	}
 
 	public bool HasDecorator<T>() where T : EntityDecorator
 	{
-		return decorators.ContainsKey(typeof(T));
+		return false;
 	}
 
 	public virtual void PatchReferences(Game game)
@@ -154,22 +131,14 @@ public class CoreEntity : Entity
 
 	public void Serialize(ref Dictionary<string, object> data)
 	{
-		foreach (EntityDecorator value in decorators.Values)
-		{
-			value.SerializeDecorator(ref data);
-		}
 	}
 
 	public void Deserialize(Dictionary<string, object> data)
 	{
-		foreach (EntityDecorator value in decorators.Values)
-		{
-			value.DeserializeDecorator(data);
-		}
 	}
 
 	public static Type TypeFromString(string typeStr)
 	{
-		return typeof(CoreEntity);
+		return null;
 	}
 }

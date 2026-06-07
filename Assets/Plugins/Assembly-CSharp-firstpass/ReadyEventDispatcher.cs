@@ -8,26 +8,15 @@ public class ReadyEventDispatcher : EventDispatcher
 	{
 		get
 		{
-			return ready;
+			return false;
 		}
 	}
 
 	public override void AddListener(Action value)
 	{
-		if (ready && value != null)
-		{
-			value();
-		}
-		else
-		{
-			base.AddListener(value);
-		}
 	}
 
 	public override void FireEvent()
 	{
-		ready = true;
-		base.FireEvent();
-		ClearListeners();
 	}
 }

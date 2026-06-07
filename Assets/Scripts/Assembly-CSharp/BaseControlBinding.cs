@@ -16,7 +16,7 @@ public abstract class BaseControlBinding : IControlBinding
 	{
 		get
 		{
-			return action;
+			return null;
 		}
 	}
 
@@ -24,11 +24,10 @@ public abstract class BaseControlBinding : IControlBinding
 	{
 		get
 		{
-			return button;
+			return null;
 		}
 		set
 		{
-			button = value;
 		}
 	}
 
@@ -36,7 +35,7 @@ public abstract class BaseControlBinding : IControlBinding
 	{
 		get
 		{
-			return callback;
+			return null;
 		}
 	}
 
@@ -44,11 +43,10 @@ public abstract class BaseControlBinding : IControlBinding
 	{
 		get
 		{
-			return label;
+			return null;
 		}
 		set
 		{
-			label = value;
 		}
 	}
 
@@ -58,13 +56,10 @@ public abstract class BaseControlBinding : IControlBinding
 
 	protected void Initialize(Action<Session> action, Action callback, string targetSessionActionToken)
 	{
-		this.action = action;
-		this.callback = callback;
-		this.targetSessionActionToken = targetSessionActionToken;
 	}
 
 	public string DecorateSessionActionId(uint ownerDid)
 	{
-		return SessionActionSimulationHelper.DecorateSessionActionId(ownerDid, targetSessionActionToken);
+		return null;
 	}
 }

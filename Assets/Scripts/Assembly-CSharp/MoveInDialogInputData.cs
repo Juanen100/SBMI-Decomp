@@ -4,6 +4,12 @@ public class MoveInDialogInputData : PersistedDialogInputData
 {
 	public const string DIALOG_TYPE = "movein";
 
+	private string characterName;
+
+	private string buildingName;
+
+	private string portraitTexture;
+
 	private const string CHARACTER_NAME = "charactername";
 
 	private const string BUILDING_NAME = "buildingname";
@@ -12,17 +18,11 @@ public class MoveInDialogInputData : PersistedDialogInputData
 
 	private const string SOUND_BEAT = "soundBeat";
 
-	private string characterName;
-
-	private string buildingName;
-
-	private string portraitTexture;
-
 	public string CharacterName
 	{
 		get
 		{
-			return characterName;
+			return null;
 		}
 	}
 
@@ -30,7 +30,7 @@ public class MoveInDialogInputData : PersistedDialogInputData
 	{
 		get
 		{
-			return buildingName;
+			return null;
 		}
 	}
 
@@ -38,38 +38,22 @@ public class MoveInDialogInputData : PersistedDialogInputData
 	{
 		get
 		{
-			return portraitTexture;
+			return null;
 		}
 	}
 
 	public MoveInDialogInputData(string characterName, string buildingName, string portraitTexture, string soundBeat)
-		: base(uint.MaxValue, "movein", "Dialog_Explanation", soundBeat)
+		: base(0u, null, null, null)
 	{
-		this.characterName = characterName;
-		this.buildingName = buildingName;
-		this.portraitTexture = portraitTexture;
 	}
 
 	public override Dictionary<string, object> ToPersistenceDict()
 	{
-		Dictionary<string, object> dict = new Dictionary<string, object>();
-		BuildPersistenceDict(ref dict, "movein");
-		dict["charactername"] = characterName;
-		dict["buildingname"] = buildingName;
-		dict["portraittexture"] = portraitTexture;
-		if (base.SoundBeat != null)
-		{
-			dict["soundBeat"] = base.SoundBeat;
-		}
-		return dict;
+		return null;
 	}
 
 	public new static MoveInDialogInputData FromPersistenceDict(Dictionary<string, object> dict)
 	{
-		string text = TFUtils.LoadString(dict, "charactername");
-		string text2 = TFUtils.LoadString(dict, "buildingname");
-		string text3 = TFUtils.LoadString(dict, "portraittexture");
-		string text4 = TFUtils.TryLoadString(dict, "soundBeat");
-		return new MoveInDialogInputData(text, text2, text3, text4);
+		return null;
 	}
 }

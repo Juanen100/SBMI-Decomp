@@ -2,21 +2,20 @@ using UnityEngine;
 
 public abstract class AveragedGestureRecognizer : GestureRecognizer
 {
-	public int RequiredFingerCount = 1;
+	public int RequiredFingerCount;
 
-	private Vector2 startPos = Vector2.zero;
+	private Vector2 startPos;
 
-	private Vector2 pos = Vector2.zero;
+	private Vector2 pos;
 
 	public Vector2 StartPosition
 	{
 		get
 		{
-			return startPos;
+			return default(Vector2);
 		}
 		protected set
 		{
-			startPos = value;
 		}
 	}
 
@@ -24,16 +23,15 @@ public abstract class AveragedGestureRecognizer : GestureRecognizer
 	{
 		get
 		{
-			return pos;
+			return default(Vector2);
 		}
 		protected set
 		{
-			pos = value;
 		}
 	}
 
 	protected override int GetRequiredFingerCount()
 	{
-		return RequiredFingerCount;
+		return 0;
 	}
 }

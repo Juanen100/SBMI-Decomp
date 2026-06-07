@@ -1,6 +1,6 @@
 public class SoaringPlayer : SoaringUser
 {
-	private SoaringArray<SoaringUser> mFriends = new SoaringArray<SoaringUser>();
+	private SoaringArray<SoaringUser> mFriends;
 
 	private bool mCanSaveUserCredentials;
 
@@ -10,7 +10,7 @@ public class SoaringPlayer : SoaringUser
 	{
 		get
 		{
-			return mFriends.array();
+			return null;
 		}
 	}
 
@@ -22,18 +22,6 @@ public class SoaringPlayer : SoaringUser
 	{
 		get
 		{
-			if (mFriends == null)
-			{
-				return false;
-			}
-			int num = mFriends.count();
-			for (int i = 0; i <= num; i++)
-			{
-				if (mFriends[i] != null)
-				{
-					return true;
-				}
-			}
 			return false;
 		}
 	}
@@ -42,16 +30,7 @@ public class SoaringPlayer : SoaringUser
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return string.Empty;
-			}
-			string text = mUserData.soaringValue("authToken");
-			if (text == null)
-			{
-				text = string.Empty;
-			}
-			return text;
+			return null;
 		}
 	}
 
@@ -59,16 +38,7 @@ public class SoaringPlayer : SoaringUser
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return string.Empty;
-			}
-			string text = mUserData.soaringValue("gamecenterId");
-			if (text == null)
-			{
-				text = string.Empty;
-			}
-			return text;
+			return null;
 		}
 	}
 
@@ -76,16 +46,7 @@ public class SoaringPlayer : SoaringUser
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return string.Empty;
-			}
-			string text = mUserData.soaringValue("googleId");
-			if (text == null)
-			{
-				text = string.Empty;
-			}
-			return text;
+			return null;
 		}
 	}
 
@@ -93,16 +54,7 @@ public class SoaringPlayer : SoaringUser
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return string.Empty;
-			}
-			string text = mUserData.soaringValue("amazonId");
-			if (text == null)
-			{
-				text = string.Empty;
-			}
-			return text;
+			return null;
 		}
 	}
 
@@ -110,16 +62,7 @@ public class SoaringPlayer : SoaringUser
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return string.Empty;
-			}
-			string text = mUserData.soaringValue("password");
-			if (text == null)
-			{
-				text = string.Empty;
-			}
-			return text;
+			return null;
 		}
 	}
 
@@ -127,16 +70,7 @@ public class SoaringPlayer : SoaringUser
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return string.Empty;
-			}
-			string text = mUserData.soaringValue("invitationCode");
-			if (text == null)
-			{
-				text = string.Empty;
-			}
-			return text;
+			return null;
 		}
 	}
 
@@ -144,11 +78,7 @@ public class SoaringPlayer : SoaringUser
 	{
 		get
 		{
-			if (mUserData == null)
-			{
-				return true;
-			}
-			return mUserData.soaringValue("autoCreated");
+			return false;
 		}
 	}
 
@@ -156,37 +86,27 @@ public class SoaringPlayer : SoaringUser
 	{
 		get
 		{
-			return mCanSaveUserCredentials;
+			return false;
 		}
 		set
 		{
-			mCanSaveUserCredentials = value;
 		}
 	}
 
 	public void SetFriendsData(SoaringArray<SoaringUser> users)
 	{
-		if (users != null)
-		{
-			mFriends = users;
-		}
 	}
 
 	public bool Load(string userID = null)
 	{
-		return SoaringPlayerResolver.Load(this, userID);
+		return false;
 	}
 
 	public void Save()
 	{
-		SoaringPlayerResolver.Save();
 	}
 
 	public void ClearSavedCredentials()
 	{
-		bool flag = mCanSaveUserCredentials;
-		mCanSaveUserCredentials = false;
-		Save();
-		mCanSaveUserCredentials = flag;
 	}
 }

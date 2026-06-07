@@ -12,25 +12,21 @@ public class TerrainPathing
 	{
 		get
 		{
-			return goal;
+			return null;
 		}
 	}
 
 	public TerrainPathing(Terrain terrain, Vector2 start, Vector2 goal)
 	{
-		this.terrain = terrain;
-		this.goal = this.terrain.ComputeGridPosition(goal);
-		pathFinder2 = new PathFinder2(this.terrain);
-		pathFinder2.Start(this.terrain.ComputeGridPosition(start), this.goal);
 	}
 
 	public PathFinder2.PROGRESS Seek(int budget)
 	{
-		return pathFinder2.Seek(budget);
+		return default(PathFinder2.PROGRESS);
 	}
 
 	public void BuildPath(out Path<GridPosition> path)
 	{
-		pathFinder2.BuildPath(out path);
+		path = null;
 	}
 }

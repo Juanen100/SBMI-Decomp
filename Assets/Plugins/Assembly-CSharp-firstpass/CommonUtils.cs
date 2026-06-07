@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public static class CommonUtils
 {
@@ -13,139 +11,116 @@ public static class CommonUtils
 		_Total = 4
 	}
 
-	private static int MemoryLevel = -1;
+	public class DeviceLevels
+	{
+		public string name;
 
-	private static Dictionary<string, object> TextureOverrides = null;
+		public int lod;
 
-	private static Dictionary<string, object> CommonProperties = null;
+		public bool isNonParticle;
 
-	private static int[] QualityMemoryRanges = new int[4] { 0, 512, 1024, 1024 };
+		public bool isNonScaling;
 
-	private static LevelOfDetail sTextureOfDetail = LevelOfDetail.None;
+		public bool isPlusSize;
+
+		public int resolutionScale;
+	}
+
+	public const string LOW_RESOURCE_ID = "_lr";
+
+	private static int MemoryLevel;
+
+	private static Dictionary<string, object> TextureOverrides;
+
+	private static Dictionary<string, object> CommonProperties;
+
+	private static DeviceLevels CurrentLevels;
+
+	private static int[] QualityMemoryRanges;
+
+	private static bool isLoaded;
+
+	private static bool firstLODLog;
+
+	public static bool IsNonParticleDevice()
+	{
+		return false;
+	}
+
+	public static bool IsNonScalingDevice()
+	{
+		return false;
+	}
+
+	public static bool IsPlusSize()
+	{
+		return false;
+	}
+
+	public static int ResolutionScale()
+	{
+		return 0;
+	}
+
+	public static string SettingsName()
+	{
+		return null;
+	}
 
 	public static void SetMemoryLevel(int ml)
 	{
-		MemoryLevel = ml;
 	}
 
-	public static void Init(Dictionary<string, object> data)
+	public static int GetMemoryLevel()
 	{
-		QualityMemoryRanges = new int[4] { 0, 512, 1024, 1024 };
-		TextureOverrides = null;
-		CommonProperties = null;
-		if (data == null)
-		{
-			return;
-		}
-		object value = null;
-		if (data.TryGetValue("version", out value) && Convert.ToInt32(value) != 0)
-		{
-			return;
-		}
-		try
-		{
-			Dictionary<string, object> dictionary = null;
-			if (data.TryGetValue("memory_range", out value))
-			{
-				dictionary = (Dictionary<string, object>)value;
-				Array values = Enum.GetValues(typeof(LevelOfDetail));
-				foreach (int item in values)
-				{
-					if (dictionary.TryGetValue(((LevelOfDetail)item).ToString(), out value))
-					{
-						QualityMemoryRanges[item] = Convert.ToInt32(value);
-					}
-				}
-			}
-			value = null;
-			if (data.TryGetValue("properties", out value))
-			{
-				CommonProperties = (Dictionary<string, object>)value;
-			}
-			value = null;
-			if (!data.TryGetValue("devices", out value))
-			{
-				return;
-			}
-			dictionary = (Dictionary<string, object>)value;
-			string text = null;
-			text = SystemInfo.deviceModel;
-			if (!string.IsNullOrEmpty(text))
-			{
-				text = text.ToLower();
-				if (dictionary.TryGetValue(text, out value))
-				{
-					TextureOverrides = (Dictionary<string, object>)value;
-				}
-			}
-		}
-		catch (Exception ex)
-		{
-			Debug.LogError(ex.Message);
-		}
+		return 0;
+	}
+
+	public static void Reload()
+	{
+	}
+
+	public static void Init()
+	{
+	}
+
+	public static string ReadAllText(string filePath)
+	{
+		return null;
+	}
+
+	private static string GetStreamingAssetsFile(string fileName)
+	{
+		return null;
+	}
+
+	private static bool FileExists(string filePath)
+	{
+		return false;
+	}
+
+	private static bool LoadWWWExist(string filePath)
+	{
+		return false;
 	}
 
 	public static string TextureForDeviceOverride(string textureName)
 	{
-		Debug.Log("TextureName: Loading: " + textureName);
-		if (TextureOverrides != null && !string.IsNullOrEmpty(textureName))
-		{
-			object value = null;
-			if (TextureOverrides.TryGetValue(textureName, out value))
-			{
-				textureName = (string)value;
-			}
-		}
-		return textureName;
+		return null;
 	}
 
 	public static string PropertyForDeviceOverride(string propertyName)
 	{
-		if (CommonProperties != null && !string.IsNullOrEmpty(propertyName))
-		{
-			object value = null;
-			if (CommonProperties.TryGetValue(propertyName, out value))
-			{
-				propertyName = (string)value;
-			}
-		}
-		return propertyName;
+		return null;
 	}
 
 	public static LevelOfDetail TextureLod()
 	{
-		if (sTextureOfDetail != LevelOfDetail.None)
-		{
-			return sTextureOfDetail;
-		}
-		sTextureOfDetail = LevelOfDetail.Standard;
-		int num = SystemInfo.systemMemorySize;
-		if (MemoryLevel > 0 && num < MemoryLevel)
-		{
-			num = MemoryLevel;
-		}
-		if (num <= QualityMemoryRanges[1])
-		{
-			sTextureOfDetail = LevelOfDetail.Low;
-		}
-		else if (num > QualityMemoryRanges[1] && num <= QualityMemoryRanges[3])
-		{
-			sTextureOfDetail = LevelOfDetail.Standard;
-		}
-		else
-		{
-			sTextureOfDetail = LevelOfDetail.High;
-		}
-		return sTextureOfDetail;
+		return default(LevelOfDetail);
 	}
 
 	public static bool CheckReloadShader()
 	{
-		bool result = false;
-		if (TextureLod() != LevelOfDetail.High)
-		{
-			result = true;
-		}
-		return result;
+		return false;
 	}
 }

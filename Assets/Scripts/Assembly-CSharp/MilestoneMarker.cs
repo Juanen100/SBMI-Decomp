@@ -6,7 +6,5 @@ public class MilestoneMarker
 
 	public MilestoneMarker(int xp, RewardDefinition rewardDef)
 	{
-		this.xp = xp;
-		this.rewardDef = rewardDef;
 	}
 }

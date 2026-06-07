@@ -1,3 +1,6 @@
+using System.Runtime.InteropServices;
+
+[StructLayout((LayoutKind)0, Size = 1)]
 public struct AnnexAction
 {
 	public const string RELAYING = "relaying";

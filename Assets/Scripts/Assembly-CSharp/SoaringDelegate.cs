@@ -1,7 +1,7 @@
 public class SoaringDelegate : SoaringObjectBase
 {
 	public SoaringDelegate()
-		: base(IsType.Object)
+		: base(default(IsType))
 	{
 	}
 

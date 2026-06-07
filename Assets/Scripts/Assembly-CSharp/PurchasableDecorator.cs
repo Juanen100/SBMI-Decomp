@@ -4,15 +4,10 @@ public class PurchasableDecorator : EntityDecorator
 	{
 		get
 		{
-			if (!Variable.ContainsKey("purchased"))
-			{
-				return true;
-			}
-			return (bool)Variable["purchased"];
+			return false;
 		}
 		set
 		{
-			Variable["purchased"] = value;
 		}
 	}
 
@@ -20,16 +15,12 @@ public class PurchasableDecorator : EntityDecorator
 	{
 		get
 		{
-			if (Purchased)
-			{
-				return base.SoundOnTouch;
-			}
-			return (string)Invariable["sound_on_touch_error"];
+			return null;
 		}
 	}
 
 	public PurchasableDecorator(Entity toDecorate)
-		: base(toDecorate)
+		: base(null)
 	{
 	}
 }

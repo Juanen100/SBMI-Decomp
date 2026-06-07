@@ -1,4 +1,3 @@
-#define ASSERTS_ON
 using System.Collections.Generic;
 
 public abstract class EntityDecorator : Entity
@@ -9,7 +8,7 @@ public abstract class EntityDecorator : Entity
 	{
 		get
 		{
-			return core.Id;
+			return null;
 		}
 	}
 
@@ -17,7 +16,7 @@ public abstract class EntityDecorator : Entity
 	{
 		get
 		{
-			return core.DefinitionId;
+			return 0;
 		}
 	}
 
@@ -25,7 +24,7 @@ public abstract class EntityDecorator : Entity
 	{
 		get
 		{
-			return core.AllTypes;
+			return default(EntityType);
 		}
 	}
 
@@ -33,7 +32,7 @@ public abstract class EntityDecorator : Entity
 	{
 		get
 		{
-			return core.Type;
+			return default(EntityType);
 		}
 	}
 
@@ -41,7 +40,7 @@ public abstract class EntityDecorator : Entity
 	{
 		get
 		{
-			return core.BlueprintName;
+			return null;
 		}
 	}
 
@@ -49,7 +48,7 @@ public abstract class EntityDecorator : Entity
 	{
 		get
 		{
-			return core.Name;
+			return null;
 		}
 	}
 
@@ -57,7 +56,7 @@ public abstract class EntityDecorator : Entity
 	{
 		get
 		{
-			return core.Invariable;
+			return null;
 		}
 	}
 
@@ -65,7 +64,7 @@ public abstract class EntityDecorator : Entity
 	{
 		get
 		{
-			return core.Variable;
+			return null;
 		}
 	}
 
@@ -73,7 +72,7 @@ public abstract class EntityDecorator : Entity
 	{
 		get
 		{
-			return core.SoundOnTouch;
+			return null;
 		}
 	}
 
@@ -81,7 +80,7 @@ public abstract class EntityDecorator : Entity
 	{
 		get
 		{
-			return core.SoundOnSelect;
+			return null;
 		}
 	}
 
@@ -89,36 +88,26 @@ public abstract class EntityDecorator : Entity
 	{
 		get
 		{
-			return core;
+			return null;
 		}
 	}
 
 	public EntityDecorator(Entity toDecorate)
 	{
-		core = toDecorate.Core;
-		toDecorate.AddDecorator(this);
-		TFUtils.Assert(core != null, "checking that we are not null");
 	}
 
 	public void AddDecorator(Entity entity)
 	{
-		if (entity is CoreEntity)
-		{
-			core = entity;
-			return;
-		}
-		TFUtils.Assert(core != null, "CoreEntity is not set yet");
-		core.AddDecorator(entity);
 	}
 
 	public T GetDecorator<T>() where T : EntityDecorator
 	{
-		return core.GetDecorator<T>();
+		return null;
 	}
 
 	public bool HasDecorator<T>() where T : EntityDecorator
 	{
-		return core.HasDecorator<T>();
+		return false;
 	}
 
 	public virtual void SerializeDecorator(ref Dictionary<string, object> data)
@@ -131,16 +120,13 @@ public abstract class EntityDecorator : Entity
 
 	public void Serialize(ref Dictionary<string, object> data)
 	{
-		core.Serialize(ref data);
 	}
 
 	public void Deserialize(Dictionary<string, object> data)
 	{
-		core.Deserialize(data);
 	}
 
 	public virtual void PatchReferences(Game game)
 	{
-		core.PatchReferences(game);
 	}
 }

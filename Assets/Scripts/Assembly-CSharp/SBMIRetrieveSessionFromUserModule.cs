@@ -4,6 +4,6 @@ public class SBMIRetrieveSessionFromUserModule : SoaringCustomQueryModule
 
 	public override string CustomSoaringModuleName()
 	{
-		return "retrieveSessionFromUser";
+		return null;
 	}
 }

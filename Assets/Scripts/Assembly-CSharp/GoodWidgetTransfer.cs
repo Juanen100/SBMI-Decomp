@@ -14,10 +14,6 @@ public abstract class GoodWidgetTransfer
 
 	public GoodWidgetTransfer(int goodId, string materialName, float speed, float dRad)
 	{
-		this.speed = speed;
-		this.dRad = dRad;
-		this.goodId = goodId;
-		this.materialName = materialName;
 	}
 
 	public abstract Vector2 GetOriginalScreenPosition(Session session, Vector2 hudWidgetPosition);

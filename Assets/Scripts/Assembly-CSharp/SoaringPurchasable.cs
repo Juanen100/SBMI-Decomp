@@ -24,7 +24,7 @@ public class SoaringPurchasable : SoaringObjectBase
 	{
 		get
 		{
-			return mProductID;
+			return null;
 		}
 	}
 
@@ -32,7 +32,7 @@ public class SoaringPurchasable : SoaringObjectBase
 	{
 		get
 		{
-			return mAlias;
+			return null;
 		}
 	}
 
@@ -40,7 +40,7 @@ public class SoaringPurchasable : SoaringObjectBase
 	{
 		get
 		{
-			return mPriceTier;
+			return null;
 		}
 	}
 
@@ -48,7 +48,7 @@ public class SoaringPurchasable : SoaringObjectBase
 	{
 		get
 		{
-			return mScreenshot;
+			return null;
 		}
 	}
 
@@ -56,7 +56,7 @@ public class SoaringPurchasable : SoaringObjectBase
 	{
 		get
 		{
-			return mDisplayName;
+			return null;
 		}
 	}
 
@@ -64,7 +64,7 @@ public class SoaringPurchasable : SoaringObjectBase
 	{
 		get
 		{
-			return mAmount;
+			return 0;
 		}
 	}
 
@@ -72,7 +72,7 @@ public class SoaringPurchasable : SoaringObjectBase
 	{
 		get
 		{
-			return mDescription;
+			return null;
 		}
 	}
 
@@ -80,7 +80,7 @@ public class SoaringPurchasable : SoaringObjectBase
 	{
 		get
 		{
-			return mResourceType;
+			return 0;
 		}
 	}
 
@@ -88,7 +88,7 @@ public class SoaringPurchasable : SoaringObjectBase
 	{
 		get
 		{
-			return mUSDPrice;
+			return 0;
 		}
 	}
 
@@ -96,28 +96,12 @@ public class SoaringPurchasable : SoaringObjectBase
 	{
 		get
 		{
-			return mTexture;
+			return null;
 		}
 	}
 
 	public SoaringPurchasable(SoaringDictionary data)
-		: base(IsType.Object)
+		: base(default(IsType))
 	{
-		mProductID = data.soaringValue("productId");
-		mAlias = data.soaringValue("alias");
-		mPriceTier = data.soaringValue("priceTier");
-		mScreenshot = data.soaringValue("screenshotName");
-		mDisplayName = data.soaringValue("displayName");
-		mAmount = data.soaringValue("amount");
-		mDescription = data.soaringValue("description");
-		mTexture = data.soaringValue("screenshotName");
-		mUSDPrice = data.soaringValue("usdPrice");
-		string s = data.soaringValue("resourceType");
-		mResourceType = -1;
-		int.TryParse(s, out mResourceType);
-		if (mResourceType < 0)
-		{
-			SoaringDebug.Log("SoaringPurchasable: failed to parse resourceType as integer.");
-		}
 	}
 }

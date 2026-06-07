@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class OrderedSet<T> : IEnumerable, ICollection<T>, IEnumerable<T>
+public class OrderedSet<T> : ICollection<T>, IEnumerable, IEnumerable<T>
 {
 	private readonly IDictionary<T, LinkedListNode<T>> dictionary;
 
@@ -11,7 +11,7 @@ public class OrderedSet<T> : IEnumerable, ICollection<T>, IEnumerable<T>
 	{
 		get
 		{
-			return dictionary.Count;
+			return 0;
 		}
 	}
 
@@ -19,77 +19,57 @@ public class OrderedSet<T> : IEnumerable, ICollection<T>, IEnumerable<T>
 	{
 		get
 		{
-			return dictionary.IsReadOnly;
+			return false;
 		}
 	}
 
 	public OrderedSet()
-		: this((IEqualityComparer<T>)EqualityComparer<T>.Default)
 	{
 	}
 
 	public OrderedSet(IEqualityComparer<T> comparer)
 	{
-		dictionary = new Dictionary<T, LinkedListNode<T>>(comparer);
-		linkedList = new LinkedList<T>();
 	}
 
 	void ICollection<T>.Add(T item)
 	{
-		Add(item);
-	}
-
-	IEnumerator IEnumerable.GetEnumerator()
-	{
-		return GetEnumerator();
 	}
 
 	public void Clear()
 	{
-		linkedList.Clear();
-		dictionary.Clear();
 	}
 
 	public bool Remove(T item)
 	{
-		LinkedListNode<T> value;
-		if (!dictionary.TryGetValue(item, out value))
-		{
-			return false;
-		}
-		dictionary.Remove(item);
-		linkedList.Remove(value);
-		return true;
+		return false;
 	}
 
 	public IEnumerator<T> GetEnumerator()
 	{
-		return linkedList.GetEnumerator();
+		return null;
+	}
+
+	IEnumerator IEnumerable.GetEnumerator()
+	{
+		return null;
 	}
 
 	public bool Contains(T item)
 	{
-		return dictionary.ContainsKey(item);
+		return false;
 	}
 
 	public void CopyTo(T[] array, int arrayIndex)
 	{
-		linkedList.CopyTo(array, arrayIndex);
 	}
 
 	public bool Add(T item)
 	{
-		if (dictionary.ContainsKey(item))
-		{
-			return false;
-		}
-		LinkedListNode<T> value = linkedList.AddLast(item);
-		dictionary.Add(item, value);
-		return true;
+		return false;
 	}
 
 	public T Last()
 	{
-		return linkedList.Last.Value;
+		return default(T);
 	}
 }

@@ -42,11 +42,13 @@ public class StaticContentLoader
 
 	private AutoQuestDatabase _autoQuestDatabase;
 
+	private SBUpsightADManager _upsightADManager;
+
 	public TaskManager TheTaskManager
 	{
 		get
 		{
-			return _taskManager;
+			return null;
 		}
 	}
 
@@ -54,7 +56,7 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _microEventManager;
+			return null;
 		}
 	}
 
@@ -62,7 +64,7 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _costumeManager;
+			return null;
 		}
 	}
 
@@ -70,7 +72,7 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _wishTableManager;
+			return null;
 		}
 	}
 
@@ -78,7 +80,7 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _craftManager;
+			return null;
 		}
 	}
 
@@ -86,7 +88,7 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _vendingManager;
+			return null;
 		}
 	}
 
@@ -94,7 +96,7 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _treasureManager;
+			return null;
 		}
 	}
 
@@ -102,7 +104,7 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _communityEventManager;
+			return null;
 		}
 	}
 
@@ -110,7 +112,7 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _paytableManager;
+			return null;
 		}
 	}
 
@@ -118,7 +120,7 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _movieManager;
+			return null;
 		}
 	}
 
@@ -126,7 +128,7 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _terrain;
+			return null;
 		}
 	}
 
@@ -134,7 +136,7 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _border;
+			return null;
 		}
 	}
 
@@ -142,7 +144,7 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _resourceManager;
+			return null;
 		}
 	}
 
@@ -150,7 +152,7 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _catalog;
+			return null;
 		}
 	}
 
@@ -158,7 +160,7 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _entities;
+			return null;
 		}
 	}
 
@@ -166,7 +168,7 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _questManager;
+			return null;
 		}
 	}
 
@@ -174,7 +176,7 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _levelingManager;
+			return null;
 		}
 	}
 
@@ -182,7 +184,7 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _featureManager;
+			return null;
 		}
 	}
 
@@ -190,7 +192,7 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _buildingUnlockManager;
+			return null;
 		}
 	}
 
@@ -198,7 +200,7 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _enclosureManager;
+			return null;
 		}
 	}
 
@@ -206,44 +208,28 @@ public class StaticContentLoader
 	{
 		get
 		{
-			return _autoQuestDatabase;
+			return null;
+		}
+	}
+
+	public SBUpsightADManager TheUpsightADManager
+	{
+		get
+		{
+			return null;
 		}
 	}
 
 	public void LoadContent(Session session)
 	{
-		DatabaseManager.Instance.LoadDatabaseFromCSV();
-		_resourceManager = new ResourceManager(session);
-		_craftManager = new CraftingManager();
-		_vendingManager = new VendingManager();
-		_treasureManager = new TreasureManager(session);
-		_paytableManager = new PaytableManager();
-		_featureManager = new FeatureManager();
-		_buildingUnlockManager = new BuildingUnlockManager();
-		_movieManager = new MovieManager();
-		_terrain = new Terrain(0);
-		_border = new Border();
-		_levelingManager = new LevelingManager();
-		_catalog = new Catalog();
-		_autoQuestDatabase = new AutoQuestDatabase();
-		_questManager = new QuestManager();
-		_entities = new EntityManager(session.InFriendsGame);
-		_enclosureManager = new EnclosureManager();
-		_communityEventManager = new CommunityEventManager(session);
-		_taskManager = new TaskManager();
-		_microEventManager = new MicroEventManager();
-		_costumeManager = new CostumeManager();
-		_wishTableManager = new WishTableManager();
 	}
 
 	public void Initialize()
 	{
-		_terrain.Initialize();
-		_border.Initialize(_terrain);
 	}
 
 	public bool LoadNextBlueprint()
 	{
-		return _entities.IterateLoadOfBlueprints();
+		return false;
 	}
 }

@@ -6,7 +6,7 @@ Avatar:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Onion_Seeded_MeshAvatar
-  m_AvatarSize: 340
+  m_AvatarSize: 500
   m_Avatar:
     serializedVersion: 3
     m_AvatarSkeleton:
@@ -19,58 +19,23 @@ Avatar:
     m_AvatarSkeletonPose:
       data:
         m_X:
-        - t:
-            x: -0
-            y: 0
-            z: 0
-            w: 0
-          q:
-            x: -0.7071068
-            y: 0
-            z: -0
-            w: 0.7071067
-          s:
-            x: 1
-            y: 1
-            z: 1
-            w: 1
+        - t: {x: -0, y: 0, z: 0}
+          q: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+          s: {x: 1, y: 1, z: 1}
     m_DefaultPose:
       data:
         m_X:
-        - t:
-            x: -0
-            y: 0
-            z: 0
-            w: 0
-          q:
-            x: -0.7071068
-            y: 0
-            z: -0
-            w: 0.7071067
-          s:
-            x: 1
-            y: 1
-            z: 1
-            w: 1
+        - t: {x: -0, y: 0, z: 0}
+          q: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+          s: {x: 1, y: 1, z: 1}
     m_SkeletonNameIDArray: 00000000
     m_Human:
       data:
+        serializedVersion: 2
         m_RootX:
-          t:
-            x: 0
-            y: 0
-            z: 0
-            w: 0
-          q:
-            x: 0
-            y: 0
-            z: 0
-            w: 1
-          s:
-            x: 1
-            y: 1
-            z: 1
-            w: 1
+          t: {x: 0, y: 0, z: 0}
+          q: {x: 0, y: 0, z: 0, w: 1}
+          s: {x: 1, y: 1, z: 1}
         m_Skeleton:
           data:
             m_Node: []
@@ -81,13 +46,13 @@ Avatar:
             m_X: []
         m_LeftHand:
           data:
-            m_HandBoneIndex: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+            m_HandBoneIndex: ffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/f
         m_RightHand:
           data:
-            m_HandBoneIndex: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+            m_HandBoneIndex: ffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/f
         m_Handles: []
         m_ColliderArray: []
-        m_HumanBoneIndex: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+        m_HumanBoneIndex: ffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/f
         m_HumanBoneMass:
         - 0.14545456
         - 0.12121213
@@ -97,7 +62,8 @@ Avatar:
         - 0.009696971
         - 0.009696971
         - 0.030303033
-        - 0.2909091
+        - 0.14545456
+        - 0.14545456
         - 0.012121214
         - 0.048484854
         - 0.006060607
@@ -113,7 +79,7 @@ Avatar:
         - 0
         - 0
         - 0
-        m_ColliderIndex: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+        m_ColliderIndex: ffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/fffffff/f
         m_Scale: 1
         m_ArmTwist: 0.5
         m_ForeArmTwist: 0.5
@@ -124,25 +90,14 @@ Avatar:
         m_FeetSpacing: 0
         m_HasLeftHand: 0
         m_HasRightHand: 0
+        m_HasTDoF: 0
     m_HumanSkeletonIndexArray:
     m_HumanSkeletonReverseIndexArray:
     m_RootMotionBoneIndex: -1
     m_RootMotionBoneX:
-      t:
-        x: 0
-        y: 0
-        z: 0
-        w: 0
-      q:
-        x: 0
-        y: 0
-        z: 0
-        w: 1
-      s:
-        x: 1
-        y: 1
-        z: 1
-        w: 1
+      t: {x: 0, y: 0, z: 0}
+      q: {x: 0, y: 0, z: 0, w: 1}
+      s: {x: 1, y: 1, z: 1}
     m_RootMotionSkeleton:
       data:
         m_Node: []

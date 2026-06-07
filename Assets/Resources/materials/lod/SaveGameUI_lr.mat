@@ -2,27 +2,27 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 3
+  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: SaveGameUI_lr
-  m_Shader: {fileID: 4800000, guid: aad7c808eb9753146946e3d82c594e3b, type: 3}
-  m_ShaderKeywords: []
+  m_Shader: {fileID: 4800000, guid: f6d0797c0b383d445927a7717cc8e4a7, type: 3}
+  m_ShaderKeywords:
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
   m_SavedProperties:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TexEnvs:
-      data:
-        first:
-          name: _MainTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 79707935dae64e148a9d570c231df2d0, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
+      _MainTex:
+        m_Texture: {fileID: 2800000, guid: 0461c7c3602249e45839d210dd513ac3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats: {}
     m_Colors:
-      data:
-        first:
-          name: _TintColor
-        second: {r: .5, g: .5, b: .5, a: 1}
+      _Color: {r: 1, g: 1, b: 1, a: 1}
+      _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

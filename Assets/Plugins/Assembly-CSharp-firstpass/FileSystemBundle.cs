@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FileSystemBundle : MonoBehaviour
 {
-	public Object[] fileObjects = new Object[0];
+	public Object[] fileObjects;
 
-	public string[] filePaths = new string[0];
+	public string[] filePaths;
 }

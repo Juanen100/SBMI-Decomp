@@ -16,7 +16,7 @@ public class MatchableProperty
 	{
 		get
 		{
-			return isRequired;
+			return false;
 		}
 	}
 
@@ -24,7 +24,7 @@ public class MatchableProperty
 	{
 		get
 		{
-			return key;
+			return null;
 		}
 	}
 
@@ -32,25 +32,21 @@ public class MatchableProperty
 	{
 		get
 		{
-			return target;
+			return null;
 		}
 	}
 
 	public MatchableProperty(bool isRequired, string key, object target, MatchFn matchFn)
 	{
-		this.isRequired = isRequired;
-		this.key = key;
-		this.target = target;
-		this.matchFn = matchFn;
 	}
 
 	public uint Evaluate(Dictionary<string, object> triggerData, Game game)
 	{
-		return matchFn(this, triggerData, game);
+		return 0u;
 	}
 
 	public override string ToString()
 	{
-		return string.Concat("{", key, " (isRequired=", isRequired, ", target=", Target, ")}");
+		return null;
 	}
 }

@@ -18,7 +18,7 @@ public class MockClickSimulated : SessionActionDefinition
 	{
 		get
 		{
-			return targetId;
+			return null;
 		}
 	}
 
@@ -26,47 +26,25 @@ public class MockClickSimulated : SessionActionDefinition
 	{
 		get
 		{
-			return targetDid;
+			return null;
 		}
 	}
 
 	public static MockClickSimulated Create(Dictionary<string, object> data, uint id, ICondition startConditions, uint originatedFromQuest)
 	{
-		MockClickSimulated mockClickSimulated = new MockClickSimulated();
-		mockClickSimulated.Parse(data, id, startConditions, originatedFromQuest);
-		return mockClickSimulated;
+		return null;
 	}
 
 	protected void Parse(Dictionary<string, object> data, uint id, ICondition startConditions, uint originatedFromQuest)
 	{
-		base.Parse(data, id, startConditions, new DumbCondition(0u), originatedFromQuest);
-		string text = TFUtils.TryLoadString(data, "instance_id");
-		if (text != null)
-		{
-			targetId = new Identity(text);
-		}
-		targetDid = TFUtils.TryLoadNullableInt(data, "definition_id");
 	}
 
 	public override Dictionary<string, object> ToDict()
 	{
-		Dictionary<string, object> dictionary = base.ToDict();
-		if (targetId != null)
-		{
-			dictionary["instance_id"] = targetId;
-		}
-		int? num = targetDid;
-		if (num.HasValue)
-		{
-			dictionary["definition_id"] = targetDid;
-		}
-		return dictionary;
+		return null;
 	}
 
 	public void HandleClick(Session session, SessionActionTracker action, Simulated simulated)
 	{
-		session.AddAsyncResponse("mock_click_sessionaction", simulated);
-		action.MarkStarted();
-		action.MarkSucceeded();
 	}
 }

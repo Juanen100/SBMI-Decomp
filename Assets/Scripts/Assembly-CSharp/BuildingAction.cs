@@ -41,4 +41,6 @@ public class BuildingAction
 	public const string TASK_FEED = "task_feed";
 
 	public const string TASK_FEED_COLLECTING = "task_feed_collecting";
+
+	public const string UPGRADING = "upgrading";
 }

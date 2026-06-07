@@ -1,18 +1,17 @@
 using FarseerPhysics.Dynamics;
-using FarseerPhysics.Factories;
 
 public class YG2DGear : YG2DBody
 {
-	public float radius = 0.5f;
+	public float radius;
 
-	public int teeth = 9;
+	public int teeth;
 
-	public float tipPercent = 0.1f;
+	public float tipPercent;
 
-	public float toothHeight = 0.25f;
+	public float toothHeight;
 
 	protected override Body GetBody(World world)
 	{
-		return BodyFactory.CreateGear(world, radius, teeth, tipPercent, toothHeight, density);
+		return null;
 	}
 }

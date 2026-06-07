@@ -4,7 +4,7 @@ public class SoaringCampaign : SoaringDictionary
 	{
 		get
 		{
-			return soaringValue("campaignId");
+			return null;
 		}
 	}
 
@@ -12,7 +12,7 @@ public class SoaringCampaign : SoaringDictionary
 	{
 		get
 		{
-			return soaringValue("description");
+			return null;
 		}
 	}
 
@@ -20,7 +20,7 @@ public class SoaringCampaign : SoaringDictionary
 	{
 		get
 		{
-			return soaringValue("group");
+			return null;
 		}
 	}
 
@@ -28,7 +28,7 @@ public class SoaringCampaign : SoaringDictionary
 	{
 		get
 		{
-			return soaringValue("custom");
+			return null;
 		}
 	}
 
@@ -36,12 +36,11 @@ public class SoaringCampaign : SoaringDictionary
 	{
 		get
 		{
-			return soaringValue("type");
+			return null;
 		}
 	}
 
 	public SoaringCampaign(SoaringDictionary dictionary)
 	{
-		CopyExisting(dictionary);
 	}
 }

@@ -1,63 +1,60 @@
 Shader "Custom/TwoImageColorOverlay" {
-    Properties {
-        _Color ("Main Color", Color) = (1,1,1,1)
-        _MainTex ("Base (RGB)", 2D) = "white" {}
-        _AlphaTex ("Alpha Mask (A)", 2D) = "white" {}
-    }
-    
-    SubShader {
-        Tags {"Queue"="Transparent" "RenderType"="Transparent"}
-        LOD 200
-        
-        Pass
-        {
-            Lighting Off
-            ZWrite On
-            Cull Off
-            Fog { Mode Off }
+	Properties {
+		_Color ("Main Color", Vector) = (1,1,1,1)
+		_MainTex ("Base (RGB)", 2D) = "white" {}
+		_AlphaTex ("Alpha Mask (A)", 2D) = "white" {}
+	}
+	//DummyShaderTextExporter
+	SubShader{
+		Tags { "RenderType"="Opaque" }
+		LOD 200
 
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
+		Pass
+		{
+			HLSLPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
 
-            #include "UnityCG.cginc"
+			float4x4 unity_ObjectToWorld;
+			float4x4 unity_MatrixVP;
+			float4 _MainTex_ST;
 
-            sampler2D _MainTex;
-            sampler2D _AlphaTex;
-            float4 _Color;
+			struct Vertex_Stage_Input
+			{
+				float4 pos : POSITION;
+				float2 uv : TEXCOORD0;
+			};
 
-            struct appdata
-            {
-                float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
-            };
+			struct Vertex_Stage_Output
+			{
+				float2 uv : TEXCOORD0;
+				float4 pos : SV_POSITION;
+			};
 
-            struct v2f
-            {
-                float4 pos : POSITION;
-                float2 uv : TEXCOORD0;
-            };
+			Vertex_Stage_Output vert(Vertex_Stage_Input input)
+			{
+				Vertex_Stage_Output output;
+				output.uv = (input.uv.xy * _MainTex_ST.xy) + _MainTex_ST.zw;
+				output.pos = mul(unity_MatrixVP, mul(unity_ObjectToWorld, input.pos));
+				return output;
+			}
 
-            v2f vert (appdata v)
-            {
-                v2f o;
-                o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
-                o.uv = v.uv;
-                return o;
-            }
+			Texture2D<float4> _MainTex;
+			SamplerState sampler_MainTex;
+			float4 _Color;
 
-            float4 frag (v2f i) : COLOR
-            {
-                float4 baseCol = tex2D(_MainTex, i.uv);
-                float mask = tex2D(_AlphaTex, i.uv).r;
+			struct Fragment_Stage_Input
+			{
+				float2 uv : TEXCOORD0;
+			};
 
-				float influence = 1.0 - mask;
+			float4 frag(Fragment_Stage_Input input) : SV_TARGET
+			{
+				return _MainTex.Sample(sampler_MainTex, input.uv.xy) * _Color;
+			}
 
-                float4 finalColor = lerp(baseCol, baseCol * _Color, influence);
-                return finalColor;
-            }
-            ENDCG
-        }
-    } 
-    FallBack "Transparent/Diffuse"
+			ENDHLSL
+		}
+	}
+	Fallback "VertexLit"
 }

@@ -9,46 +9,34 @@ public class PriorityQueue<T> where T : IComparable<T>
 	{
 		get
 		{
-			return values.Count;
+			return 0;
 		}
-	}
-
-	public PriorityQueue()
-	{
-		values = new List<T>();
 	}
 
 	public bool Empty()
 	{
-		return 0 == values.Count;
+		return false;
 	}
 
 	public void Push(T value)
 	{
-		values.Add(value);
-		Sort();
 	}
 
 	public T Pop()
 	{
-		int index = values.Count - 1;
-		T result = values[index];
-		values.RemoveAt(index);
-		return result;
+		return default(T);
 	}
 
 	public T Find(Predicate<T> predicate)
 	{
-		return values.Find(predicate);
+		return default(T);
 	}
 
 	public void Sort()
 	{
-		values.Sort();
 	}
 
 	public void Clear()
 	{
-		values.Clear();
 	}
 }

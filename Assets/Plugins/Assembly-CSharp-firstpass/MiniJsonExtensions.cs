@@ -5,21 +5,21 @@ public static class MiniJsonExtensions
 {
 	public static string toJson(this Hashtable obj)
 	{
-		return MiniJSON_Prime31.jsonEncode(obj);
+		return null;
 	}
 
 	public static string toJson(this Dictionary<string, string> obj)
 	{
-		return MiniJSON_Prime31.jsonEncode(obj);
+		return null;
 	}
 
 	public static ArrayList arrayListFromJson(this string json)
 	{
-		return MiniJSON_Prime31.jsonDecode(json) as ArrayList;
+		return null;
 	}
 
 	public static Hashtable hashtableFromJson(this string json)
 	{
-		return MiniJSON_Prime31.jsonDecode(json) as Hashtable;
+		return null;
 	}
 }

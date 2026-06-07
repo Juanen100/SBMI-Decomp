@@ -4,7 +4,7 @@ public class SoaringFriend : SoaringUser
 	{
 		get
 		{
-			return true;
+			return false;
 		}
 	}
 }

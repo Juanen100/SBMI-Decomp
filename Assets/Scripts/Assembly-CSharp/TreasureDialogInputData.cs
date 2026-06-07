@@ -22,7 +22,7 @@ public class TreasureDialogInputData : PersistedDialogInputData
 	{
 		get
 		{
-			return title;
+			return null;
 		}
 	}
 
@@ -30,38 +30,22 @@ public class TreasureDialogInputData : PersistedDialogInputData
 	{
 		get
 		{
-			return message;
+			return null;
 		}
 	}
 
 	public TreasureDialogInputData(string title, string message, Reward reward, string soundBeat)
-		: base(uint.MaxValue, "found_treasure", "Dialog_FoundItem", soundBeat)
+		: base(0u, null, null, null)
 	{
-		this.title = title;
-		this.message = message;
-		this.reward = reward;
 	}
 
 	public override Dictionary<string, object> ToPersistenceDict()
 	{
-		Dictionary<string, object> dict = new Dictionary<string, object>();
-		base.BuildPersistenceDict(ref dict, "found_treasure");
-		dict["title"] = title;
-		dict["message"] = message;
-		dict["reward"] = reward.ToDict();
-		if (base.SoundBeat != null)
-		{
-			dict["sound"] = base.SoundBeat;
-		}
-		return dict;
+		return null;
 	}
 
 	public new static TreasureDialogInputData FromPersistenceDict(Dictionary<string, object> dict)
 	{
-		string text = TFUtils.LoadString(dict, "title");
-		string text2 = TFUtils.LoadString(dict, "message");
-		Reward reward = Reward.FromDict(TFUtils.LoadDict(dict, "reward"));
-		string text3 = TFUtils.TryLoadString(dict, "sound");
-		return new TreasureDialogInputData(text, text2, reward, text3);
+		return null;
 	}
 }

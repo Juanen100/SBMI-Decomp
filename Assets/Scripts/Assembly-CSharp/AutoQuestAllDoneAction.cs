@@ -15,41 +15,33 @@ public class AutoQuestAllDoneAction : PersistedTriggerableAction
 	}
 
 	public AutoQuestAllDoneAction(uint questId)
-		: base("aqad", Identity.Null())
+		: base(null, null)
 	{
-		this.questId = questId;
 	}
 
 	public override Dictionary<string, object> ToDict()
 	{
-		Dictionary<string, object> dest = base.ToDict();
-		Dictionary<string, object> dictionary = new Dictionary<string, object>();
-		dictionary["did"] = questId;
-		return TFUtils.ConcatenateDictionaryInPlace(dest, dictionary);
+		return null;
 	}
 
 	public override void Process(Game game)
 	{
-		base.Process(game);
 	}
 
 	public override void Apply(Game game, ulong utcNow)
 	{
-		base.Apply(game, utcNow);
 	}
 
 	public override void Confirm(Dictionary<string, object> gameState)
 	{
-		base.Confirm(gameState);
 	}
 
 	protected void AddMoreDataToTrigger(ref Dictionary<string, object> data)
 	{
-		data["quest_id"] = (int)questId;
 	}
 
 	public override ITrigger CreateTrigger(Dictionary<string, object> data)
 	{
-		return triggerable.BuildTrigger(GetType().ToString(), AddMoreDataToTrigger);
+		return null;
 	}
 }

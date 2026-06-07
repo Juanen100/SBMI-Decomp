@@ -23,11 +23,7 @@ public class BaseButton : MonoBehaviour, ILoadable
 	{
 		get
 		{
-			if (_view == null)
-			{
-				_view = GUIView.GetParentView(tform);
-			}
-			return _view;
+			return null;
 		}
 	}
 
@@ -35,7 +31,7 @@ public class BaseButton : MonoBehaviour, ILoadable
 	{
 		get
 		{
-			return (!(_tform != null)) ? (_tform = base.transform) : _tform;
+			return null;
 		}
 	}
 
@@ -43,18 +39,12 @@ public class BaseButton : MonoBehaviour, ILoadable
 	{
 		get
 		{
-			if (_parent == null)
-			{
-				_parent = GetComponent<YGSprite>();
-			}
-			return _parent;
+			return null;
 		}
 	}
 
 	public void SetPosition(int x, int y)
 	{
-		Vector3 position = View.PixelsToWorld(new Vector2(x, y));
-		tform.position = position;
 	}
 
 	public virtual void Load()
@@ -63,25 +53,10 @@ public class BaseButton : MonoBehaviour, ILoadable
 
 	protected virtual void OnEnable()
 	{
-		body = GetComponent<YG2DBody>();
-		if (body == null)
-		{
-			body = base.gameObject.AddComponent<YG2DRectangle>();
-		}
-		body.EventDispatch.AddListener(TouchEventHandler);
-		if (NeedsLoad)
-		{
-			View.RefreshEvent += Load;
-		}
 	}
 
 	protected virtual void OnDisable()
 	{
-		if (body != null)
-		{
-			body.EventDispatch.RemoveListener(TouchEventHandler);
-		}
-		_view = null;
 	}
 
 	protected virtual bool TouchEventHandler(YGEvent evt)
@@ -91,6 +66,5 @@ public class BaseButton : MonoBehaviour, ILoadable
 
 	public virtual void SetVisible(bool visible)
 	{
-		parent.enabled = visible;
 	}
 }

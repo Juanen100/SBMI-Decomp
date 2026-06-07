@@ -14,17 +14,14 @@ public abstract class FGComponent : MonoBehaviour
 
 	protected virtual void OnEnable()
 	{
-		FingerGestures.OnFingersUpdated += FingerGestures_OnFingersUpdated;
 	}
 
 	protected virtual void OnDisable()
 	{
-		FingerGestures.OnFingersUpdated -= FingerGestures_OnFingersUpdated;
 	}
 
 	private void FingerGestures_OnFingersUpdated()
 	{
-		OnUpdate(FingerGestures.Touches);
 	}
 
 	protected abstract void OnUpdate(FingerGestures.IFingerList touches);

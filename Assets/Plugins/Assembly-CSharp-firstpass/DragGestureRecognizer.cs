@@ -1,110 +1,91 @@
 using UnityEngine;
 
-[AddComponentMenu("FingerGestures/Gesture Recognizers/Drag")]
 public class DragGestureRecognizer : AveragedGestureRecognizer
 {
-	public float MoveTolerance = 5f;
+	public float MoveTolerance;
 
-	private Vector2 delta = Vector2.zero;
+	private Vector2 delta;
 
-	private Vector2 lastPos = Vector2.zero;
+	private Vector2 lastPos;
 
 	public Vector2 MoveDelta
 	{
 		get
 		{
-			return delta;
+			return default(Vector2);
 		}
 		private set
 		{
-			delta = value;
 		}
 	}
 
-	public event EventDelegate<DragGestureRecognizer> OnDragBegin;
+	public event EventDelegate<DragGestureRecognizer> OnDragBegin
+	{
+		add
+		{
+		}
+		remove
+		{
+		}
+	}
 
-	public event EventDelegate<DragGestureRecognizer> OnDragMove;
+	public event EventDelegate<DragGestureRecognizer> OnDragMove
+	{
+		add
+		{
+		}
+		remove
+		{
+		}
+	}
 
-	public event EventDelegate<DragGestureRecognizer> OnDragStationary;
+	public event EventDelegate<DragGestureRecognizer> OnDragStationary
+	{
+		add
+		{
+		}
+		remove
+		{
+		}
+	}
 
-	public event EventDelegate<DragGestureRecognizer> OnDragEnd;
+	public event EventDelegate<DragGestureRecognizer> OnDragEnd
+	{
+		add
+		{
+		}
+		remove
+		{
+		}
+	}
 
 	protected override bool CanBegin(FingerGestures.IFingerList touches)
 	{
-		if (!base.CanBegin(touches))
-		{
-			return false;
-		}
-		if (touches.GetAverageDistanceFromStart() < MoveTolerance)
-		{
-			return false;
-		}
-		return true;
+		return false;
 	}
 
 	protected override void OnBegin(FingerGestures.IFingerList touches)
 	{
-		base.Position = touches.GetAveragePosition();
-		base.StartPosition = base.Position;
-		MoveDelta = Vector2.zero;
-		lastPos = base.Position;
-		RaiseOnDragBegin();
 	}
 
 	protected override GestureState OnActive(FingerGestures.IFingerList touches)
 	{
-		if (touches.Count != RequiredFingerCount)
-		{
-			if (touches.Count < RequiredFingerCount)
-			{
-				RaiseOnDragEnd();
-				return GestureState.Recognized;
-			}
-			return GestureState.Failed;
-		}
-		base.Position = touches.GetAveragePosition();
-		MoveDelta = base.Position - lastPos;
-		if (MoveDelta.sqrMagnitude > 0f)
-		{
-			RaiseOnDragMove();
-			lastPos = base.Position;
-		}
-		else
-		{
-			RaiseOnDragStationary();
-		}
-		return GestureState.InProgress;
+		return default(GestureState);
 	}
 
 	protected void RaiseOnDragBegin()
 	{
-		if (this.OnDragBegin != null)
-		{
-			this.OnDragBegin(this);
-		}
 	}
 
 	protected void RaiseOnDragMove()
 	{
-		if (this.OnDragMove != null)
-		{
-			this.OnDragMove(this);
-		}
 	}
 
 	protected void RaiseOnDragStationary()
 	{
-		if (this.OnDragStationary != null)
-		{
-			this.OnDragStationary(this);
-		}
 	}
 
 	protected void RaiseOnDragEnd()
 	{
-		if (this.OnDragEnd != null)
-		{
-			this.OnDragEnd(this);
-		}
 	}
 }

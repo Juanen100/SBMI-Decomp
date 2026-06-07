@@ -3,12 +3,12 @@ using UnityEngine;
 public class AGSLatestStringList : AGSSyncableStringList
 {
 	public AGSLatestStringList(AmazonJavaWrapper javaObject)
-		: base(javaObject)
+		: base((AmazonJavaWrapper)null)
 	{
 	}
 
 	public AGSLatestStringList(AndroidJavaObject javaObject)
-		: base(javaObject)
+		: base((AmazonJavaWrapper)null)
 	{
 	}
 }

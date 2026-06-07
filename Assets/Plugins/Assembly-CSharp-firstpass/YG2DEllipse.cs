@@ -1,15 +1,14 @@
 using FarseerPhysics.Dynamics;
-using FarseerPhysics.Factories;
 using UnityEngine;
 
 public class YG2DEllipse : YG2DBody
 {
-	public Vector2 size = new Vector2(2f, 1f);
+	public Vector2 size;
 
-	public int edges = 16;
+	public int edges;
 
 	protected override Body GetBody(World world)
 	{
-		return BodyFactory.CreateEllipse(world, size.x, size.y, edges, density);
+		return null;
 	}
 }

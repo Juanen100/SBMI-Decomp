@@ -9,18 +9,17 @@ public class ResourceDropCtor : ItemDropCtor
 	{
 		get
 		{
-			return amount;
+			return 0;
 		}
 	}
 
 	public ResourceDropCtor(ItemDropDefinition definition, int amount, ulong creationTime)
-		: base(definition, creationTime)
+		: base(null, 0uL)
 	{
-		this.amount = amount;
 	}
 
 	public override ItemDrop CreateItemDrop(Vector3 position, Vector3 fixedOffset, Vector3 direction, Action onCleanupComplete)
 	{
-		return new ResourceDrop(position, fixedOffset, direction, definition, creationTime, amount, onCleanupComplete);
+		return null;
 	}
 }

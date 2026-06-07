@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public class Path<Position>
 {
@@ -10,7 +11,6 @@ public class Path<Position>
 
 		public PathNode(Position position)
 		{
-			this.position = position;
 		}
 	}
 
@@ -22,38 +22,31 @@ public class Path<Position>
 	{
 		get
 		{
-			return current.position;
+			return default(Position);
 		}
 	}
 
 	public void Add(Position position)
 	{
-		PathNode pathNode = new PathNode(position);
-		pathNode.next = head;
-		head = pathNode;
 	}
 
 	public void Begin()
 	{
-		current = head;
 	}
 
 	public bool Next()
 	{
-		current = current.next;
-		return Done();
+		return false;
 	}
 
 	public bool Done()
 	{
-		return null == current;
+		return false;
 	}
 
+	[DebuggerHidden]
 	public IEnumerator<Position> GetEnumerator()
 	{
-		for (PathNode node = head; node != null; node = node.next)
-		{
-			yield return node.position;
-		}
+		return null;
 	}
 }

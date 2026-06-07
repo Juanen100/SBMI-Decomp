@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[AddComponentMenu("FingerGestures/Toolbox/Tap")]
 public class TBTap : TBComponent
 {
 	public enum TapMode
@@ -11,19 +10,20 @@ public class TBTap : TBComponent
 
 	public TapMode tapMode;
 
-	public Message message = new Message("OnTap");
+	public Message message;
 
-	public event EventHandler<TBTap> OnTap;
+	public event EventHandler<TBTap> OnTap
+	{
+		add
+		{
+		}
+		remove
+		{
+		}
+	}
 
 	public bool RaiseTap(int fingerIndex, Vector2 fingerPos)
 	{
-		base.FingerIndex = fingerIndex;
-		base.FingerPos = fingerPos;
-		if (this.OnTap != null)
-		{
-			this.OnTap(this);
-		}
-		Send(message);
-		return true;
+		return false;
 	}
 }

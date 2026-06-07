@@ -10,7 +10,7 @@ public class ConstantCondition : LoadableCondition
 	{
 		get
 		{
-			return val;
+			return false;
 		}
 	}
 
@@ -20,38 +20,28 @@ public class ConstantCondition : LoadableCondition
 
 	public ConstantCondition(uint id, bool val)
 	{
-		Initialize(id, 1u, "constant", new List<string>(), new List<uint>());
-		this.val = val;
 	}
 
 	public static ConstantCondition FromDict(Dictionary<string, object> dict)
 	{
-		bool flag = ((TFUtils.LoadInt(dict, "value") != 0) ? true : false);
-		ConstantCondition constantCondition = new ConstantCondition();
-		constantCondition.Parse(dict, "constant", new List<string>(), flag);
-		return constantCondition;
+		return null;
 	}
 
 	public override string Description(Game game)
 	{
-		return Value.ToString();
+		return null;
 	}
 
 	public override Dictionary<string, object> ToDict()
 	{
-		Dictionary<string, object> dictionary = base.ToDict();
-		dictionary["value"] = (val ? 1 : 0);
-		return dictionary;
+		return null;
 	}
 
 	protected void Parse(Dictionary<string, object> loadedData, string loadToken, ICollection<string> relevantTypes, bool val)
 	{
-		Parse(loadedData, loadToken, relevantTypes);
-		this.val = val;
 	}
 
 	public override void Evaluate(ConditionState state, Game game, ITrigger trigger)
 	{
-		state.SelfExam = (val ? ConditionResult.PASS : ConditionResult.FAIL);
 	}
 }

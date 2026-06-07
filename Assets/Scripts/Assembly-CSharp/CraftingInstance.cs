@@ -18,11 +18,10 @@ public class CraftingInstance
 	{
 		get
 		{
-			return readyTimeUtc;
+			return 0uL;
 		}
 		set
 		{
-			readyTimeUtc = value;
 		}
 	}
 
@@ -30,34 +29,23 @@ public class CraftingInstance
 	{
 		get
 		{
-			return readyTimeUtc - TFUtils.EpochTime();
+			return 0uL;
 		}
 		set
 		{
-			readyTimeUtc = value + TFUtils.EpochTime();
 		}
 	}
 
 	public CraftingInstance(Dictionary<string, object> data)
 	{
-		buildingLabel = new Identity((string)data["building_label"]);
-		readyTimeUtc = TFUtils.LoadUlong(data, "ready_time");
-		recipeId = TFUtils.LoadInt(data, "recipe_id");
-		reward = Reward.FromObject(data["reward"]);
-		slotId = TFUtils.LoadInt(data, "slot_id");
 	}
 
 	public CraftingInstance(Identity label, int recipeId, ulong readyTimeUtc, Reward reward, int slotId)
 	{
-		buildingLabel = label;
-		this.readyTimeUtc = readyTimeUtc;
-		this.recipeId = recipeId;
-		this.reward = reward;
-		this.slotId = slotId;
 	}
 
 	public override string ToString()
 	{
-		return string.Concat("[CraftingInstance (label=", buildingLabel, ", readyTimeUtc= ", readyTimeUtc, ", recipeId= ", recipeId, ", reward= ", reward, ", slotId= ", slotId, ")]");
+		return null;
 	}
 }
