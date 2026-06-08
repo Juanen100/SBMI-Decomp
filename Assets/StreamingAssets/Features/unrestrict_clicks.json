@@ -1,0 +1,15 @@
+{
+    "type" : "unlock",
+    "feature" : "unrestrict_clicks",
+    "unlock_action":
+    {
+        "type": "sequence",
+        "actions":
+        [
+            {
+                "type" : "call_playhaven",
+                "placement" : "tutorial_end" 
+            }
+        ]
+    }
+}

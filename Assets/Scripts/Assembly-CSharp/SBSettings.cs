@@ -506,7 +506,7 @@ public class SBSettings
 		}
 		localBundleVersion = new Version(bundleShortVersion);
 
-		streamingAssetsFile = Application.streamingAssetsPath + "/global_settings.json";//TFUtils.GetStreamingAssetsFile("global_settings.json");
+		streamingAssetsFile = TFUtils.GetStreamingAssetsFile("global_settings.json");
 		json = TFUtils.ReadAllText(streamingAssetsFile);
 		dictionary = (Dictionary<string, object>)Json.Deserialize(json);
 		bool flag = LoadSettings(text4, dictionary);

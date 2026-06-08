@@ -843,8 +843,12 @@ public class TFUtils
 
 	public static string GetStreamingAssetsPath()
 	{
-		return Application.persistentDataPath + "/Contents";
-		//return "jar:file://" + ApplicationDataPath + Path.DirectorySeparatorChar + "!/assets";
+		#if UNITY_EDITOR
+		//return Application.persistentDataPath + "/Contents";
+		return Application.streamingAssetsPath;
+		#elif UNITY_ANDROID
+		return "jar:file://" + ApplicationDataPath + Path.DirectorySeparatorChar + "!/assets";
+		#endif
 	}
 
 	public static string GetStreamingAssetsSubfolder(string path)
