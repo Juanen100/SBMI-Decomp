@@ -41,6 +41,7 @@ public class VersionSwitcher : EditorWindow
     };
 
     private static string basePath = Application.persistentDataPath;
+    private static string targetPath = Application.streamingAssetsPath;
 
     private string currentVersion = "None";
     private string currentID = "-";
@@ -122,7 +123,7 @@ public class VersionSwitcher : EditorWindow
     private void SwitchVersion(string version)
     {
         string src = Path.Combine(basePath, "Contents_" + version);
-        string dst = Path.Combine(basePath, "Contents");
+        string dst = targetPath;
 
         if (!Directory.Exists(src))
         {
@@ -137,7 +138,7 @@ public class VersionSwitcher : EditorWindow
 
         bool confirm = EditorUtility.DisplayDialog(
             "Switch Version",
-            "Switch to " + versionLabels[version] + "?\n\nThis will replace the current Contents folder.",
+            "Switch to " + versionLabels[version] + "?\n\nThis will replace the current StreamingAssets folder.",
             "Yes", "Cancel"
         );
 
@@ -167,13 +168,13 @@ public class VersionSwitcher : EditorWindow
     {
         bool confirm = EditorUtility.DisplayDialog(
             "Clear Contents",
-            "This will delete the Contents folder.\nNo version will be active.",
+            "This will delete the StreamingAssets folder.\nNo version will be active.",
             "Yes", "Cancel"
         );
 
         if (!confirm) return;
 
-        string dst = Path.Combine(basePath, "Contents");
+        string dst = targetPath;
         if (Directory.Exists(dst))
             Directory.Delete(dst, true);
 
