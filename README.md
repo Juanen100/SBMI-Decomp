@@ -56,25 +56,6 @@ For instructions on hosting and running a server emulator with Docker, see the s
 
 If you want to play 4.37.00 or earlier (NOT RECOMMENDED), please use the *new and improved* [SpongeBob Moves In! 5.01.00 branch]($null) instead for the latest features, fixes, and improvements.
 
-## Gameplay
-
-The project's goal is to faithfully recreate the game as it was at the time of the targeted build.
-While most features are implemented and the game is playable from start to finish, functionality or bugs may be missing.
-
-When hosting a local server, you can access all commands by default.
-
-## Architecture
-
-SpongeBob Moves In! (SBMI) consists of the following components:
-
-* A client containing the game runtime and the game's associated DLLs.
-* An OBB package containing additional game assets and supporting data directories required at runtime.
-
-### Other information
-
-- You can use ILSpy to inspect the game's original dependencies, understand their behaviour, and analyse how they interact with the client for server-side implementation purposes.
-- https://sourceforge.net/projects/ilspy.mirror
-
 <!-- Do not delete this 🚫 --> 
 
 # Contributors:
