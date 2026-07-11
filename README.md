@@ -30,7 +30,7 @@
 </div>
 
 > [!IMPORTANT]
-> Looking to play the game? Read the new step‑by‑step setup guide: [SETUP.md](SETUP.md)
+> Looking to play the game? Read the step‑by‑step setup guide: [SETUP.md](SETUP_GAME.md)
 
 ## Information
 
