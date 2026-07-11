@@ -3,13 +3,20 @@
 Welcome
 -------
 
-We invite you to join our team! Everyone is welcome to contribute code via pull requests, to file issues on GitHub, and so forth.
+Thanks for your interest in SBMI-Decomp!
 
-We grant commit access to people who have gained our trust and demonstrated a commitment to SBMI-Decomp.
+Everyone is welcome to get involved. You can open issues, submit pull requests, suggest improvements, or simply share feedback.
 
-We communicate primarily over [Discord](https://discord.gg/HwJJuFjRTM).
+Commit access is granted to contributors who have earned our trust and shown a long-term commitment to the project.
 
-Developing for SBMI-Decomp
+Most discussions take place on Discord:
+https://discord.gg/HwJJuFjRTM
+
+Development
 ----------------------
 
-If you want to contribute to this project, feel free to fork or download it and make a pull request. This being said, I will only accept pull requests that help improve the overall feeling of the game to get it working similarly to the original client, once the project reaches a point of completion I won't accept any more pull requests.
+If you'd like to contribute, fork the repository, make your changes, and open a pull request.
+
+The project's goal is to recreate the original game's behaviour as accurately as possible. Because of that, pull requests should focus on improving compatibility with the original client rather than introducing new features or gameplay changes.
+
+Once the project reaches a stable, feature-complete state, we don't plan to accept further gameplay-related pull requests.
