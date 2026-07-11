@@ -43,7 +43,7 @@ If you'd like to contribute to the project, please read the [CONTRIBUTING.md](CO
 ### Prerequisites
 
 - You **must** provide your *own* copy of the game and its associated asset bundles.
-- You **must** provide your *own* copy of the game's OBB files. Required game assets are not included with this repository and must be placed in the appropriate content directory. Please read the [SETUP.md]($null) guide before getting started.
+- You **must** provide your *own* copy of the game's OBB files. Which are to be added to the server itself on compile - ensuring this repo does not contain any copywritten code.
 
 ## How to set up SpongeBob Moves In!
 
