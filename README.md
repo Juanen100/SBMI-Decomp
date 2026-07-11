@@ -56,8 +56,6 @@ For instructions on hosting and running a server emulator with Docker, see the s
 
 If you want to play 4.37.00 or earlier (NOT RECOMMENDED), please use the *new and improved* [SpongeBob Moves In! 5.01.00 branch]($null) instead for the latest features, fixes, and improvements.
 
-Alternatively, navigate to `Markut/SpongeBob/Tools/Version Switcher` in the Unity Editor and select the version you want to use. This tool configures the project to use assets, OBB files, and data files from the selected game client. It allows you to quickly switch between supported original game versions and their corresponding assets, including seasonal and limited-time events.
-
 ## Gameplay
 
 The project's goal is to faithfully recreate the game as it was at the time of the targeted build.
