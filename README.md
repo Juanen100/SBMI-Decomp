@@ -34,10 +34,7 @@
 
 ## Information
 
-> [!NOTE]
-> Found a bug or issue? Please report it through the appropriate project's issue tracker via [GitHub Issues](https://github.com/Juanen100/SBMI-Decomp/issues). Our team will review it and address it as soon as possible.
-
-Have a question, want to report an issue, or just interested in the project? **Join our Discord community**: https://discord.gg/HwJJuFjRTM. Once you've joined, head over to the `#development-only` channel for project discussions.
+Found a bug or issue? Please report it through the appropriate project's issue tracker via [GitHub Issues](https://github.com/Juanen100/SBMI-Decomp/issues). Our team will review it and address it as soon as possible.
 
 ## Contributing
 
