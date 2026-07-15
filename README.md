@@ -49,8 +49,6 @@ If you'd like to contribute to the project, please read the [CONTRIBUTING.md](CO
 
 If you want to play 5.01.00 or latest (NOT RECOMMENDED), please use the *old and improved* [SpongeBob Moves In! 4.37.00 branch](https://github.com/Juanen100/SBMI-Decomp/tree/4.37.00-Release) instead for the latest features, fixes, and improvements.
 
-<!-- Do not delete this 🚫 --> 
-
 # Contributors:
 ## Developers:
 * Juanen100 (Project Founder & Leader) (Current project leader).
@@ -76,7 +74,7 @@ An offshoot from SBMI: Back to Bikini Bottom, led by an undisclosed contributor,
 ## SBMI Retro (Closed down)
 A parallel project that attempted to reimplement the game in Godot 4 with a different design approach, but it was eventually discontinued.
 ## SBMI-Decomp (SpongeBob Moves In! Decompilation, formerly SBMI-Decomp)
-SBMI-Decomp initially started as a separate effort led by Juanen100, focused on reverse engineering game files from the OBB. Later, with the involvement of vurzk-dev (Markut), the project evolved under the same name into a Unity-based reconstruction effort, integrating extracted assets and iteratively improving game functionality.
+SBMI-Decomp initially began as a reverse engineering project led by Juanen100, with the aim of extracting and understanding the game's files from the OBB. As development progressed, vurzk-dev (Markut) joined the project, working alongside Juanen100 to restore shaders, repair broken scripts, and resolve numerous bugs that had prevented the game from functioning correctly. With Markut later assuming the role of Head Developer, the project evolved beyond simple asset extraction into a Unity-based reconstruction, integrating recovered assets and steadily rebuilding core gameplay systems until it reached a playable state. Supported by Juanen100's continued guidance as both mentor and collaborator, their combined efforts ultimately brought the game back to life for the community.
 
 ### Commemorations
 
