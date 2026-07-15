@@ -81,8 +81,6 @@ SBMI-Decomp initially began as a reverse engineering project led by Juanen100, w
 - <a href="https://github.com/Juanen100">Juanen100</a>
 - <a href="https://github.com/vurzk-dev">vurzk-dev (Markut)</a>
 
-Special thanks to everyone in the community whose contributions helped preserve and bring SpongeBob Moves In! back to life. ❤️
-
 ## License [![GPL v3](https://img.shields.io/badge/GPL%20v3-blue)](http://www.gnu.org/licenses/gpl-3.0)
 
 ```
