@@ -80,11 +80,3 @@ SBMI-Decomp initially began as a reverse engineering project led by Juanen100, w
 
 - <a href="https://github.com/Juanen100">Juanen100</a>
 - <a href="https://github.com/vurzk-dev">vurzk-dev (Markut)</a>
-
-## License [![GPL v3](https://img.shields.io/badge/GPL%20v3-blue)](http://www.gnu.org/licenses/gpl-3.0)
-
-```
-SpongeBob Moves In! Decompilation preservation project.
-Copyright (C) 2026 - 2027 The SpongeBob Moves In Society team
-See the GNU General Public License <https://www.gnu.org/licenses/>.
-```
