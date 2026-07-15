@@ -49,9 +49,7 @@ If you'd like to contribute to the project, please read the [CONTRIBUTING.md](CO
 
 Please read the [developer guide here on how to set up SpongeBob Moves In!]($null).
 
-For instructions on hosting and running a server emulator with Docker, see the step-by-step guide: [SETUP.md]($null).
-
-If you want to play 4.37.00 or earlier (NOT RECOMMENDED), please use the *new and improved* [SpongeBob Moves In! 5.01.00 branch]($null) instead for the latest features, fixes, and improvements.
+If you want to play 4.37.00 or earlier (NOT RECOMMENDED), please use the *new and improved* [SpongeBob Moves In! 5.01.00 branch](https://github.com/Juanen100/SBMI-Decomp/tree/5.01.00-Latest) instead for the latest features, fixes, and improvements.
 
 <!-- Do not delete this 🚫 --> 
 
