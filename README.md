@@ -40,11 +40,6 @@ Found a bug or issue? Please report it through the appropriate project's issue t
 
 If you'd like to contribute to the project, please read the [CONTRIBUTING.md](CONTRIBUTING.md) guide before getting started.
 
-### Prerequisites
-
-- You **must** provide your *own* copy of the game and its associated asset bundles.
-- You **must** provide your *own* copy of the game's OBB files. Which are to be added to the server itself on compile - ensuring this repo does not contain any copywritten code.
-
 ## How to set up SpongeBob Moves In!
 
 If you want to play 5.01.00 or latest (NOT RECOMMENDED), please use the *old and improved* [SpongeBob Moves In! 4.37.00 branch](https://github.com/Juanen100/SBMI-Decomp/tree/4.37.00-Release) instead for the latest features, fixes, and improvements.
