@@ -30,7 +30,7 @@
 </div>
 
 > [!IMPORTANT]
-> Looking to play the game? Read the step‑by‑step setup guide: [SETUP.md](SETUP_GAME.md)
+> How to set up SpongeBob Moves In!? Read the step‑by‑step setup guide: [SETUP.md](SETUP_GAME.md)
 
 ## Information
 
@@ -40,36 +40,13 @@ Found a bug or issue? Please report it through the appropriate project's issue t
 
 If you'd like to contribute to the project, please read the [CONTRIBUTING.md](CONTRIBUTING.md) guide before getting started.
 
-## How to set up SpongeBob Moves In!
-
-If you want to play 5.01.00 or latest (NOT RECOMMENDED), please use the *old and improved* [SpongeBob Moves In! 4.37.00 branch](https://github.com/Juanen100/SBMI-Decomp/tree/4.37.00-Release) instead for the latest features, fixes, and improvements.
-
 # Contributors:
 ## Developers:
-* Juanen100 (Project Founder & Leader) (Current project leader).
-* vurzk-dev (Markut) (Head Developer) (Current project leader).
-* Kauan1936 (SBMI: Back to Bikini Bottom, retired).
-* akao (SBMI: Back to Bikini Bottom, retired).
-* WellFire (SBMI: Back to Bikini Bottom, retired).
-* Undisclosed contributor (SBMIA, retired).
-* Undisclosed contributor (SBMI Retro, retired).
+* Juanen100 (Former Project lead).
+* vurzk-dev (Markut) (Current project leader).
 ## Asset contributors:
-* Juanen100.
+* Undisclosed contributo.
 * vurzk-dev (Markut).
-* Kauan1936, retired.
-* akao, retired.
-* WellFire, retired.
-* Undisclosed contributor, retired.
-* Undisclosed contributor, retired.
-# History of SpongeBob Moves In! Remakes
-## SBMI: Back to Bikini Bottom (Closed down)
-Earliest iteration focused on reverse engineering the game from the APK in an offline environment, attempting to reconstruct its systems and behaviour. It remained largely experimental, with no successful networking integration.
-## SBMI: Again (Closed down)
-An offshoot from SBMI: Back to Bikini Bottom, led by an undisclosed contributor, which aimed to recreate the game in Unity using assets extracted from the APK and OBB files. The approach proved complex and ultimately did not succeed.
-## SBMI Retro (Closed down)
-A parallel project that attempted to reimplement the game in Godot 4 with a different design approach, but it was eventually discontinued.
-## SBMI-Decomp (SpongeBob Moves In! Decompilation, formerly SBMI-Decomp)
-SBMI-Decomp initially began as a reverse engineering project led by Juanen100, with the aim of extracting and understanding the game's files from the OBB. As development progressed, vurzk-dev (Markut) joined the project, working alongside Juanen100 to restore shaders, repair broken scripts, and resolve numerous bugs that had prevented the game from functioning correctly. With Markut later assuming the role of Head Developer, the project evolved beyond simple asset extraction into a Unity-based reconstruction, integrating recovered assets and steadily rebuilding core gameplay systems until it reached a playable state. Supported by Juanen100's continued guidance as both mentor and collaborator, their combined efforts ultimately brought the game back to life for the community.
 
 ### Commemorations
 
