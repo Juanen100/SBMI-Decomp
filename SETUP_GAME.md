@@ -42,7 +42,8 @@ Some shaders are still Tool A's placeholder shaders. However, Tool B appears to 
 
 ## Game
 
-- Download the public game build from the official server (linked above), or compile your own build from the source.
+- Download the public game build from the [official discord server](https://discord.gg/HwJJuFjRTM), or compile your own build from the source.
+- If you want to play 5.01.00 or latest (NOT RECOMMENDED), please use the *old and improved* [SpongeBob Moves In! 4.37.00 found here](https://github.com/Juanen100/SBMI-Decomp/tree/4.37.00-Release) instead for the latest features, fixes, and improvements.
 
 ## Disclaimer
 We do not claim ownership of any trademarks. All trademarks are the property of their respective owners.
