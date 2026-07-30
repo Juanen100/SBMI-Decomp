@@ -1,4 +1,7 @@
-### Prerequisites
+### Prerequisites:
+```
+- You must have Unity 4.6.9f1 installed, as that's the version the game used.
+```
 ```
 - You must provide your own copy of the game and its associated asset bundles.
 ```
