@@ -60,3 +60,5 @@ Once you've completed steps two and three, copy the additional assets into the a
   ````
 
 Therefore If the folder `Contents` doesn't exists, **you must create it by yourself**.
+
+## Happy hosting — and see you in SBMI
