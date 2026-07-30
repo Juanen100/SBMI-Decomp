@@ -48,10 +48,6 @@ Some shaders are still Tool A's placeholder shaders. However, Tool B appears to 
 ## Disclaimer
 We do not claim ownership of any trademarks. All trademarks are the property of their respective owners.
 
-# Contributing
-
-If you'd like to contribute to the project, please read the [CONTRIBUTING.md](CONTRIBUTING.md) guide before getting started.
-
 # Contributors:
 ## Developers:
 * Juanen100 (Former Project lead).
