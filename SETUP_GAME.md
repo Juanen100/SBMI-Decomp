@@ -1,24 +1,73 @@
-# Opening in Unity
-This project uses Unity version 4.6.9f1, which is currently delisted from Unity's download page, even though the actual download link is still available here: https://discussions.unity.com/t/early-unity-versions-downloads/927331
+<div align="center">
+    <h1>
+        <img width="20%" src="https://github.com/Juanen100/SBMI-Decomp/raw/4.37.00-Release/GitHub%20Assets/Icon-152.png" style="border-radius: 50%;" align="center">
+        <br>
+    </h1>
+    <h3>Self‑host Setup Guide</h3>
+    <h4>This project is completely free from the original game's assets / intellectual property.</h4>
+    <h5>None of the repo, the tool, nor the repo owner is affiliated with or sponsored by any affiliates of the original game.</h5>
+    <h1></h1>
+</div>
 
-The game relies on extra assets that are found inside the OBB package, more specifically inside `OBB/com.mtvn.sbmigoogleplay/assets`, meaning you have to manually extract it and put it in it's corresponding folder:
+## Welcome
 
-- On Windows:
-  ````
-  %userprofile%\AppData\LocalLow\Tinyfun Studios\Spongebob\Contents
-  ````
+If you’re ready to swing into SBMI-Decomp and host your own server emulator, this guide walks you through a clean Unity-based setup.
 
-- On macOS:
-  ````
-  ~/Library/Application Support/Tinyfun Studios/Spongebob/Contents
-  ````
+> [!IMPORTANT]
+> Now that you've got the Unity project, I'd recommend starting with the [PREREQUISITES.md](https://github.com/Juanen100/SBMI-Decomp/blob/4.37.00-Release/PREREQUISITES.md) It contains everything you need to know to set the project up correctly.
 
-- On Linux:
-  ````
-  ~/.config/unity3d/Tinyfun Studios/Spongebob/Contents`
-  ````
-Therefore If the folder `Contents` doesn't exists, **you must create it by yourself**.
+## SBMI-Decomp Remake Unity Project
 
-The game has 2 scenes, one named `startScenes` and another called `Scene0`, where `startScenes` is a loader for downloading the OBB assets and such from the Play Store and `Scene0` is the actual main game, meaning you can skip `startScenes` completely and load `Scene0` for immediate gameplay and initialization stuff like game.json creation and your personal id and such. `Scene0_backup` is indeed a backup scene of `Scene0` that I've created myself because I've come across assets not destroying properly sometimes and completely destroying how the scene loads so just keep it for the moment.
+The game consists of two scenes: `startScenes` and `Scene0`.
 
-**Keep in mind that the project is far from finished and there's still a lot of stuff causing issues like the buildings in progress being under the construction area and the shaders not working properly**. There is a lot of lag when interacting with quests, characters or UI elements that trigger the game to save, which is caused by the logging made by soaring when the game is a Unity project, you can disable it in `SoaringDebug.cs` and on `static SoaringDebug()` set the following variables like this `LogToConsole = false; LogToFile = false; LogToHandler = LogToHandlerType.none;`. Some shaders are still AssetRipper's dummy shaders, however DevXDevelopment does seem to be able to extract the shaders so it's just a matter of rewritting them into Unity's proper syntax.
+`startScenes` acts as a loader, downloading the OBB assets and other required files from the Google Play Store. `Scene0`, on the other hand, is the main game scene. This means you can skip `startScenes` entirely and load `Scene0` directly for immediate gameplay, as well as the initial setup, such as creating `game.json`, generating your personal ID, and other initialisation tasks.
+
+`Scene0_backup` is a backup copy of `Scene0` that I created myself. I came across an issue where some assets occasionally failed to unload properly, which completely broke the scene loading process. For the time being, I'd recommend keeping it in case you need to restore the original scene.
+
+**Keep in mind that the project is still far from finished, and there are plenty of issues that still need to be resolved**. For example, buildings that are still under construction appear beneath the construction area, and some shaders are not working correctly.
+
+**You may also notice significant lag when interacting with quests, characters, or UI elements that trigger the game to save**. This is caused by the logging performed by Soaring when the game is running as a Unity project. If you'd like to disable it, open `SoaringDebug.cs` and, inside `static SoaringDebug()`, set the following variables:
+
+````
+ LogToConsole = false;
+````
+````
+ LogToFile = false;
+````
+````
+ LogToHandler = LogToHandlerType.none;
+````
+
+Some shaders are still Tool A's placeholder shaders. However, Tool B appears to extract the original shaders correctly, so it's simply a matter of rewriting them using Unity's proper shader syntax.
+
+## Game
+
+- Download the public game build from the official server (linked above), or compile your own build from the source.
+
+## Disclaimer
+We do not claim ownership of any trademarks. All trademarks are the property of their respective owners.
+
+## Contributors:
+### Developers:
+* Juanen100 (Project Founder & Leader) (Current project leader).
+* vurzk-dev (Markut) (Head Developer) (Current project leader).
+* Kauan1936 (SBMI: Back to Bikini Bottom, retired).
+* akao (SBMI: Back to Bikini Bottom, retired).
+* WellFire (SBMI: Back to Bikini Bottom, retired).
+* Undisclosed contributor (SBMIA, retired).
+* Undisclosed contributor (SBMI Retro, retired).
+### Asset contributors:
+* Juanen100.
+* vurzk-dev (Markut).
+* Kauan1936, retired.
+* akao, retired.
+* WellFire, retired.
+* Undisclosed contributor, retired.
+* Undisclosed contributor, retired.
+
+### Commemorations
+
+- <a href="https://github.com/Juanen100">Juanen100</a>
+- <a href="https://github.com/vurzk-dev">vurzk-dev (Markut)</a>
+
+We would like to express our sincere thanks to everyone involved in remaking this game, as well as to the community for their continued support.
