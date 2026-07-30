@@ -32,11 +32,11 @@
 > [!IMPORTANT]
 > How to set up SpongeBob Moves In!? Read the step‑by‑step setup guide: [SETUP.md](SETUP_GAME.md)
 
-## Information
+# Information
 
 Found a bug or issue? Please report it through the appropriate project's issue tracker via [GitHub Issues](https://github.com/Juanen100/SBMI-Decomp/issues). Our team will review it and address it as soon as possible.
 
-## Contributing
+# Contributing
 
 If you'd like to contribute to the project, please read the [CONTRIBUTING.md](CONTRIBUTING.md) guide before getting started.
 
@@ -47,7 +47,7 @@ If you'd like to contribute to the project, please read the [CONTRIBUTING.md](CO
 ## Asset contributors:
 * Undisclosed contributo.
 
-### Commemorations
+## Commemorations
 
 - <a href="https://github.com/Juanen100">Juanen100</a> - Mentor.
 - <a href="https://github.com/vurzk-dev">vurzk-dev (Markut)</a> - Concept contributor & the big chief.
