@@ -47,7 +47,7 @@ If you'd like to contribute to the project, please read the [CONTRIBUTING.md](CO
 ## Asset contributors:
 * Undisclosed contributo.
 
-## Commemorations
+# Commemorations
 
 - <a href="https://github.com/Juanen100">Juanen100</a> - Mentor.
 - <a href="https://github.com/vurzk-dev">vurzk-dev (Markut)</a> - Concept contributor & the big chief.
