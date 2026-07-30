@@ -48,27 +48,18 @@ Some shaders are still Tool A's placeholder shaders. However, Tool B appears to 
 ## Disclaimer
 We do not claim ownership of any trademarks. All trademarks are the property of their respective owners.
 
-## Contributors:
-### Developers:
-* Juanen100 (Project Founder & Leader) (Current project leader).
-* vurzk-dev (Markut) (Head Developer) (Current project leader).
-* Kauan1936 (SBMI: Back to Bikini Bottom, retired).
-* akao (SBMI: Back to Bikini Bottom, retired).
-* WellFire (SBMI: Back to Bikini Bottom, retired).
-* Undisclosed contributor (SBMIA, retired).
-* Undisclosed contributor (SBMI Retro, retired).
-### Asset contributors:
-* Juanen100.
-* vurzk-dev (Markut).
-* Kauan1936, retired.
-* akao, retired.
-* WellFire, retired.
-* Undisclosed contributor, retired.
-* Undisclosed contributor, retired.
+# Contributing
 
-### Commemorations
+If you'd like to contribute to the project, please read the [CONTRIBUTING.md](CONTRIBUTING.md) guide before getting started.
 
-- <a href="https://github.com/Juanen100">Juanen100</a>
-- <a href="https://github.com/vurzk-dev">vurzk-dev (Markut)</a>
+# Contributors:
+## Developers:
+* Juanen100 (Former Project lead).
+* vurzk-dev (Markut) (Current project leader).
+## Asset contributors:
+* Undisclosed contributo.
 
-We would like to express our sincere thanks to everyone involved in remaking this game, as well as to the community for their continued support.
+# Commemorations
+
+- <a href="https://github.com/Juanen100">Juanen100</a> - Mentor.
+- <a href="https://github.com/vurzk-dev">vurzk-dev (Markut)</a> - Concept contributor & the big chief.
