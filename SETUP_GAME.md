@@ -2,8 +2,22 @@
 This project uses Unity version 4.6.9f1, which is currently delisted from Unity's download page, even though the actual download link is still available here: https://discussions.unity.com/t/early-unity-versions-downloads/927331
 
 The game relies on extra assets that are found inside the OBB package, more specifically inside `OBB/com.mtvn.sbmigoogleplay/assets`, meaning you have to manually extract it and put it in it's corresponding folder:
-- On Windows: `%userprofile%\AppData\LocalLow\Tinyfun Studios\Spongebob\Contents`
-If no `Contents` folder exists, you must create it by yourself.
+
+- On Windows:
+  ````
+  %userprofile%\AppData\LocalLow\Tinyfun Studios\Spongebob\Contents
+  ````
+
+- On macOS:
+  ````
+  ~/Library/Application Support/Tinyfun Studios/Spongebob/Contents
+  ````
+
+- On Linux:
+  ````
+  ~/.config/unity3d/Tinyfun Studios/Spongebob/Contents`
+  ````
+Therefore If the folder `Contents` doesn't exists, **you must create it by yourself**.
 
 The game has 2 scenes, one named `startScenes` and another called `Scene0`, where `startScenes` is a loader for downloading the OBB assets and such from the Play Store and `Scene0` is the actual main game, meaning you can skip `startScenes` completely and load `Scene0` for immediate gameplay and initialization stuff like game.json creation and your personal id and such. `Scene0_backup` is indeed a backup scene of `Scene0` that I've created myself because I've come across assets not destroying properly sometimes and completely destroying how the scene loads so just keep it for the moment.
 
