@@ -38,8 +38,6 @@ The game consists of two scenes: `startScenes` and `Scene0`.
  LogToHandler = LogToHandlerType.none;
 ````
 
-Some shaders are still Tool A's placeholder shaders. However, Tool B appears to extract the original shaders correctly, so it's simply a matter of rewriting them using Unity's proper shader syntax.
-
 ## Game
 
 - Download the public game build from the [official discord server](https://discord.gg/HwJJuFjRTM), or compile your own build from the source.
