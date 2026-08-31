@@ -20,6 +20,9 @@
         <a href="https://github.com/Juanen100/SBMI-Decomp/stargazers">
             <img alt="Stars" src="https://img.shields.io/github/stars/Juanen100/SBMI-Decomp?color=gold&style=for-the-badge">
         </a>
+      <a href="https://discord.gg/HwJJuFjRTM">
+    <img alt="Discord" src="https://img.shields.io/discord/123456789?label=Discord&style=for-the-badge&logo=discord&logoColor=white">
+</a>
     </p>
     <h4>This project is a decompilation and recreation of the SpongeBob Moves In! (SBMI) client in C#. Its goal is to reproduce the original game as accurately as possible while providing a solid foundation for preservation, modding, and further development by the community.</h4>
     <h4>The inspiration for this decomp comes from Aubrey Holmes' video</h4>
