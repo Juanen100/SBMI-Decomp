@@ -21,7 +21,7 @@
             <img alt="Stars" src="https://img.shields.io/github/stars/Juanen100/SBMI-Decomp?color=gold&style=for-the-badge">
         </a>
       <a href="https://discord.gg/NQGWq4y9YD">
-    <img alt="Discord" src="https://img.shields.io/discord/123456789?label=Discord&style=for-the-badge&logo=discord&logoColor=white">
+    <img alt="Discord" src="https://img.shields.io/badge/Discord-Join-7289DA?style=for-the-badge&logo=discord&logoColor=white">
 </a>
     </p>
     <h4>This project is a decompilation and recreation of the SpongeBob Moves In! (SBMI) client in C#. Its goal is to reproduce the original game as accurately as possible while providing a solid foundation for preservation, modding, and further development by the community.</h4>
