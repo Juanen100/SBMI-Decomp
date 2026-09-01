@@ -20,7 +20,7 @@
         <a href="https://github.com/Juanen100/SBMI-Decomp/stargazers">
             <img alt="Stars" src="https://img.shields.io/github/stars/Juanen100/SBMI-Decomp?color=gold&style=for-the-badge">
         </a>
-      <a href="https://discord.gg/HwJJuFjRTM">
+      <a href="https://discord.gg/NQGWq4y9YD">
     <img alt="Discord" src="https://img.shields.io/discord/123456789?label=Discord&style=for-the-badge&logo=discord&logoColor=white">
 </a>
     </p>
